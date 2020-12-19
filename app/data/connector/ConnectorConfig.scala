@@ -14,9 +14,15 @@
  * limitations under the License.
  */
 
-package config
+package data.connector
 
+import config.Service
 import javax.inject.Inject
 import play.api.Configuration
 
-class AppConfig @Inject() (config: Configuration) {}
+private[connector] class ConnectorConfig @Inject() (config: Configuration) {
+
+  val customsReferenceData: Service =
+    config.get[Service]("microservice.services.customsReferenceData")
+
+}

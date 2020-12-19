@@ -14,9 +14,16 @@
  * limitations under the License.
  */
 
-package config
+package data.connector
 
-import javax.inject.Inject
-import play.api.Configuration
+import akka.stream.scaladsl.Source
+import akka.util.ByteString
+import models.ReferenceDataList
 
-class AppConfig @Inject() (config: Configuration) {}
+import scala.concurrent.Future
+
+private[data] trait RefDataConnector {
+  def get(listName: ReferenceDataList): Future[Option[ByteString]]
+
+  def getAsSource(listName: ReferenceDataList): Future[Option[Source[ByteString, _]]]
+}

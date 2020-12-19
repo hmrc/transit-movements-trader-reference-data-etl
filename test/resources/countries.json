@@ -1,0 +1,17 @@
+[
+  {
+    "code": "GB",
+    "state": "valid",
+    "description": "United Kingdom"
+  },
+  {
+    "code":"GE",
+    "state":"valid",
+    "description":"Georgia"
+  },
+  {
+    "code": "AD",
+    "state": "valid",
+    "description": "Andorra"
+  }
+]

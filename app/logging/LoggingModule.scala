@@ -14,9 +14,14 @@
  * limitations under the License.
  */
 
-package config
+package logging
 
-import javax.inject.Inject
-import play.api.Configuration
+import com.google.inject.AbstractModule
+import data.config.StreamLoggingConfig
+import data.config.StreamLoggingConfigImpl
 
-class AppConfig @Inject() (config: Configuration) {}
+class LoggingModule extends AbstractModule {
+
+  override def configure(): Unit =
+    bind(classOf[StreamLoggingConfig]).to(classOf[StreamLoggingConfigImpl]).asEagerSingleton()
+}

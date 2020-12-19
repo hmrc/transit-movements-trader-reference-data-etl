@@ -14,9 +14,19 @@
  * limitations under the License.
  */
 
-package config
+package data
 
-import javax.inject.Inject
-import play.api.Configuration
+import akka.stream.scaladsl.Source
+import data.transform.Transformation
+import models.ReferenceDataList
+import play.api.libs.json.JsObject
 
-class AppConfig @Inject() (config: Configuration) {}
+import scala.concurrent.Future
+
+trait DataRetrieval {
+
+  def getList[A <: ReferenceDataList](list: A)(implicit transformation: Transformation[A]): Future[Seq[JsObject]]
+
+  def streamList[A <: ReferenceDataList](list: A)(implicit transformation: Transformation[A]): Future[Option[Source[JsObject, _]]]
+
+}

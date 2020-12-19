@@ -1,4 +1,6 @@
+import scoverage.ScoverageKeys
 import uk.gov.hmrc.DefaultBuildSettings.integrationTestSettings
+import uk.gov.hmrc.SbtArtifactory
 import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 
 val appName = "transit-movements-trader-reference-data-etl"
@@ -6,10 +8,18 @@ val appName = "transit-movements-trader-reference-data-etl"
 val silencerVersion = "1.7.0"
 
 lazy val microservice = Project(appName, file("."))
-  .enablePlugins(play.sbt.PlayScala, SbtAutoBuildPlugin, SbtGitVersioning, SbtDistributablesPlugin)
+  .enablePlugins(
+    play.sbt.PlayScala,
+    SbtAutoBuildPlugin,
+    SbtGitVersioning,
+    SbtDistributablesPlugin,
+    SbtArtifactory
+  )
+  .disablePlugins(JUnitXmlReportPlugin)
   .settings(
     majorVersion                     := 0,
     scalaVersion                     := "2.12.12",
+    scalafmtOnCompile in ThisBuild   := true,
     libraryDependencies              ++= AppDependencies.compile ++ AppDependencies.test,
     // ***************
     // Use the silencer plugin to suppress warnings
@@ -21,6 +31,35 @@ lazy val microservice = Project(appName, file("."))
     // ***************
   )
   .settings(publishingSettings: _*)
+  .settings(inConfig(Test)(testSettings): _*)
   .configs(IntegrationTest)
   .settings(integrationTestSettings(): _*)
   .settings(resolvers += Resolver.jcenterRepo)
+  .settings(PlayKeys.playDefaultPort := 9494)
+  .settings(scoverageSettings: _*)
+
+lazy val scoverageSettings = {
+  Seq(
+    ScoverageKeys.coverageExcludedPackages := List(
+      "<empty>",
+      "Reverse.*",
+      "config.*",
+      "logging.*",
+      "api.controllers.testOnly.*",
+      "data.config.*",
+      ".*(BuildInfo|Routes).*"
+    ).mkString(";"),
+    ScoverageKeys.coverageMinimum := 85.00,
+    ScoverageKeys.coverageExcludedFiles := "<empty>;.*javascript.*;.*Routes.*;",
+    ScoverageKeys.coverageFailOnMinimum := true,
+    ScoverageKeys.coverageHighlighting := true,
+    parallelExecution in Test := false
+  )
+}
+
+lazy val testSettings: Seq[Def.Setting[_]] = Seq(
+  fork := true,
+  javaOptions ++= Seq(
+    "-Dconfig.resource=test.application.conf"
+  )
+)

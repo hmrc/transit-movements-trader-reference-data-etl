@@ -14,9 +14,17 @@
  * limitations under the License.
  */
 
-package config
+package logging
 
-import javax.inject.Inject
-import play.api.Configuration
+import akka.actor.ActorSystem
+import akka.event.{Logging => AkkaEventLogging}
+import akka.event.LoggingAdapter
 
-class AppConfig @Inject() (config: Configuration) {}
+trait StreamLoggerAdapter {
+
+  final val loggerName: String = s"application.${this.getClass.getCanonicalName}"
+
+  implicit def adapter(implicit actorSystem: ActorSystem): LoggingAdapter =
+    AkkaEventLogging(actorSystem, loggerName)
+
+}

@@ -14,9 +14,13 @@
  * limitations under the License.
  */
 
-package config
+package data
 
-import javax.inject.Inject
-import play.api.Configuration
+import com.google.inject.AbstractModule
 
-class AppConfig @Inject() (config: Configuration) {}
+class DataModules extends AbstractModule {
+
+  override def configure(): Unit =
+    bind(classOf[DataRetrieval]).to(classOf[DataRetrievalImpl])
+
+}

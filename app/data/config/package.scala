@@ -14,9 +14,20 @@
  * limitations under the License.
  */
 
-package config
+package data
 
-import javax.inject.Inject
+import akka.event.Logging.LogLevel
+import play.api.ConfigLoader
 import play.api.Configuration
 
-class AppConfig @Inject() (config: Configuration) {}
+package object config {
+
+  implicit lazy val configLoader: ConfigLoader[LogLevel] = ConfigLoader {
+    config => prefix =>
+      val configAtPath = Configuration(config).get[Configuration](prefix)
+      val level        = configAtPath.get[String]("level")
+
+      StreamLoggingConfig.getLogLevel(level)
+  }
+
+}

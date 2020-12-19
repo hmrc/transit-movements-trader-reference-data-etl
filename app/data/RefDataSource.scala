@@ -14,9 +14,25 @@
  * limitations under the License.
  */
 
-package config
+package data
 
+import akka.stream.scaladsl.Source
+import data.connector.RefDataConnector
 import javax.inject.Inject
-import play.api.Configuration
+import models.ReferenceDataList
+import play.api.libs.json.JsObject
 
-class AppConfig @Inject() (config: Configuration) {}
+import scala.concurrent.ExecutionContext
+import scala.concurrent.Future
+
+private[data] class RefDataSource @Inject() (
+  refDataConnector: RefDataConnector,
+  referenceDataJsonProjection: ReferenceDataJsonProjection
+)(implicit ec: ExecutionContext) {
+
+  def apply(listName: ReferenceDataList): Future[Option[Source[JsObject, _]]] =
+    refDataConnector
+      .getAsSource(listName)
+      .map(_.map(_.via(referenceDataJsonProjection.dataElements)))
+
+}

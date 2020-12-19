@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-package config
+package data.transform
 
-import javax.inject.Inject
-import play.api.Configuration
-
-class AppConfig @Inject() (config: Configuration) {}
+class TransformationException(message: String) extends RuntimeException(message)

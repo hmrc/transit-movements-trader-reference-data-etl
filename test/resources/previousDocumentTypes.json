@@ -1,0 +1,20 @@
+[
+  {
+    "state": "valid",
+    "activeFrom": "2015-10-01",
+    "code": "T2SM",
+    "description": "T2SM"
+  },
+  {
+    "state": "valid",
+    "activeFrom": "2015-10-01",
+    "code": "T2TIR",
+    "description": "T2TIR"
+  },
+  {
+    "state": "valid",
+    "activeFrom": "2015-10-01",
+    "code": "T1",
+    "description": "Document T1"
+  }
+]

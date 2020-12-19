@@ -1,0 +1,20 @@
+[
+  {
+    "state": "valid",
+    "activeFrom": "2015-07-01",
+    "code": "17",
+    "description": "(semi) Trailer on sea-going vessel"
+  },
+  {
+    "state": "valid",
+    "activeFrom": "2020-05-30",
+    "code": "1",
+    "description": "Sea transport"
+  },
+  {
+    "state": "valid",
+    "activeFrom": "2015-07-01",
+    "code": "10",
+    "description": "Sea transport"
+  }
+]

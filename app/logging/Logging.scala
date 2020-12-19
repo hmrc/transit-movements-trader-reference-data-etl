@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
-package config
+package logging
 
-import javax.inject.Inject
-import play.api.Configuration
+import play.api.Logger
 
-class AppConfig @Inject() (config: Configuration) {}
+trait Logging {
+
+  protected val logger: Logger = Logger(s"application.${this.getClass.getCanonicalName}")
+
+}

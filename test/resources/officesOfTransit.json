@@ -1,0 +1,1250 @@
+[
+  {
+    "ID": "AD000001",
+    "NAME": "SANT JULIÀ DE LÒRIA, CUSTOMS OFFICE SANT JULIÀ DE LÒRIA"
+  },
+  {
+    "ID": "AD000002",
+    "NAME": "PAS DE LA CASA, DCNJ PORTA"
+  },
+  {
+    "ID": "AT210000",
+    "NAME": "Wien-Flughafen, Wien Flughafen"
+  },
+  {
+    "ID": "AT210001",
+    "NAME": "Wien-Flughafen, Reisendenabfertigungsstelle"
+  },
+  {
+    "ID": "AT330000",
+    "NAME": "Wien-Flughafen, Eisenstadt Flughafen Wien"
+  },
+  {
+    "ID": "AT330100",
+    "NAME": "Wien-Flughafen, Wien Flughafen Güterabfertigung"
+  },
+  {
+    "ID": "AT330200",
+    "NAME": "Wien-Flughafen, Flughafen Wien Reisendenabfertigung"
+  },
+  {
+    "ID": "AT330400",
+    "NAME": "Wien-Flughafen, Flughafen Wien Cargo Center Nord"
+  },
+  {
+    "ID": "AT400100",
+    "NAME": "Klagenfurt, Flughafen/Strasse"
+  },
+  {
+    "ID": "AT420100",
+    "NAME": "Klagenfurt, Klagenfurt Flughafen/Strasse"
+  },
+  {
+    "ID": "AT500100",
+    "NAME": "Hörsching, Linz Flughafen"
+  },
+  {
+    "ID": "AT510100",
+    "NAME": "Wels, Wels Strasse/Bahn"
+  },
+  {
+    "ID": "AT520100",
+    "NAME": "Hörsching, Flughafen Linz"
+  },
+  {
+    "ID": "AT530100",
+    "NAME": "Wels, Terminal Wels"
+  },
+  {
+    "ID": "AT600200",
+    "NAME": "Salzburg, Flughafen Salzburg"
+  },
+  {
+    "ID": "AT700100",
+    "NAME": "Feldkirchen bei Graz, Graz Flughafen"
+  },
+  {
+    "ID": "AT800900",
+    "NAME": "Nauders, Martinsbruck"
+  },
+  {
+    "ID": "AT801000",
+    "NAME": "Pfunds, Pfunds"
+  },
+  {
+    "ID": "AT801100",
+    "NAME": "Pfunds, Spiss"
+  },
+  {
+    "ID": "AT900100",
+    "NAME": "Feldkirch, Buchs/Bahnhof"
+  },
+  {
+    "ID": "AT900200",
+    "NAME": "Feldkirch, Fresch"
+  },
+  {
+    "ID": "AT900300",
+    "NAME": "Feldkirch, Bangs"
+  },
+  {
+    "ID": "AT900400",
+    "NAME": "Feldkirch, Tisis"
+  },
+  {
+    "ID": "AT900500",
+    "NAME": "Feldkirch, Tosters"
+  },
+  {
+    "ID": "AT900600",
+    "NAME": "Feldkirch, Nofels"
+  },
+  {
+    "ID": "AT900700",
+    "NAME": "Meiningen, Meiningen"
+  },
+  {
+    "ID": "AT900800",
+    "NAME": "Koblach, Koblach"
+  },
+  {
+    "ID": "AT900900",
+    "NAME": "Mäder, Mäder"
+  },
+  {
+    "ID": "AT910200",
+    "NAME": "Hohenems, Hohenems"
+  },
+  {
+    "ID": "AT910300",
+    "NAME": "Lustenau, Lustenau"
+  },
+  {
+    "ID": "AT910400",
+    "NAME": "Lustenau, Schmitterbrücke"
+  },
+  {
+    "ID": "AT910500",
+    "NAME": "Lustenau, Wiesenrain"
+  },
+  {
+    "ID": "AT910600",
+    "NAME": "Höchst, Höchst"
+  },
+  {
+    "ID": "AT910800",
+    "NAME": "Bregenz, Seehafen Bregenz"
+  },
+  {
+    "ID": "AT910900",
+    "NAME": "Höchst, St. Margrethen"
+  },
+  {
+    "ID": "AT911000",
+    "NAME": "Gaissau, Gaissau"
+  },
+  {
+    "ID": "AT920100",
+    "NAME": "Feldkirch, Buchs/Bahnhof"
+  },
+  {
+    "ID": "AT920200",
+    "NAME": "Feldkirch, Fresch"
+  },
+  {
+    "ID": "AT920300",
+    "NAME": "Feldkirch, Bangs"
+  },
+  {
+    "ID": "AT920400",
+    "NAME": "Feldkirch, Tisis"
+  },
+  {
+    "ID": "AT920500",
+    "NAME": "Feldkirch, Tosters"
+  },
+  {
+    "ID": "AT920700",
+    "NAME": "Meiningen, Meiningen"
+  },
+  {
+    "ID": "AT920800",
+    "NAME": "Koblach, Koblach"
+  },
+  {
+    "ID": "AT920900",
+    "NAME": "Mäder, Mäder"
+  },
+  {
+    "ID": "AT930200",
+    "NAME": "Hohenems, Hohenems"
+  },
+  {
+    "ID": "AT930300",
+    "NAME": "Lustenau, Lustenau"
+  },
+  {
+    "ID": "AT930500",
+    "NAME": "Lustenau, Wiesenrain"
+  },
+  {
+    "ID": "AT930600",
+    "NAME": "Höchst, Höchst"
+  },
+  {
+    "ID": "AT930800",
+    "NAME": "Bregenz, Seehafen Bregenz"
+  },
+  {
+    "ID": "AT930900",
+    "NAME": "St. Margrethen (Schweiz), St. Margrethen"
+  },
+  {
+    "ID": "AT931000",
+    "NAME": "Gaissau, Gaissau"
+  },
+  {
+    "ID": "BE101000",
+    "NAME": "ANTWERPEN, ANTWERPEN D"
+  },
+  {
+    "ID": "BE105000",
+    "NAME": "DEURNE, DEURNE (ANTWERPEN) D"
+  },
+  {
+    "ID": "BE204000",
+    "NAME": "BRUXELLES, BRUXELLES DE"
+  },
+  {
+    "ID": "BE207000",
+    "NAME": "HEVERLEE, LEUVEN DAE"
+  },
+  {
+    "ID": "BE210000",
+    "NAME": "VILVOORDE, VILVOORDE  DAE"
+  },
+  {
+    "ID": "BE212000",
+    "NAME": "BRUCARGO, ZAVENTEM D"
+  },
+  {
+    "ID": "BE305000",
+    "NAME": "BRUGGE, BRUGGE DA"
+  },
+  {
+    "ID": "BE312000",
+    "NAME": "GENT, GENT DAE"
+  },
+  {
+    "ID": "BE328000",
+    "NAME": "OOSTENDE, OOSTENDE DAE"
+  },
+  {
+    "ID": "BE343000",
+    "NAME": "ZEEBRUGGE (BRUGGE), ZEEBRUGGE D"
+  },
+  {
+    "ID": "BE344000",
+    "NAME": "ZELZATE, ZELZATE DA"
+  },
+  {
+    "ID": "BE532000",
+    "NAME": "GRACE-HOLLOGNE, BIERSET (GRACE-HOLLOGNE) DE"
+  },
+  {
+    "ID": "BE680000",
+    "NAME": "GOSSELIES, GOSSELIES (CHARLEROI) DAE"
+  },
+  {
+    "ID": "BG001001",
+    "NAME": "Burgas, MP Zapad-ribno pristanishte"
+  },
+  {
+    "ID": "BG001002",
+    "NAME": "Burgas, MP Letishte Burgas"
+  },
+  {
+    "ID": "BG001003",
+    "NAME": "Malko Tarnovo, MP M.Tarnovo"
+  },
+  {
+    "ID": "BG001004",
+    "NAME": "Burgas, MP Neftopristanishte"
+  },
+  {
+    "ID": "BG001011",
+    "NAME": "Lesovo, MP Lesovo"
+  },
+  {
+    "ID": "BG002003",
+    "NAME": "Varna, MP Letishte Varna"
+  },
+  {
+    "ID": "BG002004",
+    "NAME": "Varna, MP Morska gara"
+  },
+  {
+    "ID": "BG002101",
+    "NAME": "Balchik, MP Balchik"
+  },
+  {
+    "ID": "BG003002",
+    "NAME": "Plovdiv, MP Letishte Plovdiv"
+  },
+  {
+    "ID": "BG003102",
+    "NAME": "Svilengrad, MP Zh.P. Gara Svilengrad"
+  },
+  {
+    "ID": "BG003103",
+    "NAME": "Kapitan Andreevo, MP Kapitan Andreevo"
+  },
+  {
+    "ID": "BG004006",
+    "NAME": "Ruse, MP Pristanishte"
+  },
+  {
+    "ID": "BG004007",
+    "NAME": "Ruse, MP Svobodna zona"
+  },
+  {
+    "ID": "BG004008",
+    "NAME": "Ruse, MP Terminal Pristanishte Iztok"
+  },
+  {
+    "ID": "BG004010",
+    "NAME": "Ruse, MP RO-RO Terminal"
+  },
+  {
+    "ID": "BG004014",
+    "NAME": "Silistra, MP Silistra"
+  },
+  {
+    "ID": "BG004102",
+    "NAME": "Bregovo, MP Bregovo"
+  },
+  {
+    "ID": "BG004106",
+    "NAME": "Vidin, MP Pristanishte"
+  },
+  {
+    "ID": "BG004107",
+    "NAME": "Vidin, MB Svobodna Zona"
+  },
+  {
+    "ID": "BG004109",
+    "NAME": "GRAMADA, MP Vrashka Chuka"
+  },
+  {
+    "ID": "BG004203",
+    "NAME": "Oryahovo, MP Oryahovо"
+  },
+  {
+    "ID": "BG004205",
+    "NAME": "Lom, MP Pristanishte Lom"
+  },
+  {
+    "ID": "BG004206",
+    "NAME": "Bregovo, MP Bregovo"
+  },
+  {
+    "ID": "BG004208",
+    "NAME": "Vidin, MP Pristanishte Vidin"
+  },
+  {
+    "ID": "BG004209",
+    "NAME": "GRAMADA, MP Vrashka Chuka"
+  },
+  {
+    "ID": "BG004303",
+    "NAME": "Gorna Oryahovitsa, MP Letishte Gorna Oryahovitsa"
+  },
+  {
+    "ID": "BG004307",
+    "NAME": "Somovit, MP Somovit"
+  },
+  {
+    "ID": "BG004402",
+    "NAME": "Silistra, MP Pristanishte"
+  },
+  {
+    "ID": "BG004404",
+    "NAME": "Tutrakan, MP Tutrakan"
+  },
+  {
+    "ID": "BG004501",
+    "NAME": "Bregovo, MP Bregovo"
+  },
+  {
+    "ID": "BG004502",
+    "NAME": "Gramada, MP Vrashka chuka"
+  },
+  {
+    "ID": "BG004503",
+    "NAME": "Vidin, MP Pristanishte Vidin"
+  },
+  {
+    "ID": "BG004504",
+    "NAME": "Vidin, MB Svobodna zona Vidin"
+  },
+  {
+    "ID": "BG005202",
+    "NAME": "Blagoevgrad, MP Logodazh"
+  },
+  {
+    "ID": "BG005304",
+    "NAME": "GKPP Kalotina, MP Kalotina"
+  },
+  {
+    "ID": "BG005402",
+    "NAME": "GKPP Zlatarevo, MP Zlatarevo"
+  },
+  {
+    "ID": "BG005501",
+    "NAME": "GKPP Gyueshevo, MP Gyueshevo"
+  },
+  {
+    "ID": "BG005503",
+    "NAME": "GKPP Oltomantsi, MP Oltomantsi"
+  },
+  {
+    "ID": "BG005602",
+    "NAME": "GKPP Strezimirovtsi, MP Strezimirovtsi"
+  },
+  {
+    "ID": "BG005702",
+    "NAME": "GKPP Gyueshevo, MP Gyueshevo"
+  },
+  {
+    "ID": "BG005703",
+    "NAME": "GKPP Zlatarevo, MP Zlatarevo"
+  },
+  {
+    "ID": "BG005706",
+    "NAME": "Blagoevgrad, MP Logodazh"
+  },
+  {
+    "ID": "BG005707",
+    "NAME": "Oltomantsi, MP Oltomantsi"
+  },
+  {
+    "ID": "BG005804",
+    "NAME": "Kalotina, MP Kalotina "
+  },
+  {
+    "ID": "BG005809",
+    "NAME": "Strezimirovtsi, MP Strezimirovtsi"
+  },
+  {
+    "ID": "CH001110",
+    "NAME": "Fahy, FAHY"
+  },
+  {
+    "ID": "CH001141",
+    "NAME": "BONCOURT, Inspection de douane Boncourt-Delle"
+  },
+  {
+    "ID": "CH001251",
+    "NAME": "Basel, Basel St. Jakob DA Wolf EVO"
+  },
+  {
+    "ID": "CH001252",
+    "NAME": "BASEL, Basel St. Jakob DA Wolf Konv."
+  },
+  {
+    "ID": "CH001253",
+    "NAME": "Basel, Basel St. Jakob DA Wolf Kurier"
+  },
+  {
+    "ID": "CH001454",
+    "NAME": "Basel, Basel St. Jakob Messe"
+  },
+  {
+    "ID": "CH001471",
+    "NAME": "BASEL, Basel St. Jakob DA Rheinhäfen"
+  },
+  {
+    "ID": "CH001501",
+    "NAME": "Rheinfelden, RIEHEN"
+  },
+  {
+    "ID": "CH001551",
+    "NAME": "RHEINFELDEN, GRENZACHERSTRASSE"
+  },
+  {
+    "ID": "CH001571",
+    "NAME": "BASEL, Basel St. Jakob UBF"
+  },
+  {
+    "ID": "CH001591",
+    "NAME": "RHEINFELDEN, STEIN/BAD SÄCKINGEN"
+  },
+  {
+    "ID": "CH001601",
+    "NAME": "Laufenburg, Laufenburg"
+  },
+  {
+    "ID": "CH001631",
+    "NAME": "AARAU, AARAU"
+  },
+  {
+    "ID": "CH001651",
+    "NAME": "LITTAU, AARAU DA LUZERN"
+  },
+  {
+    "ID": "CH001661",
+    "NAME": "BERN, BERN"
+  },
+  {
+    "ID": "CH001662",
+    "NAME": "Belp, Bern-Belp Flughafen"
+  },
+  {
+    "ID": "CH001671",
+    "NAME": "Belp, Bern DA Flughafen Bern Belp"
+  },
+  {
+    "ID": "CH001701",
+    "NAME": "MUTTENZ, MUTTENZ SBB"
+  },
+  {
+    "ID": "CH001711",
+    "NAME": "BASEL, BASEL-MÜLHAUSEN FLUGHAFEN FRACHT"
+  },
+  {
+    "ID": "CH001712",
+    "NAME": "Basel, Basel-Mülhausen Flughafen Kurier"
+  },
+  {
+    "ID": "CH001731",
+    "NAME": "Pratteln, Pratteln"
+  },
+  {
+    "ID": "CH001741",
+    "NAME": "BASEL, BASEL-DREIROSEN DA BIRSFELDEN"
+  },
+  {
+    "ID": "CH001801",
+    "NAME": "BASEL, BASEL/WEIL AM RHEIN-AUTOBAHN"
+  },
+  {
+    "ID": "CH001841",
+    "NAME": "BASEL, BASEL/ST.LOUIS AUTOBAHN"
+  },
+  {
+    "ID": "CH001921",
+    "NAME": "RHEINFELDEN, RHEINFELDEN AUTOBAHN"
+  },
+  {
+    "ID": "CH002041",
+    "NAME": "SCHAFFHAUSEN, SCHAFFHAUSEN DA KOBLENZ"
+  },
+  {
+    "ID": "CH002091",
+    "NAME": "SCHAFFHAUSEN, SCHAFFHAUSEN NZA TRASADINGEN"
+  },
+  {
+    "ID": "CH002151",
+    "NAME": "SCHLEITHEIM, SCHLEITHEIM"
+  },
+  {
+    "ID": "CH002171",
+    "NAME": "SCHAFFHAUSEN, SCHAFFHAUSEN DA FRACHT"
+  },
+  {
+    "ID": "CH002261",
+    "NAME": "RAFZ, RAFZ-SOLGEN"
+  },
+  {
+    "ID": "CH002291",
+    "NAME": "NEUHAUSEN, NEUHAUSEN AM RHEINFALL"
+  },
+  {
+    "ID": "CH002311",
+    "NAME": "SCHAFFHAUSEN, SCHAFFHAUSEN DA BARGEN"
+  },
+  {
+    "ID": "CH002411",
+    "NAME": "SCHAFFHAUSEN, SCHAFFHAUSEN DA RAMSEN"
+  },
+  {
+    "ID": "CH002471",
+    "NAME": "SCHAFFHAUSEN, SCHAFFHAUSEN DA THAYNGEN"
+  },
+  {
+    "ID": "CH002621",
+    "NAME": "Kreuzlingen, KREUZLINGEN AUTOBAHN"
+  },
+  {
+    "ID": "CH002671",
+    "NAME": "ROMANSHORN, ROMANSHORN"
+  },
+  {
+    "ID": "CH002771",
+    "NAME": "ZUERICH, ZUERICH FLUGHAFEN"
+  },
+  {
+    "ID": "CH002771",
+    "NAME": "ZUERICH, ZÜRICH-FLUGHAFEN"
+  },
+  {
+    "ID": "CH003031",
+    "NAME": "St. Margrethen, ST. MARGRETHEN DA WOLFURT"
+  },
+  {
+    "ID": "CH003041",
+    "NAME": "ALTENRHEIN, ALTENRHEIN-AIRPORT"
+  },
+  {
+    "ID": "CH003071",
+    "NAME": "ST. MARGRETHEN, ST. MARGRETHEN DA STRASSE"
+  },
+  {
+    "ID": "CH003081",
+    "NAME": "AU, ST. MARGRETHEN DA AU"
+  },
+  {
+    "ID": "CH003121",
+    "NAME": "KRIESSERN, KRIESSERN"
+  },
+  {
+    "ID": "CH003140",
+    "NAME": "Buchs, Buchs SG"
+  },
+  {
+    "ID": "CH003151",
+    "NAME": "OBERRIET, OBERRIET"
+  },
+  {
+    "ID": "CH003201",
+    "NAME": "SCHAANWALD FL, SCHAANWALD"
+  },
+  {
+    "ID": "CH003261",
+    "NAME": "MARTINA, MARTINA"
+  },
+  {
+    "ID": "CH003301",
+    "NAME": "MÜSTAIR, MÜSTAIR"
+  },
+  {
+    "ID": "CH003361",
+    "NAME": "CAMPOCOLOGNO, CAMPOCOLOGNO"
+  },
+  {
+    "ID": "CH003401",
+    "NAME": "CASTASEGNA, CASTASEGNA "
+  },
+  {
+    "ID": "CH003451",
+    "NAME": "DIEPOLDSAU, DIEPOLDSAU"
+  },
+  {
+    "ID": "CH004011",
+    "NAME": "BIOGGIO, VEDEGGIO"
+  },
+  {
+    "ID": "CH004031",
+    "NAME": "GANDRIA, Vedeggio SD Gandria"
+  },
+  {
+    "ID": "CH004091",
+    "NAME": "NOVAZZANO, BRUSATA"
+  },
+  {
+    "ID": "CH004131",
+    "NAME": "AGNO, Vedeggio SD Agno Aeroporto"
+  },
+  {
+    "ID": "CH004162",
+    "NAME": "Chiasso, Mendrisiotto"
+  },
+  {
+    "ID": "CH004163",
+    "NAME": "Chiasso, Mendrisiotto SD Confine"
+  },
+  {
+    "ID": "CH004164",
+    "NAME": "Chiasso, Mendrisiotto SD DFD-SM"
+  },
+  {
+    "ID": "CH004181",
+    "NAME": "CHIASSO, CHIASSO-STRADA"
+  },
+  {
+    "ID": "CH004182",
+    "NAME": "Chiasso, Chiasso SD Brodega Autostrada"
+  },
+  {
+    "ID": "CH004183",
+    "NAME": "Chiasso, Chiasso SD Chiasso Viaggiatori"
+  },
+  {
+    "ID": "CH004421",
+    "NAME": "BRISSAGO, Vedeggio SD Madonna di Ponte"
+  },
+  {
+    "ID": "CH004491",
+    "NAME": "BELLINZONA - LUINO, Vedeggio SD Luino (CH)"
+  },
+  {
+    "ID": "CH005040",
+    "NAME": "Brig, Brig DA Domo II"
+  },
+  {
+    "ID": "CH005051",
+    "NAME": "BRIG, BRIG"
+  },
+  {
+    "ID": "CH005081",
+    "NAME": "GONDO, GONDO"
+  },
+  {
+    "ID": "CH005121",
+    "NAME": "ST. GINGOLPH, ST. GINGOLPH"
+  },
+  {
+    "ID": "CH005181",
+    "NAME": "LE CHATELARD, LE CHATELARD"
+  },
+  {
+    "ID": "CH005351",
+    "NAME": "BARDONNEX, GENEVE-ROUTES SD CHAVANNES-DE-BOGIS"
+  },
+  {
+    "ID": "CH005371",
+    "NAME": "BARDONNEX, GENEVE-ROUTES BDS LA CURE "
+  },
+  {
+    "ID": "CH005441",
+    "NAME": "VALLORBE, CHAVORNAY SUBD VALLORBE"
+  },
+  {
+    "ID": "CH005491",
+    "NAME": "LES VERRIERES, CHAVORNAY SUBD LES VERRIERES"
+  },
+  {
+    "ID": "CH005561",
+    "NAME": "LE COL-DES-ROCHES, CHAVORNAY SUBD COL FRANCE"
+  },
+  {
+    "ID": "CH005661",
+    "NAME": "BIAUFOND, BIAUFOND"
+  },
+  {
+    "ID": "CH005701",
+    "NAME": "ORSIERES, MARTIGNY-GRAND-ST. BERNARD-TUNNEL"
+  },
+  {
+    "ID": "CH006021",
+    "NAME": "GENEVE, GENEVE ROUTES SD PORT FRANC"
+  },
+  {
+    "ID": "CH006021",
+    "NAME": "GENEVE 26, GENEVE ROUTES SD PORT FRANC"
+  },
+  {
+    "ID": "CH006031",
+    "NAME": "GENEVE 26, GENEVE ROUTES SD LA PRAILLE "
+  },
+  {
+    "ID": "CH006131",
+    "NAME": "BARDONNEX, GENEVE-ROUTES BDS ANIERES"
+  },
+  {
+    "ID": "CH006221",
+    "NAME": "THONEX, GENEVE-ROUTES SD THONEX-VALLARD"
+  },
+  {
+    "ID": "CH006251",
+    "NAME": "BARDONNEX, GENEVE-ROUTES SD BARDONNEX"
+  },
+  {
+    "ID": "CH006441",
+    "NAME": "BARDONNEX, GENEVE-ROUTES SD MEYRIN"
+  },
+  {
+    "ID": "CH006451",
+    "NAME": "Grand-Saconnex, GENEVE-ROUTES SD FERNEY-VOLTAIRE"
+  },
+  {
+    "ID": "CH006521",
+    "NAME": "GENEVE, GENEVE AEROPORT"
+  },
+  {
+    "ID": "CY000410",
+    "NAME": "LARNACA, LARNACA PORT"
+  },
+  {
+    "ID": "CY000510",
+    "NAME": "LIMASSOL, LIMASSOL PORT"
+  },
+  {
+    "ID": "CZ510201",
+    "NAME": "Praha 10, Celní, Praha 10"
+  },
+  {
+    "ID": "CZ510202",
+    "NAME": "Praha 10, Celní, Praha 10"
+  },
+  {
+    "ID": "CZ520201",
+    "NAME": "České Budějovice, Celní, České Budějovice"
+  },
+  {
+    "ID": "CZ520202",
+    "NAME": "Strakonice, Celní, Strakonice"
+  },
+  {
+    "ID": "CZ520203",
+    "NAME": "Tábor, Celní, Tábor()"
+  },
+  {
+    "ID": "CZ530201",
+    "NAME": "Brno-Slatina, Celní, Brno-Slatina()"
+  },
+  {
+    "ID": "CZ530202",
+    "NAME": "Blansko, Celní, Blansko"
+  },
+  {
+    "ID": "CZ530203",
+    "NAME": "Hodonín, Celní, Hodonín()"
+  },
+  {
+    "ID": "CZ530204",
+    "NAME": "Lanžhot, Celní, Lanžhot()"
+  },
+  {
+    "ID": "CZ530299",
+    "NAME": "Brno-Tuřany, Letiště Tuřany, Brno-Tuřany()"
+  },
+  {
+    "ID": "CZ540201",
+    "NAME": "Karlovy Vary, Celní, Karlovy Vary()"
+  },
+  {
+    "ID": "CZ540202",
+    "NAME": "Cheb, Celní, Cheb()"
+  },
+  {
+    "ID": "CZ540299",
+    "NAME": "Karlovy Vary, Letiště, Karlovy Vary()"
+  },
+  {
+    "ID": "CZ550201",
+    "NAME": "Hradec Králové, Celní, Hradec Králové()"
+  },
+  {
+    "ID": "CZ550202",
+    "NAME": "Jičín, Celní, Jičín()"
+  },
+  {
+    "ID": "CZ550203",
+    "NAME": "Náchod, Celní, Náchod()"
+  },
+  {
+    "ID": "CZ560201",
+    "NAME": "Liberec 6, Celní, Liberec 6"
+  },
+  {
+    "ID": "CZ570201",
+    "NAME": "Paskov, Celní, Paskov"
+  },
+  {
+    "ID": "CZ570202",
+    "NAME": "Karviná - Nové Město, Celní, Karviná - Nové Město"
+  },
+  {
+    "ID": "CZ570203",
+    "NAME": "Nošovice, Celní, Nošovice"
+  },
+  {
+    "ID": "CZ570204",
+    "NAME": "Opava, Celní, Opava"
+  },
+  {
+    "ID": "CZ570205",
+    "NAME": "Třinec, Celní, Třinec"
+  },
+  {
+    "ID": "CZ570299",
+    "NAME": "Mošnov, Letiště, Mošnov"
+  },
+  {
+    "ID": "CZ580201",
+    "NAME": "Olomouc, Celní, Olomouc"
+  },
+  {
+    "ID": "CZ580202",
+    "NAME": "Přerov, Celní, Přerov"
+  },
+  {
+    "ID": "CZ580203",
+    "NAME": "Šumperk, Celní, Šumperk"
+  },
+  {
+    "ID": "CZ590201",
+    "NAME": "Pardubice, Celní, Pardubice"
+  },
+  {
+    "ID": "CZ590202",
+    "NAME": "Česká Třebová, Celní, Česká Třebová"
+  },
+  {
+    "ID": "CZ590299",
+    "NAME": "Pardubice - Staré Čívice, Letiste, Pardubice - Stare Civice"
+  },
+  {
+    "ID": "CZ600201",
+    "NAME": "Plzeň, Celní, Plzeň"
+  },
+  {
+    "ID": "CZ600202",
+    "NAME": "Draženov, Celní, Draženov"
+  },
+  {
+    "ID": "CZ600203",
+    "NAME": "Tachov, Celní, Tachov"
+  },
+  {
+    "ID": "CZ610201",
+    "NAME": "Zdiby, Celní, Zdiby"
+  },
+  {
+    "ID": "CZ610202",
+    "NAME": "Benešov u Prahy, Celní, Benešov u Prahy"
+  },
+  {
+    "ID": "CZ610203",
+    "NAME": "Kladno, Celní, Kladno"
+  },
+  {
+    "ID": "CZ610204",
+    "NAME": "Kolín 4, Celní, Kolín 4"
+  },
+  {
+    "ID": "CZ610205",
+    "NAME": "Kosmonosy, Celní, Kosmonosy"
+  },
+  {
+    "ID": "CZ610206",
+    "NAME": "Mělník, Celní, Mělník"
+  },
+  {
+    "ID": "CZ610207",
+    "NAME": "Říčany, Celní, Říčany"
+  },
+  {
+    "ID": "CZ610208",
+    "NAME": "Rudná, Celní, Rudná"
+  },
+  {
+    "ID": "CZ620201",
+    "NAME": "Ústí nad Labem, Celní, Ústí nad Labem"
+  },
+  {
+    "ID": "CZ620202",
+    "NAME": "Chomutov, Celní, Chomutov"
+  },
+  {
+    "ID": "CZ620203",
+    "NAME": "Most-Velebudice, Celní, Most-Velebudice"
+  },
+  {
+    "ID": "CZ630201",
+    "NAME": "Střítež u Jihlavy, Celní, Střítež u Jihlavy"
+  },
+  {
+    "ID": "CZ630202",
+    "NAME": "Pelhřimov, Celní, Pelhřimov"
+  },
+  {
+    "ID": "CZ630203",
+    "NAME": "Žďár nad Sázavou, Celní, Žďár nad Sázavou"
+  },
+  {
+    "ID": "CZ640201",
+    "NAME": "Lípa, Celní, Lípa"
+  },
+  {
+    "ID": "CZ640202",
+    "NAME": "Napajedla, Celní, Napajedla"
+  },
+  {
+    "ID": "CZ640203",
+    "NAME": "Uherské Hradiště, Celní, Uherské Hradiště"
+  },
+  {
+    "ID": "CZ640204",
+    "NAME": "Valašské Meziříčí, Celní, Valašské Meziříčí"
+  },
+  {
+    "ID": "CZ650201",
+    "NAME": "Praha 6, Celní, Praha 6"
+  },
+  {
+    "ID": "CZ650202",
+    "NAME": "Praha 5, Celní - Pošta Praha, Praha 5"
+  },
+  {
+    "ID": "CZ650299",
+    "NAME": "Praha 6, Letiště, Praha 6"
+  },
+  {
+    "ID": "DE002102",
+    "NAME": "Schönefeld, Berlin-Flughafen Schönefeld"
+  },
+  {
+    "ID": "DE002105",
+    "NAME": "Berlin, Berlin-Flughafen-Tegel"
+  },
+  {
+    "ID": "DE002131",
+    "NAME": "Berlin, Berlin-Flughafen Tempelhof"
+  },
+  {
+    "ID": "DE002301",
+    "NAME": "Bremen, Bremen-Flughafen"
+  },
+  {
+    "ID": "DE002302",
+    "NAME": "Bremen, Bremen-Überseestadt"
+  },
+  {
+    "ID": "DE002304",
+    "NAME": "Bremen, Neustädter Hafen"
+  },
+  {
+    "ID": "DE002306",
+    "NAME": "Bremen, Bremen-Industriehafen"
+  },
+  {
+    "ID": "DE002307",
+    "NAME": "Bremen, Kontrolleinheit Flughafen Bremen"
+  },
+  {
+    "ID": "DE002452",
+    "NAME": "Bremerhaven, Bremerhaven"
+  },
+  {
+    "ID": "DE002601",
+    "NAME": "Düsseldorf, Düsseldorf-Flughafen"
+  },
+  {
+    "ID": "DE002605",
+    "NAME": "Düsseldorf, KE Flughafen Düsseldorf"
+  },
+  {
+    "ID": "DE002704",
+    "NAME": "Weeze, Kontrolleinheit Flughafen Weeze"
+  },
+  {
+    "ID": "DE002705",
+    "NAME": "Weeze, Weeze"
+  },
+  {
+    "ID": "DE003009",
+    "NAME": "Erfurt, Kontrolleinheit Flughafen Erfurt"
+  },
+  {
+    "ID": "DE003030",
+    "NAME": "Erfurt, Erfurt-Flughafen Luftverkehr"
+  },
+  {
+    "ID": "DE003302",
+    "NAME": "Frankfurt am Main, Fracht (Flughafen)"
+  },
+  {
+    "ID": "DE003303",
+    "NAME": "Frankfurt am Main, Sachgebiet C Reisendenabfertigung"
+  },
+  {
+    "ID": "DE003306",
+    "NAME": "Frankfurt am Main, KEFR Frankfurt am Main"
+  },
+  {
+    "ID": "DE003307",
+    "NAME": "Frankfurt am Main, KEF/Ü Frankfurt am Main"
+  },
+  {
+    "ID": "DE003705",
+    "NAME": "Berlin, KE Flughafen Berlin-Tegel"
+  },
+  {
+    "ID": "DE003706",
+    "NAME": "Berlin, KE Flughafen Berlin-Schönefeld"
+  },
+  {
+    "ID": "DE004002",
+    "NAME": "Konstanz, Konstanz-Güterbahnhof"
+  },
+  {
+    "ID": "DE004005",
+    "NAME": "Konstanz, Konstanz-Autobahn (schweiz. Gebiet)"
+  },
+  {
+    "ID": "DE004051",
+    "NAME": "Grenzach-Wyhlen, Grenzacherhorn"
+  },
+  {
+    "ID": "DE004053",
+    "NAME": "Lörrach, Lörrach-Stetten"
+  },
+  {
+    "ID": "DE004055",
+    "NAME": "Weil am Rhein, Weil am Rhein-Autobahn"
+  },
+  {
+    "ID": "DE004058",
+    "NAME": "Weil am Rhein, Basel"
+  },
+  {
+    "ID": "DE004062",
+    "NAME": "Rheinfelden, Rheinfelden-Autobahn"
+  },
+  {
+    "ID": "DE004081",
+    "NAME": "Basel, Weil am Rhein - Umschlagbahnhof"
+  },
+  {
+    "ID": "DE004085",
+    "NAME": "Weil am Rhein, Basler Häfen"
+  },
+  {
+    "ID": "DE004101",
+    "NAME": "Gottmadingen, Bietingen"
+  },
+  {
+    "ID": "DE004102",
+    "NAME": "Blumberg, Neuhaus"
+  },
+  {
+    "ID": "DE004103",
+    "NAME": "Rielasingen-Worblingen, Rielasingen"
+  },
+  {
+    "ID": "DE004105",
+    "NAME": "Singen, Singen-Bahnhof"
+  },
+  {
+    "ID": "DE004181",
+    "NAME": "Singen, Singen-Personenbahnhof"
+  },
+  {
+    "ID": "DE004201",
+    "NAME": "Klettgau, Erzingen"
+  },
+  {
+    "ID": "DE004203",
+    "NAME": "Jestetten, Jestetten (schweiz. Gebiet)"
+  },
+  {
+    "ID": "DE004205",
+    "NAME": "Lottstetten, Lottstetten"
+  },
+  {
+    "ID": "DE004206",
+    "NAME": "Stühlingen, Stühlingen"
+  },
+  {
+    "ID": "DE004208",
+    "NAME": "Waldshut-Tiengen, Waldshut"
+  },
+  {
+    "ID": "DE004209",
+    "NAME": "Bad Säckingen, Bad Säckingen"
+  },
+  {
+    "ID": "DE004501",
+    "NAME": "Cuxhaven, Cuxhaven"
+  },
+  {
+    "ID": "DE004701",
+    "NAME": "Hamburg, Hamburg-Flughafen"
+  },
+  {
+    "ID": "DE004851",
+    "NAME": "Hamburg, Hamburg-Waltershof"
+  },
+  {
+    "ID": "DE005004",
+    "NAME": "Emden, Emden"
+  },
+  {
+    "ID": "DE005008",
+    "NAME": "Papenburg, Papenburg"
+  },
+  {
+    "ID": "DE005103",
+    "NAME": "Hannover, Hannover-Flughafen"
+  },
+  {
+    "ID": "DE005104",
+    "NAME": "Hannover, KE Flughafen Hannover Langenhagen"
+  },
+  {
+    "ID": "DE005203",
+    "NAME": "Stade, Stade"
+  },
+  {
+    "ID": "DE005301",
+    "NAME": "Brake, Brake"
+  },
+  {
+    "ID": "DE005310",
+    "NAME": "Wilhelmshaven, Wilhelmshaven"
+  },
+  {
+    "ID": "DE005552",
+    "NAME": "Dresden, Dresden-Flughafen"
+  },
+  {
+    "ID": "DE005555",
+    "NAME": "Dresden, Kontrolleinheit Flughafen Dresden"
+  },
+  {
+    "ID": "DE005557",
+    "NAME": "Schkeuditz, Kontrolleinheit Flughafen Leipzig"
+  },
+  {
+    "ID": "DE005604",
+    "NAME": "Schkeuditz, Leipzig-Flughafen"
+  },
+  {
+    "ID": "DE005855",
+    "NAME": "Rheinmünster, Kontrolleinheit Flughafen Karlruhe"
+  },
+  {
+    "ID": "DE005881",
+    "NAME": "Rheinmünster, ZA Baden-Baden"
+  },
+  {
+    "ID": "DE006132",
+    "NAME": "Flensburg, Flensburg-Hafen"
+  },
+  {
+    "ID": "DE006151",
+    "NAME": "Brunsbüttel, Brunsbüttel"
+  },
+  {
+    "ID": "DE006155",
+    "NAME": "Husum, Husum"
+  },
+  {
+    "ID": "DE006203",
+    "NAME": "Kiel, Kiel-Wik"
+  },
+  {
+    "ID": "DE006206",
+    "NAME": "Rendsburg, Rendsburg"
+  },
+  {
+    "ID": "DE006231",
+    "NAME": "Kiel, Kiel-Norwegenkai"
+  },
+  {
+    "ID": "DE006302",
+    "NAME": "Heiligenhafen, Heiligenhafen"
+  }
+]

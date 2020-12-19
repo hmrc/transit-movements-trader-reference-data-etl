@@ -14,9 +14,16 @@
  * limitations under the License.
  */
 
-package config
+package data.connector
 
-import javax.inject.Inject
-import play.api.Configuration
+import com.google.inject.AbstractModule
 
-class AppConfig @Inject() (config: Configuration) {}
+class ConnectorModules extends AbstractModule {
+
+  override def configure(): Unit = {
+    bind(classOf[RefDataConnector]).to(classOf[RefDataConnectorImpl])
+    bind(classOf[ConnectorConfig]).asEagerSingleton()
+
+  }
+
+}

@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package config
+package base
 
-import javax.inject.Inject
-import play.api.Configuration
+import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 
-class AppConfig @Inject() (config: Configuration) {}
+trait SpecBaseWithAppPerSuite extends SpecBase with GuiceOneAppPerSuite with TestWithApplication
