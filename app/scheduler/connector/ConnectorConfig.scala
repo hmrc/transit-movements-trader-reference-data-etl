@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package data.connector
+package scheduler.connector
 
 import config.Service
 import javax.inject.Inject
@@ -22,7 +22,7 @@ import play.api.Configuration
 
 private[connector] class ConnectorConfig @Inject() (config: Configuration) {
 
-  val customsReferenceData: Service =
-    config.get[Service]("microservice.services.customs-reference-data")
+  val transitMovementsTraderReferenceData: Service =
+    config.get[Service]("microservice.services.transit-movements-trader-reference-data")
 
 }

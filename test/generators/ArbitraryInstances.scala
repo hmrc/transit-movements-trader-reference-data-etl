@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package data.connector
+package generators
 
-import config.Service
-import javax.inject.Inject
-import play.api.Configuration
+import models.ReferenceDataList
+import org.scalacheck.Arbitrary
+import org.scalacheck.Gen
 
-private[connector] class ConnectorConfig @Inject() (config: Configuration) {
+trait ArbitraryInstances {
 
-  val customsReferenceData: Service =
-    config.get[Service]("microservice.services.customs-reference-data")
-
+  implicit val arbitraryReferenceDataList: Arbitrary[ReferenceDataList] =
+    Arbitrary(Gen.oneOf(ReferenceDataList.values.toList))
 }

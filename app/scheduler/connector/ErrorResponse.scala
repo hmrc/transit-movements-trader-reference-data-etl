@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-package data.connector
+package scheduler.connector
 
-import config.Service
-import javax.inject.Inject
-import play.api.Configuration
+sealed trait ErrorResponse {
+  val body: String
+}
 
-private[connector] class ConnectorConfig @Inject() (config: Configuration) {
+object ErrorResponse {
 
-  val customsReferenceData: Service =
-    config.get[Service]("microservice.services.customs-reference-data")
+  case object NotFound extends ErrorResponse {
+    override val body = "Not found"
+  }
 
+  case class UnexpectedResponseStatus(status: Int, body: String) extends ErrorResponse
 }
