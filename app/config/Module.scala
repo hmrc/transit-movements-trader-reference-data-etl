@@ -16,10 +16,15 @@
 
 package config
 
-import javax.inject.Inject
-import play.api.Configuration
+import java.time.Clock
+import java.time.ZoneOffset
 
-class AppConfig @Inject() (config: Configuration) {
+import com.google.inject.AbstractModule
 
-  val mongoLockTtlInSeconds: Int = config.get[Int]("mongodb.locks.ttlSeconds")
+class Module extends AbstractModule {
+
+  override def configure(): Unit = {
+    bind(classOf[AppConfig]).asEagerSingleton()
+    bind(classOf[Clock]).toInstance(Clock.systemDefaultZone.withZone(ZoneOffset.UTC))
+  }
 }

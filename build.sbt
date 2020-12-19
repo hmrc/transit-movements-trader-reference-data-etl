@@ -1,5 +1,4 @@
 import scoverage.ScoverageKeys
-import uk.gov.hmrc.DefaultBuildSettings.integrationTestSettings
 import uk.gov.hmrc.SbtArtifactory
 import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 
@@ -33,7 +32,7 @@ lazy val microservice = Project(appName, file("."))
   .settings(publishingSettings: _*)
   .settings(inConfig(Test)(testSettings): _*)
   .configs(IntegrationTest)
-  .settings(integrationTestSettings(): _*)
+  .settings(inConfig(IntegrationTest)(itSettings): _*)
   .settings(resolvers += Resolver.jcenterRepo)
   .settings(PlayKeys.playDefaultPort := 9494)
   .settings(scoverageSettings: _*)
@@ -61,5 +60,20 @@ lazy val testSettings: Seq[Def.Setting[_]] = Seq(
   fork := true,
   javaOptions ++= Seq(
     "-Dconfig.resource=test.application.conf"
+  )
+)
+
+lazy val itSettings = Defaults.itSettings ++ Seq(
+  unmanagedSourceDirectories := Seq(
+    baseDirectory.value / "it"
+  ),
+  unmanagedResourceDirectories := Seq(
+    baseDirectory.value / "it" / "resources"
+  ),
+  parallelExecution := false,
+  fork := true,
+  javaOptions ++= Seq(
+    "-Dconfig.resource=it.application.conf",
+    "-Dlogger.resource=logback-it.xml"
   )
 )

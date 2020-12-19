@@ -14,12 +14,26 @@
  * limitations under the License.
  */
 
-package config
+package repositories
 
-import javax.inject.Inject
-import play.api.Configuration
+import java.time.Instant
 
-class AppConfig @Inject() (config: Configuration) {
+import play.api.libs.json.Json
+import play.api.libs.json.Reads
+import play.api.libs.json.Writes
+import play.api.libs.json.__
 
-  val mongoLockTtlInSeconds: Int = config.get[Int]("mongodb.locks.ttlSeconds")
+object MongoInstantFormats {
+
+  implicit val instantRead: Reads[Instant] =
+    (__ \ "$date").read[Long].map {
+      millis =>
+        Instant.ofEpochMilli(millis)
+    }
+
+  implicit val instantWrites: Writes[Instant] =
+    (instant: Instant) =>
+      Json.obj(
+        "$date" -> instant.toEpochMilli
+      )
 }

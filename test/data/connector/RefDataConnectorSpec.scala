@@ -239,7 +239,7 @@ class RefDataConnectorSpec extends ConnectorSpecBase {
   /**
     * @return The name of the config key for the external service
     */
-  override protected def portConfigKey: String = "microservice.services.customsReferenceData.port"
+  override protected def portConfigKey: String = "microservice.services.customs-reference-data.port"
 
   def simpleJsObject[A: Writes](value: A): JsObject = Json.obj("key" -> value)
 

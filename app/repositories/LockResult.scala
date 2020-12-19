@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package config
+package repositories
 
-import javax.inject.Inject
-import play.api.Configuration
+sealed trait LockResult
 
-class AppConfig @Inject() (config: Configuration) {
-
-  val mongoLockTtlInSeconds: Int = config.get[Int]("mongodb.locks.ttlSeconds")
+object LockResult {
+  case object LockAcquired  extends LockResult
+  case object AlreadyLocked extends LockResult
 }
