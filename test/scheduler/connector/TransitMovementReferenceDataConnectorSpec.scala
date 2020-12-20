@@ -67,7 +67,7 @@ class TransitMovementReferenceDataConnectorSpec
         val connector = app.injector.instanceOf[TransitReferenceDataConnector]
 
         server.stubFor(
-          post(urlEqualTo(s"/transit-movements-trader-reference-data/${list.listName}"))
+          post(urlEqualTo(s"/transit-movements-trader-reference-data/data/${list.listName}"))
             .willReturn(ok)
         )
 
@@ -88,7 +88,7 @@ class TransitMovementReferenceDataConnectorSpec
         val connector = app.injector.instanceOf[TransitReferenceDataConnector]
 
         server.stubFor(
-          post(urlEqualTo(s"/transit-movements-trader-reference-data/${list.listName}"))
+          post(urlEqualTo(s"/transit-movements-trader-reference-data/data/${list.listName}"))
             .willReturn(status(errorCode))
         )
 

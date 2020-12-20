@@ -33,5 +33,5 @@ class TransitReferenceDataConnector @Inject() (httpClient: HttpClient, config: C
   private val serviceUrl: Service = config.transitMovementsTraderReferenceData
 
   def post(list: ReferenceDataList, data: Seq[JsObject]): Future[TransitReferenceDataResponse] =
-    httpClient.POST(serviceUrl.urlWithBaseUrl(list.listName), data)(implicitly, TransitReferenceDataReads, HeaderCarrier(), implicitly)
+    httpClient.POST(serviceUrl.urlWithBaseUrl(s"data/${list.listName}"), data)(implicitly, TransitReferenceDataReads, HeaderCarrier(), implicitly)
 }
