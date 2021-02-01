@@ -16,17 +16,16 @@
 
 package data.transform
 
-import java.time.format.DateTimeFormatter
-
 import base.SpecBase
 import models.CountryCodesFullList
 import play.api.libs.json.Json
 import play.api.libs.json._
 
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 class CountryCodesFullListTransformSpec extends SpecBase {
   import CountryCodesFullListTransformSpec._
-
-  val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
   "transform" - {
 
@@ -176,6 +175,10 @@ class CountryCodesFullListTransformSpec extends SpecBase {
 
 object CountryCodesFullListTransformSpec {
 
+  val dateFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+  val today: String                 = LocalDate.now().format(dateFormat)
+  val tomorrow: String              = LocalDate.now().plusDays(1).format(dateFormat)
+
   val validData1: JsObject =
     Json
       .parse(""" 
@@ -233,6 +236,107 @@ object CountryCodesFullListTransformSpec {
         |  "description": "Trinidad and Tobago"
         |}
         |""".stripMargin)
+      .as[JsObject]
+
+  val invalidData: JsObject =
+    Json
+      .parse("""
+               |{
+               |  "state": "invalid",
+               |  "activeFrom": "2015-07-01",
+               |  "countryCode": "YY",
+               |  "tccEntryDate": "19000101",
+               |  "nctsEntryDate": "19000101",
+               |  "geoNomenclatureCode": "472",
+               |  "countryRegimeCode": "OTH",
+               |  "description": {
+               |      "en": "Shrewsbury"
+               |  }
+               |}
+               |""".stripMargin)
+      .as[JsObject]
+
+  val activeFromInFutureData: JsObject =
+    Json
+      .parse("""
+               |{
+               |  "state": "valid",
+               |  "activeFrom": "2222-07-01",
+               |  "countryCode": "TF",
+               |  "tccEntryDate": "19000101",
+               |  "nctsEntryDate": "19000101",
+               |  "geoNomenclatureCode": "472",
+               |  "countryRegimeCode": "OTH",
+               |  "description": {
+               |      "en": "Somewhere"
+               |  }
+               |}
+               |""".stripMargin)
+      .as[JsObject]
+
+  val invalidAndActiveFromInFutureData: JsObject =
+    Json
+      .parse("""
+               |{
+               |  "state": "invalid",
+               |  "activeFrom": "2222-07-01",
+               |  "countryCode": "SF",
+               |  "tccEntryDate": "19000101",
+               |  "nctsEntryDate": "19000101",
+               |  "geoNomenclatureCode": "472",
+               |  "countryRegimeCode": "OTH",
+               |  "description": {
+               |      "en": "A Country"
+               |  }
+               |}
+               |""".stripMargin)
+      .as[JsObject]
+
+  val validAndActiveFromTodayData: JsObject =
+    Json
+      .parse(s"""
+                |{
+                |  "state": "valid",
+                |  "activeFrom": "$today",
+                |  "countryCode": "TD",
+                |  "tccEntryDate": "19000101",
+                |  "nctsEntryDate": "19000101",
+                |  "geoNomenclatureCode": "472",
+                |  "countryRegimeCode": "OTH",
+                |  "description": {
+                |      "en": "Today"
+                |  }
+                |}
+                |""".stripMargin)
+      .as[JsObject]
+
+  val validAndActiveFromTomorrowData: JsObject =
+    Json
+      .parse(s"""
+                |{
+                |  "state": "valid",
+                |  "activeFrom": "$tomorrow",
+                |  "countryCode": "TM",
+                |  "tccEntryDate": "19000101",
+                |  "nctsEntryDate": "19000101",
+                |  "geoNomenclatureCode": "472",
+                |  "countryRegimeCode": "OTH",
+                |  "description": {
+                |      "en": "Tomorrow"
+                |  }
+                |}
+                |""".stripMargin)
+      .as[JsObject]
+
+  val expected3: JsObject =
+    Json
+      .parse("""
+               |{
+               |  "code": "TD",
+               |  "state": "valid",
+               |  "description": "Today"
+               |}
+               |""".stripMargin)
       .as[JsObject]
 
   val dataWithErrorMissingState: JsObject =

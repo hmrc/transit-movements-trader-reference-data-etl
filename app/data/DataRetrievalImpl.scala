@@ -19,8 +19,10 @@ package data
 import akka.stream.Materializer
 import akka.stream.scaladsl.Sink
 import akka.stream.scaladsl.Source
+import data.filter.FilterFlow
 import data.transform.Transformation
 import data.transform.TransformationFlow
+
 import javax.inject.Inject
 import logging.Logging
 import models.ReferenceDataList
@@ -45,7 +47,8 @@ private[data] class DataRetrievalImpl @Inject() (refDataSource: RefDataSource)(i
     refDataSource(list)
       .map(
         _.map(
-          _.via(TransformationFlow(list, transformation).flow)
+          _.via(FilterFlow(list).flow)
+            .via(TransformationFlow(list, transformation).flow)
         )
       )
 

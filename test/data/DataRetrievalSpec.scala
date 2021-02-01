@@ -58,6 +58,36 @@ class DataRetrievalSpec extends SpecBaseWithAppPerSuite {
 
     }
 
+    "given a ReferenceDataList, returns a stream of the elements, filtering out the invalid states for the list" in {
+      val sut: DataRetrieval = app.injector.instanceOf[DataRetrieval]
+
+      val listName = CountryCodesFullList
+
+      val testElements = List(
+        validData1,
+        validData2,
+        invalidData,
+        activeFromInFutureData,
+        invalidAndActiveFromInFutureData,
+        validAndActiveFromTodayData,
+        validAndActiveFromTomorrowData
+      )
+
+      val testData: ByteString = ReferenceDataJsonProjectionSpec.formatAsReferenceDataByteString(testElements)
+
+      when(mockRefDataConnector.getAsSource(eqTo(listName)))
+        .thenReturn(Future.successful(Option(Source.single(testData))))
+
+      val source = sut.streamList(listName).futureValue.value
+
+      source
+        .runWith(TestSink.probe[JsObject])
+        .request(7)
+        .expectNextN(List(expected1, expected2, expected3))
+        .expectComplete()
+
+    }
+
   }
 
   "getList" - {
