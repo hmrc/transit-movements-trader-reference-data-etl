@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,6 +54,36 @@ class DataRetrievalSpec extends SpecBaseWithAppPerSuite {
         .runWith(TestSink.probe[JsObject])
         .request(2)
         .expectNextN(List(expected1, expected2))
+        .expectComplete()
+
+    }
+
+    "given a ReferenceDataList, returns a stream of the elements, filtering out the invalid states for the list" in {
+      val sut: DataRetrieval = app.injector.instanceOf[DataRetrieval]
+
+      val listName = CountryCodesFullList
+
+      val testElements = List(
+        validData1,
+        validData2,
+        invalidData,
+        activeFromInFutureData,
+        invalidAndActiveFromInFutureData,
+        validAndActiveFromTodayData,
+        validAndActiveFromTomorrowData
+      )
+
+      val testData: ByteString = ReferenceDataJsonProjectionSpec.formatAsReferenceDataByteString(testElements)
+
+      when(mockRefDataConnector.getAsSource(eqTo(listName)))
+        .thenReturn(Future.successful(Option(Source.single(testData))))
+
+      val source = sut.streamList(listName).futureValue.value
+
+      source
+        .runWith(TestSink.probe[JsObject])
+        .request(7)
+        .expectNextN(List(expected1, expected2, expected3))
         .expectComplete()
 
     }

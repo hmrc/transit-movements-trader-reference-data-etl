@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package logging
+package data.filter
 
-import play.api.Logger
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-trait Logging {
-
-  protected val logger: Logger = Logger(s"application.${this.getClass.getCanonicalName}")
-
+case class FilterFlowItemNotActiveException(activeFrom: Option[LocalDate], state: String) extends Exception("Item not active") {
+  private val dateFormat         = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+  val activeFromAsString: String = activeFrom.map(_.format(dateFormat)).getOrElse("activeFrom not defined or invalid format")
 }
