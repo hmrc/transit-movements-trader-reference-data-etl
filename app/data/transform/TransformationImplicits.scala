@@ -71,11 +71,11 @@ trait TransformationImplicits {
           val englishDetails: Option[JsValue] = array.find(
             x => (x \ "languageCode").as[String].toLowerCase == "en"
           )
+
           englishDetails match {
             case Some(value: JsObject) => Reads.pure(value)
-            case _                     => Reads.failed("Could not find element in array matching `en` language in path #/customsOfficeDetails")
+            case _                     => Reads.pure(array.head.as[JsObject])
           }
-
       }
     )
 

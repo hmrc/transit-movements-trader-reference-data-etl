@@ -74,6 +74,14 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
       |  ],
       |  "customsOfficeDetails": [
       |    {
+      |      "languageCode": "ES",
+      |      "customsOfficeUsualName": "DESPATCHO CENTRAL DE ADUANAS",
+      |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
+      |      "city": "ESCALDES-ENGORDANY",
+      |      "prefixSuffixFlag": 0,
+      |      "spaceToAdd": 0
+      |    },
+      |    {
       |      "languageCode": "EN",
       |      "customsOfficeUsualName": "CENTRAL CUSTOMS OFFICE",
       |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
@@ -81,14 +89,6 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
       |      "prefixSuffixFlag": 0,
       |      "prefixSuffixLevel": "E",
       |      "prefixSuffixName": "Tulli",
-      |      "spaceToAdd": 0
-      |    },
-      |    {
-      |      "languageCode": "ES",
-      |      "customsOfficeUsualName": "DESPATCHO CENTRAL DE ADUANAS",
-      |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
-      |      "city": "ESCALDES-ENGORDANY",
-      |      "prefixSuffixFlag": 0,
       |      "spaceToAdd": 0
       |    },
       |    {
@@ -209,6 +209,50 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
 
           }
 
+          "is missing and picks next available non EN name" in {
+            val expected =
+              """
+                |{
+                | "id": "AD000003",
+                | "name": "BUREAU CENTRAL DES DOUANES",
+                | "countryId": "AD",
+                | "phoneNumber": "+ (376) 879900",
+                | "roles": []
+                |}
+                |""".stripMargin
+
+            val data = validData ++ Json
+              .parse(
+                """
+                  |{
+                  | "customsOfficeDetails": [
+                  |    {
+                  |      "languageCode": "FR",
+                  |      "customsOfficeUsualName": "BUREAU CENTRAL DES DOUANES",
+                  |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
+                  |      "city": "ESCALDES - ENGORDANY",
+                  |      "prefixSuffixFlag": 0,
+                  |      "spaceToAdd": 0
+                  |    },
+                  |    {
+                  |      "languageCode": "ES",
+                  |      "customsOfficeUsualName": "DESPATCHO CENTRAL DE ADUANAS",
+                  |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
+                  |      "city": "ESCALDES-ENGORDANY",
+                  |      "prefixSuffixFlag": 0,
+                  |      "spaceToAdd": 0
+                  |    }
+                  |  ]
+                  |}
+                  |""".stripMargin
+              )
+              .as[JsObject]
+
+            val result = Transformation(CustomsOfficesList).runTransform(data)
+
+            result.get mustEqual Json.parse(expected)
+          }
+
           "is missing" in {
             val expected =
               """
@@ -228,7 +272,6 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
                 | "customsOfficeDetails": [
                 |    {
                 |      "languageCode": "FR",
-                |      "customsOfficeUsualName": "BUREAU CENTRAL DES DOUANES",
                 |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
                 |      "city": "ESCALDES - ENGORDANY",
                 |      "prefixSuffixFlag": 0,
