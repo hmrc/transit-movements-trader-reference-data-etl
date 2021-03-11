@@ -10,6 +10,12 @@ object AppDependencies {
   val compile = Seq(
     "uk.gov.hmrc"        %% "bootstrap-backend-play-27"          % "3.4.0",
     "org.reactivemongo"  %% "play2-reactivemongo"                % "0.20.13-play27",
+    "uk.gov.hmrc"        %% "logback-json-logger"                % "5.1.0",
+    "uk.gov.hmrc"        %% "http-core"                          % "2.5.0",
+    "uk.gov.hmrc"        %% "http-verbs"                         % "12.3.0",
+    "uk.gov.hmrc"        %% "http-verbs-play-27"                 % "12.3.0",
+    "uk.gov.hmrc"        %% "crypto"                             % "6.0.0",
+    "uk.gov.hmrc"        %% "secure"                             % "8.0.0",
     "com.typesafe.play"  %% "play-iteratees"                     % "2.6.1",
     "com.typesafe.play"  %% "play-iteratees-reactive-streams"    % "2.6.1",
     "org.typelevel"      %% "cats-core"                          % catsVersion,
