@@ -74,7 +74,10 @@ trait TransformationImplicits {
 
           englishDetails match {
             case Some(value: JsObject) => Reads.pure(value)
-            case _                     => Reads.pure(array.head.as[JsObject])
+            case _ =>
+              array.headOption
+                .map(value => Reads.pure(value.as[JsObject]))
+                .getOrElse(Reads.failed("Transformation failed due to empty array of customsOfficesDetails"))
           }
       }
     )
