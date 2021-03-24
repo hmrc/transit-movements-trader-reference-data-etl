@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-package models
+package logging
 
-class WithName(string: String) {
+abstract class WithName(string: String) {
   override val toString: String = s"[$string]"
 }

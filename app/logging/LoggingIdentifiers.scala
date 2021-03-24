@@ -16,13 +16,16 @@
 
 package logging
 
-trait Enumerable[A] {
+object LoggingIdentifiers {
 
-  def withName(str: String): Option[A]
-}
+  case object ImportException extends WithName("ImportException")
+  case object ImportFailure   extends WithName("ImportFailure")
 
-object Enumerable {
+  case object SupervisionStrategyException extends WithName("SupervisionStrategyException")
 
-  def apply[A](entries: (String, A)*): Enumerable[A] =
-    (str: String) => entries.toMap.get(str)
+  case object JsonValidationFailure extends WithName("JsonValidationFailure")
+
+  case object LockException   extends WithName("LockException")
+  case object UnlockException extends WithName("UnlockException")
+
 }

@@ -23,7 +23,7 @@ import akka.stream.ActorAttributes
 import akka.stream.Attributes
 import akka.stream.Supervision
 import akka.stream.scaladsl.Flow
-import logging.TagUtil.SupervisionStrategyException
+import logging.LoggingIdentifiers.SupervisionStrategyException
 import models.ReferenceDataList
 import models.ReferenceDataList.Constants.Common
 import play.api.Logger

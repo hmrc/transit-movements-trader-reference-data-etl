@@ -20,8 +20,8 @@ import data.DataRetrieval
 import data.transform.Transformation
 import javax.inject.Inject
 import logging.Logging
-import logging.TagUtil.ImportException
-import logging.TagUtil.ImportFailure
+import logging.LoggingIdentifiers.ImportException
+import logging.LoggingIdentifiers.ImportFailure
 import models._
 import scheduler.connector.TransitReferenceDataConnector
 

@@ -24,7 +24,7 @@ import models.ReferenceDataList
 import play.api.libs.json.JsError
 import play.api.libs.json.JsObject
 import play.api.libs.json.JsSuccess
-import logging.TagUtil.JsonValidationFailure
+import logging.LoggingIdentifiers.JsonValidationFailure
 
 class TransformationFlow[A](list: ReferenceDataList, transformation: Transformation[A]) extends Logging {
 
