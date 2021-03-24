@@ -38,7 +38,6 @@ class ImportDataTask @Inject() (
 
     val lock = JobName.ImportData
 
-    // Remove logging here, logging happens in ImportReferenceData
     withLock(lock) {
       dataImportService.importReferenceData().map {
         result =>
@@ -46,7 +45,6 @@ class ImportDataTask @Inject() (
           Right(Some(result))
       } recover {
         case e: Exception =>
-          logger.warn("Something went wrong trying to import reference data", e)
           Left(UnknownExceptionOccurred(e))
       }
     }

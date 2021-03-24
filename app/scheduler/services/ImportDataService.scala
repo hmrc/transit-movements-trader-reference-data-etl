@@ -20,6 +20,8 @@ import data.DataRetrieval
 import data.transform.Transformation
 import javax.inject.Inject
 import logging.Logging
+import logging.TagUtil.ImportException
+import logging.TagUtil.ImportFailure
 import models._
 import scheduler.connector.TransitReferenceDataConnector
 
@@ -31,14 +33,12 @@ class ImportDataService @Inject() (
   transitReferenceDataConnector: TransitReferenceDataConnector
 ) extends Logging {
 
-  // Remove logging here, logging happens in importLists method
   def importReferenceData()(implicit ec: ExecutionContext): Future[Boolean] =
     importLists().map {
       results =>
-        if (results.contains(false)) {
-          logger.warn("Import complete with some failures")
+        if (results.contains(false))
           false
-        } else {
+        else {
           logger.info("Import completed successfully")
           true
         }
@@ -62,10 +62,6 @@ class ImportDataService @Inject() (
       )
     )
 
-
-  //  case object ImportException
-  //  case object ImportFailure
-
   private def importList[A <: ReferenceDataList](list: A)(implicit ec: ExecutionContext, ev: Transformation[A]): Future[Boolean] = {
     for {
       data   <- dataRetrieval.getList(list)
@@ -75,12 +71,12 @@ class ImportDataService @Inject() (
         logger.info(s"Import of ${list.listName} complete")
         true
       case Left(value) =>
-        logger.warn(s"Import of ${list.listName} failed with message ${value.body}")
+        logger.warn(s"${ImportFailure.toString} Import of ${list.listName} failed with message ${value.body}")
         false
     }
   } recover {
     case e: Exception =>
-      logger.error(s"An error occurred trying to import ${list.listName}", e)
+      logger.error(s"${ImportException.toString} An error occurred trying to import ${list.listName}", e)
       false
   }
 }

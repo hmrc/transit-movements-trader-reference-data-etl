@@ -84,7 +84,7 @@ class LockRepository @Inject() (
       case e: LastError if e.code contains alreadyLocked =>
         LockResult.AlreadyLocked
       case e: Throwable =>
-        logger.error(s"Error trying to get lock $key", e)
+        logger.error(s"${LockException.toString} Error trying to get lock $key", e)
         throw e
     }
   }
@@ -96,7 +96,7 @@ class LockRepository @Inject() (
         .map(_ => true)
     } recover {
       case e: Throwable =>
-        logger.error(s"Error trying to remove lock $key", e)
+        logger.error(s"${UnlockException.toString} Error trying to remove lock $key", e)
         false
     }
 }

@@ -23,6 +23,7 @@ import akka.stream.ActorAttributes
 import akka.stream.Attributes
 import akka.stream.Supervision
 import akka.stream.scaladsl.Flow
+import logging.TagUtil.SupervisionStrategyException
 import models.ReferenceDataList
 import models.ReferenceDataList.Constants.Common
 import play.api.Logger
@@ -36,8 +37,6 @@ case class FilterFlow(list: ReferenceDataList) {
     state == Common.valid && activeFrom
       .exists(_.isBefore(LocalDate.now().plusDays(1)))
 
-  //  case object FilterException
-
   private val supervisionStrategy: Attributes = ActorAttributes.supervisionStrategy {
     case filteredException @ FilterFlowItemNotActiveException(_, state) =>
       logger.info(
@@ -46,7 +45,7 @@ case class FilterFlow(list: ReferenceDataList) {
       Supervision.resume
     case _ =>
       logger.warn(
-        s"[supervisionStrategy] An unexpected exception happened when trying to filter the Json item for '${list.listName}' UNEXPECTED_LIST_ITEM_FILTERING_EXCEPTION"
+        s"${SupervisionStrategyException.toString} An unexpected exception happened when trying to filter the Json item for '${list.listName}' UNEXPECTED_LIST_ITEM_FILTERING_EXCEPTION"
       )
       Supervision.resume
   }
