@@ -28,6 +28,7 @@ import reactivemongo.api.commands.LastError
 import reactivemongo.api.indexes.IndexType
 import reactivemongo.play.json.ImplicitBSONHandlers.JsObjectDocumentWriter
 import reactivemongo.play.json.collection.JSONCollection
+import logging.TagUtil._
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future

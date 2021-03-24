@@ -31,6 +31,7 @@ class ImportDataService @Inject() (
   transitReferenceDataConnector: TransitReferenceDataConnector
 ) extends Logging {
 
+  // Remove logging here, logging happens in importLists method
   def importReferenceData()(implicit ec: ExecutionContext): Future[Boolean] =
     importLists().map {
       results =>
@@ -60,6 +61,10 @@ class ImportDataService @Inject() (
         importList(ControlResultList)
       )
     )
+
+
+  //  case object ImportException
+  //  case object ImportFailure
 
   private def importList[A <: ReferenceDataList](list: A)(implicit ec: ExecutionContext, ev: Transformation[A]): Future[Boolean] = {
     for {

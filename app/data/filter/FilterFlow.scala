@@ -36,6 +36,8 @@ case class FilterFlow(list: ReferenceDataList) {
     state == Common.valid && activeFrom
       .exists(_.isBefore(LocalDate.now().plusDays(1)))
 
+  //  case object FilterException
+
   private val supervisionStrategy: Attributes = ActorAttributes.supervisionStrategy {
     case filteredException @ FilterFlowItemNotActiveException(_, state) =>
       logger.info(

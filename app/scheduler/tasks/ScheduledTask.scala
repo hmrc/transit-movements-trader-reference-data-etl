@@ -33,6 +33,7 @@ trait ScheduledTask[A] extends Logging {
 
   def run(): Future[A]
 
+  // Remove warn loggers here as its done in repository layer
   protected def withLock[T](lock: String)(block: => Future[Either[JobFailed, Option[T]]]): Future[Either[JobFailed, Option[T]]] =
     lockRepository.lock(lock) flatMap {
       case LockResult.LockAcquired =>
@@ -45,12 +46,12 @@ trait ScheduledTask[A] extends Logging {
               .map(_ => result)
               .recover {
                 case e: Exception =>
-                  logger.warn(s"Unable to release lock $lock")
+                  logger.warn(s"Unable to release lock $lock") // Make the same
                   result
               }
         } recoverWith {
           case e: Exception =>
-            logger.error("Something went wrong trying to import reference data", e)
+            logger.error(s"Something went wrong trying to import reference data", e)
             lockRepository
               .unlock(lock)
               .map(_ => Left(UnknownExceptionOccurred(e)))
@@ -70,3 +71,7 @@ trait ScheduledTask[A] extends Logging {
         Left(MongoLockException(e))
     }
 }
+
+// Create object
+// Create tags
+//

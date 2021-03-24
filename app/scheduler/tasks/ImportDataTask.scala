@@ -38,6 +38,7 @@ class ImportDataTask @Inject() (
 
     val lock = JobName.ImportData
 
+    // Remove logging here, logging happens in ImportReferenceData
     withLock(lock) {
       dataImportService.importReferenceData().map {
         result =>
