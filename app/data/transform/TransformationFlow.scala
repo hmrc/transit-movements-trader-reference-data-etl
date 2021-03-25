@@ -24,7 +24,7 @@ import models.ReferenceDataList
 import play.api.libs.json.JsError
 import play.api.libs.json.JsObject
 import play.api.libs.json.JsSuccess
-import logging.LoggingIdentifiers.JsonValidationFailure
+import logging.LoggingIdentifiers.DataTransformationFailure
 
 class TransformationFlow[A](list: ReferenceDataList, transformation: Transformation[A]) extends Logging {
 
@@ -36,7 +36,7 @@ class TransformationFlow[A](list: ReferenceDataList, transformation: Transformat
       .map {
         case JsSuccess(value, _) => Option(value)
         case JsError(errors) =>
-          logger.warn(s"${JsonValidationFailure.toString} Error with transformation of data item for list `${list.listName}`, with error: $errors")
+          logger.warn(s"${DataTransformationFailure.toString} Error with transformation of data item for list `${list.listName}`, with error: $errors")
           None
       }
       .flatMapConcat {

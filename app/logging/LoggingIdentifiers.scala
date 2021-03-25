@@ -18,13 +18,15 @@ package logging
 
 object LoggingIdentifiers {
 
-  object ImportException              extends WithName("ImportException")
-  object ImportFailure                extends WithName("ImportFailure")
-  object SupervisionStrategyException extends WithName("SupervisionStrategyException")
-  object JsonValidationFailure        extends WithName("JsonValidationFailure")
-  object LockException                extends WithName("LockException")
-  object UnlockException              extends WithName("UnlockException")
+  // Alerting on these identifiers
+  object ImportException                          extends WithName("ImportException")
+  object ImportFailure                            extends WithName("ImportFailure")
+  object UNEXPECTED_LIST_ITEM_FILTERING_EXCEPTION extends WithName("UNEXPECTED_LIST_ITEM_FILTERING_EXCEPTION")
+  object DataTransformationFailure                extends WithName("DataTransformationFailure")
+  object LockException                            extends WithName("LockException")
+  object UnlockException                          extends WithName("UnlockException")
 
+  // No alerting on these identifiers
   object AcquiredLock     extends WithName("AcquiredLock")
   object AlreadyLocked    extends WithName("AlreadyLocked")
   object ImportSuccessful extends WithName("ImportSuccessful")
