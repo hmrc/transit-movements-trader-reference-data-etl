@@ -18,14 +18,16 @@ package logging
 
 object LoggingIdentifiers {
 
-  case object ImportException extends WithName("ImportException")
-  case object ImportFailure   extends WithName("ImportFailure")
+  object ImportException              extends WithName("ImportException")
+  object ImportFailure                extends WithName("ImportFailure")
+  object SupervisionStrategyException extends WithName("SupervisionStrategyException")
+  object JsonValidationFailure        extends WithName("JsonValidationFailure")
+  object LockException                extends WithName("LockException")
+  object UnlockException              extends WithName("UnlockException")
 
-  case object SupervisionStrategyException extends WithName("SupervisionStrategyException")
-
-  case object JsonValidationFailure extends WithName("JsonValidationFailure")
-
-  case object LockException   extends WithName("LockException")
-  case object UnlockException extends WithName("UnlockException")
+  object AcquiredLock     extends WithName("AcquiredLock")
+  object AlreadyLocked    extends WithName("AlreadyLocked")
+  object ImportSuccessful extends WithName("ImportSuccessful")
+  object ReceivedMessage  extends WithName("ReceivedMessage")
 
 }

@@ -22,6 +22,7 @@ import javax.inject.Inject
 import logging.Logging
 import logging.LoggingIdentifiers.ImportException
 import logging.LoggingIdentifiers.ImportFailure
+import logging.LoggingIdentifiers.ImportSuccessful
 import models._
 import scheduler.connector.TransitReferenceDataConnector
 
@@ -39,7 +40,7 @@ class ImportDataService @Inject() (
         if (results.contains(false))
           false
         else {
-          logger.info("Import completed successfully")
+          logger.info(s"${ImportSuccessful.toString} Import completed successfully")
           true
         }
     }
@@ -71,7 +72,7 @@ class ImportDataService @Inject() (
         logger.info(s"Import of ${list.listName} complete")
         true
       case Left(value) =>
-        logger.warn(s"${ImportFailure.toString} Import of ${list.listName} failed with message ${value.body}")
+        logger.error(s"${ImportFailure.toString} Import of ${list.listName} failed with message ${value.body}")
         false
     }
   } recover {

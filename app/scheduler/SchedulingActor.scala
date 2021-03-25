@@ -20,6 +20,7 @@ import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.Props
 import logging.Logging
+import logging.LoggingIdentifiers.ReceivedMessage
 import scheduler.SchedulingActor.ScheduledMessage
 import scheduler.jobs.JobFailed
 import scheduler.tasks.ImportDataTask
@@ -29,7 +30,7 @@ class SchedulingActor extends Actor with ActorLogging with Logging {
 
   override def receive: Receive = {
     case message: ScheduledMessage[_] =>
-      logger.info(s"Received message: ${message.getClass.getCanonicalName}")
+      logger.info(s"${ReceivedMessage.toString} Received message: ${message.getClass.getCanonicalName}")
       message.task.run()
   }
 }

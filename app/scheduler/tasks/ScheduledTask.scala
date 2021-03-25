@@ -25,6 +25,8 @@ import scheduler.jobs.ScheduleStatus.UnknownExceptionOccurred
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
+import logging.LoggingIdentifiers.AcquiredLock
+import logging.LoggingIdentifiers.AlreadyLocked
 
 trait ScheduledTask[A] extends Logging {
   val lockRepository: LockRepository
@@ -35,7 +37,7 @@ trait ScheduledTask[A] extends Logging {
   protected def withLock[T](lock: String)(block: => Future[Either[JobFailed, Option[T]]]): Future[Either[JobFailed, Option[T]]] =
     lockRepository.lock(lock) flatMap {
       case LockResult.LockAcquired =>
-        logger.info("Acquired a lock")
+        logger.info(s"${AcquiredLock.toString} Acquired a lock")
 
         block.flatMap {
           result =>
@@ -55,7 +57,7 @@ trait ScheduledTask[A] extends Logging {
         }
 
       case LockResult.AlreadyLocked =>
-        logger.info("Could not get a lock - task may have been run on another instance")
+        logger.info(s"${AlreadyLocked.toString} Could not get a lock - task may have been run on another instance")
         Future.successful(Right(None))
     } recover {
       case e: Exception =>
