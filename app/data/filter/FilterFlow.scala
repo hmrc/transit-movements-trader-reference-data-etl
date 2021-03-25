@@ -23,6 +23,7 @@ import akka.stream.ActorAttributes
 import akka.stream.Attributes
 import akka.stream.Supervision
 import akka.stream.scaladsl.Flow
+import logging.LoggingIdentifiers.LIST_ITEM_FILTERED
 import logging.LoggingIdentifiers.UNEXPECTED_LIST_ITEM_FILTERING_EXCEPTION
 import models.ReferenceDataList
 import models.ReferenceDataList.Constants.Common
@@ -40,7 +41,7 @@ case class FilterFlow(list: ReferenceDataList) {
   private val supervisionStrategy: Attributes = ActorAttributes.supervisionStrategy {
     case filteredException @ FilterFlowItemNotActiveException(_, state) =>
       logger.info(
-        s"[LIST_ITEM_FILTERED] Filtering out item for '${list.listName}' where activeFrom: ${filteredException.activeFromAsString} and state: $state"
+        s"${LIST_ITEM_FILTERED.toString} Filtering out item for '${list.listName}' where activeFrom: ${filteredException.activeFromAsString} and state: $state"
       )
       Supervision.resume
     case _ =>

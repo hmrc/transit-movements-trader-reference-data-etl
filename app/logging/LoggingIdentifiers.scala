@@ -27,9 +27,10 @@ object LoggingIdentifiers {
   object UnlockException                          extends WithName("UnlockException")
 
   // No alerting on these identifiers
-  object AcquiredLock     extends WithName("AcquiredLock")
-  object AlreadyLocked    extends WithName("AlreadyLocked")
-  object ImportSuccessful extends WithName("ImportSuccessful")
-  object ReceivedMessage  extends WithName("ReceivedMessage")
+  object AcquiredLock       extends WithName("AcquiredLock")
+  object AlreadyLocked      extends WithName("AlreadyLocked")
+  object ImportSuccessful   extends WithName("ImportSuccessful")
+  object ReceivedMessage    extends WithName("ReceivedMessage")
+  object LIST_ITEM_FILTERED extends WithName("LIST_ITEM_FILTERED")
 
 }
