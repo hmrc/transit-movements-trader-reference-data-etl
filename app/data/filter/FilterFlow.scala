@@ -23,6 +23,8 @@ import akka.stream.ActorAttributes
 import akka.stream.Attributes
 import akka.stream.Supervision
 import akka.stream.scaladsl.Flow
+import logging.LoggingIdentifiers.LIST_ITEM_FILTERED
+import logging.LoggingIdentifiers.UNEXPECTED_LIST_ITEM_FILTERING_EXCEPTION
 import models.ReferenceDataList
 import models.ReferenceDataList.Constants.Common
 import play.api.Logger
@@ -39,12 +41,12 @@ case class FilterFlow(list: ReferenceDataList) {
   private val supervisionStrategy: Attributes = ActorAttributes.supervisionStrategy {
     case filteredException @ FilterFlowItemNotActiveException(_, state) =>
       logger.info(
-        s"[supervisionStrategy] Filtering out item for '${list.listName}' where activeFrom: ${filteredException.activeFromAsString} and state: $state LIST_ITEM_FILTERED"
+        s"${LIST_ITEM_FILTERED.toString} Filtering out item for '${list.listName}' where activeFrom: ${filteredException.activeFromAsString} and state: $state"
       )
       Supervision.resume
     case _ =>
       logger.warn(
-        s"[supervisionStrategy] An unexpected exception happened when trying to filter the Json item for '${list.listName}' UNEXPECTED_LIST_ITEM_FILTERING_EXCEPTION"
+        s"${UNEXPECTED_LIST_ITEM_FILTERING_EXCEPTION.toString} An unexpected exception happened when trying to filter the Json item for '${list.listName}'"
       )
       Supervision.resume
   }

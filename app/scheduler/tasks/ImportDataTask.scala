@@ -45,7 +45,6 @@ class ImportDataTask @Inject() (
           Right(Some(result))
       } recover {
         case e: Exception =>
-          logger.warn("Something went wrong trying to import reference data", e)
           Left(UnknownExceptionOccurred(e))
       }
     }

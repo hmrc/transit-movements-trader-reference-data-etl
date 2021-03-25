@@ -21,11 +21,12 @@ import repositories.LockRepository
 import repositories.LockResult
 import scheduler.jobs.JobFailed
 import scheduler.jobs.ScheduleStatus.MongoLockException
-import scheduler.jobs.ScheduleStatus.MongoUnlockException
 import scheduler.jobs.ScheduleStatus.UnknownExceptionOccurred
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
+import logging.LoggingIdentifiers.AcquiredLock
+import logging.LoggingIdentifiers.AlreadyLocked
 
 trait ScheduledTask[A] extends Logging {
   val lockRepository: LockRepository
@@ -36,37 +37,30 @@ trait ScheduledTask[A] extends Logging {
   protected def withLock[T](lock: String)(block: => Future[Either[JobFailed, Option[T]]]): Future[Either[JobFailed, Option[T]]] =
     lockRepository.lock(lock) flatMap {
       case LockResult.LockAcquired =>
-        logger.info("Acquired a lock")
+        logger.info(s"${AcquiredLock.toString} Acquired a lock")
 
         block.flatMap {
           result =>
             lockRepository
               .unlock(lock)
               .map(_ => result)
-              .recover {
-                case e: Exception =>
-                  logger.warn(s"Unable to release lock $lock")
-                  result
-              }
+              .recover { case _ => result }
         } recoverWith {
           case e: Exception =>
-            logger.error("Something went wrong trying to import reference data", e)
             lockRepository
               .unlock(lock)
               .map(_ => Left(UnknownExceptionOccurred(e)))
               .recover {
-                case unlockException: Exception =>
-                  logger.error(s"Unable to release lock $lock", unlockException)
+                case _ =>
                   Left(UnknownExceptionOccurred(e))
               }
         }
 
       case LockResult.AlreadyLocked =>
-        logger.info("Could not get a lock - task may have been run on another instance")
+        logger.info(s"${AlreadyLocked.toString} Could not get a lock - task may have been run on another instance")
         Future.successful(Right(None))
     } recover {
       case e: Exception =>
-        logger.warn("Something went wrong trying to get a lock", e)
         Left(MongoLockException(e))
     }
 }
