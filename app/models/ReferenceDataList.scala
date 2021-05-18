@@ -21,18 +21,19 @@ import play.api.mvc.PathBindable
 
 sealed abstract class ReferenceDataList(val listName: String)
 
-object CountryCodesFullList                extends ReferenceDataList("CountryCodesFullList")
-object CountryCodesCommonTransitList       extends ReferenceDataList("CountryCodesCommonTransit")
-object CustomsOfficesList                  extends ReferenceDataList("CustomsOffices")
-object DocumentTypeCommonList              extends ReferenceDataList("DocumentTypeCommon")
-object PreviousDocumentTypeCommonList      extends ReferenceDataList("PreviousDocumentTypeCommon")
-object KindOfPackagesList                  extends ReferenceDataList("KindOfPackages")
-object TransportModeList                   extends ReferenceDataList("TransportMode")
-object AdditionalInformationIdCommonList   extends ReferenceDataList("AdditionalInformationIdCommon")
-object SpecificCircumstanceIndicatorList   extends ReferenceDataList("SpecificCircumstanceIndicator")
-object UnDangerousGoodsCodeList            extends ReferenceDataList("UnDangerousGoodsCode")
-object TransportChargesMethodOfPaymentList extends ReferenceDataList("TransportChargesMethodOfPayment")
-object ControlResultList                   extends ReferenceDataList("ControlResult")
+object CountryCodesFullList                          extends ReferenceDataList("CountryCodesFullList")
+object CountryCodesCommonTransitList                 extends ReferenceDataList("CountryCodesCommonTransit")
+object CustomsOfficesList                            extends ReferenceDataList("CustomsOffices")
+object DocumentTypeCommonList                        extends ReferenceDataList("DocumentTypeCommon")
+object PreviousDocumentTypeCommonList                extends ReferenceDataList("PreviousDocumentTypeCommon")
+object KindOfPackagesList                            extends ReferenceDataList("KindOfPackages")
+object TransportModeList                             extends ReferenceDataList("TransportMode")
+object AdditionalInformationIdCommonList             extends ReferenceDataList("AdditionalInformationIdCommon")
+object SpecificCircumstanceIndicatorList             extends ReferenceDataList("SpecificCircumstanceIndicator")
+object UnDangerousGoodsCodeList                      extends ReferenceDataList("UnDangerousGoodsCode")
+object TransportChargesMethodOfPaymentList           extends ReferenceDataList("TransportChargesMethodOfPayment")
+object ControlResultList                             extends ReferenceDataList("ControlResult")
+object CountryCodesCommonTransitOutsideCommunityList extends ReferenceDataList("CountryCodesCommonTransitOutsideCommunity")
 
 object ReferenceDataList {
 
@@ -49,7 +50,8 @@ object ReferenceDataList {
       SpecificCircumstanceIndicatorList,
       UnDangerousGoodsCodeList,
       TransportChargesMethodOfPaymentList,
-      ControlResultList
+      ControlResultList,
+      CountryCodesCommonTransitOutsideCommunityList
     )
 
   val mappings: Map[String, ReferenceDataList] =
@@ -107,6 +109,10 @@ object ReferenceDataList {
     }
 
     object SpecificCountryCodesFullListFieldNames {
+      val code = "code"
+    }
+
+    object CountryCodesCommonTransitOutsideCommunityListFieldNames {
       val code = "code"
     }
 

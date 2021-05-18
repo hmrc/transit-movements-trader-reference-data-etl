@@ -18,6 +18,7 @@ package scheduler.services
 
 import data.DataRetrieval
 import data.transform.Transformation
+
 import javax.inject.Inject
 import logging.Logging
 import logging.LoggingIdentifiers.ImportException
@@ -59,7 +60,8 @@ class ImportDataService @Inject() (
         importList(SpecificCircumstanceIndicatorList),
         importList(UnDangerousGoodsCodeList),
         importList(TransportChargesMethodOfPaymentList),
-        importList(ControlResultList)
+        importList(ControlResultList),
+        importList(CountryCodesCommonTransitOutsideCommunityList)
       )
     )
 
