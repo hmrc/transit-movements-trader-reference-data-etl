@@ -20,6 +20,7 @@ import data.DataRetrieval
 import models.AdditionalInformationIdCommonList
 import models.ControlResultList
 import models.CountryCodesCommonTransitList
+import models.CountryCodesCommonTransitOutsideCommunityList
 import models.CountryCodesFullList
 import models.CustomsOfficesList
 import models.DocumentTypeCommonList
@@ -97,7 +98,8 @@ class ImportDataServiceSpec extends AnyFreeSpec with Matchers with MockitoSugar 
         verify(mockConnector, times(1)).post(eqTo(UnDangerousGoodsCodeList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(TransportChargesMethodOfPaymentList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(ControlResultList), eqTo(referenceData))
-        verify(mockConnector, times(12)).post(any(), any())
+        verify(mockConnector, times(1)).post(eqTo(CountryCodesCommonTransitOutsideCommunityList), eqTo(referenceData))
+        verify(mockConnector, times(13)).post(any(), any())
       }
     }
 
@@ -114,7 +116,7 @@ class ImportDataServiceSpec extends AnyFreeSpec with Matchers with MockitoSugar 
         val result = service.importReferenceData().futureValue
 
         result mustEqual false
-        verify(mockDataRetrieval, times(12)).getList(any())(any())
+        verify(mockDataRetrieval, times(13)).getList(any())(any())
         verify(mockConnector, times(0)).post(any(), any())
       }
     }
@@ -146,7 +148,8 @@ class ImportDataServiceSpec extends AnyFreeSpec with Matchers with MockitoSugar 
         verify(mockConnector, times(1)).post(eqTo(UnDangerousGoodsCodeList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(TransportChargesMethodOfPaymentList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(ControlResultList), eqTo(referenceData))
-        verify(mockConnector, times(12)).post(any(), any())
+        verify(mockConnector, times(1)).post(eqTo(CountryCodesCommonTransitOutsideCommunityList), eqTo(referenceData))
+        verify(mockConnector, times(13)).post(any(), any())
       }
     }
 
