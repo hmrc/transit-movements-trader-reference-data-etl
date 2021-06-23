@@ -23,6 +23,7 @@ import akka.util.ByteString
 import base.SpecBaseWithAppPerSuite
 import data.connector.RefDataConnector
 import models.CountryCodesFullList
+import models.CustomsOfficesList
 import org.mockito.ArgumentMatchers.{eq => eqTo}
 import org.mockito.Mockito._
 import play.api.inject._
@@ -107,6 +108,24 @@ class DataRetrievalSpec extends SpecBaseWithAppPerSuite {
       val result = sut.getList(listName).futureValue
 
       result mustEqual List(expected1, expected2)
+
+    }
+
+    "given a ReferenceDataList, returns a stream of the elements for the list with the roles" in {
+      val sut: DataRetrieval = app.injector.instanceOf[DataRetrieval]
+
+      val listName = CustomsOfficesList
+
+      val testElements = List(customsOfficesWithMultipleRoles)
+
+      val testData: ByteString = ReferenceDataJsonProjectionSpec.formatAsReferenceDataByteString(testElements)
+
+      when(mockRefDataConnector.getAsSource(eqTo(listName)))
+        .thenReturn(Future.successful(Option(Source.single(testData))))
+
+      val result = sut.getList(listName).futureValue
+
+      result mustEqual List(expectedCustomsOffice)
 
     }
 

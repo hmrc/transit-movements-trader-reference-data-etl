@@ -34,6 +34,8 @@ import play.api.libs.functional.syntax._
 import play.api.libs.json.Reads._
 import play.api.libs.json._
 
+import scala.util.parsing.json.JSONArray
+
 trait TransformationImplicits {
 
   implicit val transformationCountryCodesFullList: Transformation[CountryCodesFullList.type] =
@@ -97,6 +99,21 @@ trait TransformationImplicits {
       }
     )
 
+    val arrayStuff: Reads[JsObject] = (__ \ "customsOfficeTimetable").json.update(
+      of[JsArray].flatMap[JsArray] {
+        case JsArray(value) =>
+          val x = value
+            .flatMap (
+              jsObj =>
+                (jsObj \ "customsOfficeTimetableLine" \\ "customsOfficeRoleTrafficCompetence")
+                  .flatMap(_ \\ "role")
+                  .distinct
+            )
+
+          Reads.pure(JsArray(x))
+      }
+    )
+
     Transformation
       .fromReads(
         (
@@ -108,7 +125,7 @@ trait TransformationImplicits {
             ) and
             (__ \ CustomsOfficesListFieldNames.countryId).json.copyFrom((__ \ "countryCode").json.pick) and
             (__ \ CustomsOfficesListFieldNames.phoneNumber).json.copyFrom((__ \ "phoneNumber").json.pick orElse Reads.pure(JsNull)) and
-            (__ \ CustomsOfficesListFieldNames.roles).json.put(JsArray.empty)
+            (__ \ CustomsOfficesListFieldNames.roles).json.copyFrom(arrayStuff.andThen((__ \ "customsOfficeTimetable").json.pick))
         ).reduce
           .andThen((__ \ Common.state).json.prune)
           .andThen((__ \ Common.activeFrom).json.prune)
