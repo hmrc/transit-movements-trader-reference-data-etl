@@ -25,15 +25,13 @@ import play.api.inject.guice.GuiceableModule
 
 trait ConnectorSpecBase extends SpecBaseWithAppPerSuite with BeforeAndAfterAll {
 
-  /**
-    * The path to the config for the external HTTP call
+  /** The path to the config for the external HTTP call
     *
     * @return The name of the config key for the external service
     */
   protected def portConfigKey: String
 
-  /**
-    * An overrideable hook that allows for overriding the configuration
+  /** An overrideable hook that allows for overriding the configuration
     * of  guice module in the test suite
     *
     * @return Seq of modules binding that will be used by [[org.scalatestplus.play.guice.GuiceOneAppPerSuite]]

@@ -93,7 +93,9 @@ trait TransformationImplicits {
             case Some(value: JsObject) => Reads.pure(value)
             case _ =>
               array.headOption
-                .map(value => Reads.pure(value.as[JsObject]))
+                .map(
+                  value => Reads.pure(value.as[JsObject])
+                )
                 .getOrElse(Reads.failed("Transformation failed due to empty array of customsOfficesDetails"))
           }
       }
@@ -103,7 +105,7 @@ trait TransformationImplicits {
       of[JsArray].flatMap[JsArray] {
         case JsArray(value) =>
           val x = value
-            .flatMap (
+            .flatMap(
               jsObj =>
                 (jsObj \ "customsOfficeTimetableLine" \\ "customsOfficeRoleTrafficCompetence")
                   .flatMap(_ \\ "role")
@@ -125,7 +127,7 @@ trait TransformationImplicits {
             ) and
             (__ \ CustomsOfficesListFieldNames.countryId).json.copyFrom((__ \ "countryCode").json.pick) and
             (__ \ CustomsOfficesListFieldNames.phoneNumber).json.copyFrom((__ \ "phoneNumber").json.pick orElse Reads.pure(JsNull)) and
-            (__ \ CustomsOfficesListFieldNames.roles).json.copyFrom(arrayStuff.andThen((__ \ "customsOfficeTimetable").json.pick))
+            (__ \ CustomsOfficesListFieldNames.roles).json.put(JsArray.empty)
         ).reduce
           .andThen((__ \ Common.state).json.prune)
           .andThen((__ \ Common.activeFrom).json.prune)

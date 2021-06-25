@@ -29,8 +29,7 @@ private[base] trait TestWithMocking extends MockitoSugar with BeforeAndAfterEach
     if (beforeEachBlocks.nonEmpty) beforeEachBlocks.foreach(_.apply())
   }
 
-  /**
-    * An overrideable hook that allows the user to specify additional
+  /** An overrideable hook that allows the user to specify additional
     * blocks of code that will be run in addition to mocks being reset.
     *
     * @note If there are blocks of code in the parent of the test sute,
@@ -38,8 +37,7 @@ private[base] trait TestWithMocking extends MockitoSugar with BeforeAndAfterEach
     */
   def beforeEachBlocks: Seq[() => Unit] = Seq.empty
 
-  /**
-    * An overrideable hook that allows the user to specify all the mocks
+  /** An overrideable hook that allows the user to specify all the mocks
     * and they will be reset by Mockito automatically.
     *
     * @note If there are mocks in the parent of the test sute, then this

@@ -36,7 +36,9 @@ private[data] class ReferenceDataJsonProjection @Inject() (streamLoggingConfig: 
   val dataElements: Flow[ByteString, JsObject, NotUsed] =
     JsonReader
       .select(pathToNestedData)
-      .map(byteString => Json.parse(byteString.toArray).as[JsObject])
+      .map(
+        byteString => Json.parse(byteString.toArray).as[JsObject]
+      )
       .log(loggerName)
       .withAttributes(
         Attributes

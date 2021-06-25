@@ -55,7 +55,12 @@ object ReferenceDataList {
     )
 
   val mappings: Map[String, ReferenceDataList] =
-    values.map(x => x.listName -> x).toList.toMap
+    values
+      .map(
+        x => x.listName -> x
+      )
+      .toList
+      .toMap
 
   implicit val pathBindable: PathBindable[ReferenceDataList] = new PathBindable[ReferenceDataList] {
 
