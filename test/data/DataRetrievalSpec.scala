@@ -110,6 +110,20 @@ class DataRetrievalSpec extends SpecBaseWithAppPerSuite {
 
     }
 
+    "given a ReferenceDataList, returns an empty List of the elements for the list name" in {
+      val sut: DataRetrieval = app.injector.instanceOf[DataRetrieval]
+
+      val listName = CountryCodesFullList
+
+      when(mockRefDataConnector.getAsSource(eqTo(listName)))
+        .thenReturn(Future.successful(None))
+
+      val result = sut.getList(listName).futureValue
+
+      result must be(empty)
+
+    }
+
   }
 
   implicit lazy val actorSystem: ActorSystem = ActorSystem()
