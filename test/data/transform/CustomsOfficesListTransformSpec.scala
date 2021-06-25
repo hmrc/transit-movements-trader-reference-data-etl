@@ -27,126 +27,11 @@ import play.api.libs.json.Json
 import play.api.libs.json._
 
 class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyChecks {
+  import CustomsOfficesListTransformSpec._
 
   implicit def dontShrink[A]: Shrink[A] = Shrink.shrinkAny
 
   val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-
-  val validData =
-    Json
-      .parse("""
-      |{
-      |  "state": "valid",
-      |  "activeFrom": "2019-01-01",
-      |  "referenceNumber": "AD000003",
-      |  "referenceNumberMainOffice": "AD000003",
-      |  "referenceNumberHigherAuthority": "AD000003",
-      |  "referenceNumberCompetentAuthorityOfEnquiry": "AD000003",
-      |  "referenceNumberCompetentAuthorityOfRecovery": "AD000003",
-      |  "countryCode": "AD",
-      |  "unLocodeId": "ALV",
-      |  "nctsEntryDate": "20070614",
-      |  "nearestOffice": "CH002621",
-      |  "postalCode": "AD700",
-      |  "phoneNumber": "+ (376) 879900",
-      |  "faxNumber": "+ (376) 860360",
-      |  "eMailAddress": "Helpdesk_ncts@andorra.ad",
-      |  "geoInfoCode": "Q",
-      |  "traderDedicated": 1,
-      |  "regionCode": "BW",
-      |  "telexNumber": "+358005671",
-      |  "customsOfficeSpecificNotes": [
-      |    {
-      |      "specificNotesCode": "SN0002"
-      |    },
-      |    {
-      |      "specificNotesCode": "SN0006"
-      |    },
-      |    {
-      |      "specificNotesCode": "SN0022"
-      |    }
-      |  ],
-      |  "dedicatedTrader": [
-      |    {
-      |      "languageCode": "EN",
-      |      "name": "H M Revenue & Customs"
-      |    }
-      |  ],
-      |  "customsOfficeDetails": [
-      |    {
-      |      "languageCode": "ES",
-      |      "customsOfficeUsualName": "DESPATCHO CENTRAL DE ADUANAS",
-      |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
-      |      "city": "ESCALDES-ENGORDANY",
-      |      "prefixSuffixFlag": 0,
-      |      "spaceToAdd": 0
-      |    },
-      |    {
-      |      "languageCode": "EN",
-      |      "customsOfficeUsualName": "CENTRAL CUSTOMS OFFICE",
-      |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
-      |      "city": "ESCALDES - ENGORDANY",
-      |      "prefixSuffixFlag": 0,
-      |      "prefixSuffixLevel": "E",
-      |      "prefixSuffixName": "Tulli",
-      |      "spaceToAdd": 0
-      |    },
-      |    {
-      |      "languageCode": "FR",
-      |      "customsOfficeUsualName": "BUREAU CENTRAL DES DOUANES",
-      |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
-      |      "city": "ESCALDES - ENGORDANY",
-      |      "prefixSuffixFlag": 0,
-      |      "spaceToAdd": 0
-      |    }
-      |  ],
-      |  "customsOfficeTimetable": [
-      |    {
-      |      "seasonCode": 1,
-      |      "seasonName": "ALL YEAR",
-      |      "seasonStartDate": "20180101",
-      |      "seasonEndDate": "20991231",
-      |      "customsOfficeTimetableLine": [
-      |        {
-      |          "dayInTheWeekBeginDay": 1,
-      |          "openingHoursTimeFirstPeriodFrom": "0800",
-      |          "openingHoursTimeFirstPeriodTo": "1700",
-      |          "openingHoursTimeSecondPeriodFrom": "1200",
-      |          "openingHoursTimeSecondPeriodTo": "1800",
-      |          "dayInTheWeekEndDay": 5,
-      |          "customsOfficeRoleTrafficCompetence": [
-      |            {
-      |              "role": "AUT",
-      |              "trafficType": "R"
-      |            },
-      |            {
-      |              "role": "CAU",
-      |              "trafficType": "R"
-      |            },
-      |            {
-      |              "role": "DEP",
-      |              "trafficType": "R"
-      |            },
-      |            {
-      |              "role": "ENQ",
-      |              "trafficType": "R"
-      |            },
-      |            {
-      |              "role": "GUA",
-      |              "trafficType": "R"
-      |            },
-      |            {
-      |              "role": "REC",
-      |              "trafficType": "R"
-      |            }
-      |          ]
-      |        }
-      |      ]
-      |    }
-      |  ]
-      |}
-      |""".stripMargin)
-      .as[JsObject]
 
   "transform" - {
     "when the json matches the expected schema" - {
@@ -164,7 +49,7 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
                 |}
                 |""".stripMargin
 
-          val result = Transformation(CustomsOfficesList).runTransform(validData)
+          val result = Transformation(CustomsOfficesList).runTransform(customsOfficeJson())
 
           result.get mustEqual Json.parse(expected)
 
@@ -182,7 +67,7 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
               |}
               |""".stripMargin
 
-          val data = (__ \ "phoneNumber").json.prune.reads(validData).get
+          val data = (__ \ "phoneNumber").json.prune.reads(customsOfficeJson()).get
 
           val result = Transformation(CustomsOfficesList).runTransform(data)
 
@@ -203,7 +88,8 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
                 |}
                 |""".stripMargin
 
-            val result = Transformation(CustomsOfficesList).runTransform(validData)
+            val result =
+              Transformation(CustomsOfficesList).runTransform(customsOfficeJson(Seq(customsOfficeDetailsES, customsOfficeDetailsEN, customsOfficeDetailsFR)))
 
             result.get mustEqual Json.parse(expected)
 
@@ -221,34 +107,7 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
                 |}
                 |""".stripMargin
 
-            val data = validData ++ Json
-              .parse(
-                """
-                  |{
-                  | "customsOfficeDetails": [
-                  |    {
-                  |      "languageCode": "FR",
-                  |      "customsOfficeUsualName": "BUREAU CENTRAL DES DOUANES",
-                  |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
-                  |      "city": "ESCALDES - ENGORDANY",
-                  |      "prefixSuffixFlag": 0,
-                  |      "spaceToAdd": 0
-                  |    },
-                  |    {
-                  |      "languageCode": "ES",
-                  |      "customsOfficeUsualName": "DESPATCHO CENTRAL DE ADUANAS",
-                  |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
-                  |      "city": "ESCALDES-ENGORDANY",
-                  |      "prefixSuffixFlag": 0,
-                  |      "spaceToAdd": 0
-                  |    }
-                  |  ]
-                  |}
-                  |""".stripMargin
-              )
-              .as[JsObject]
-
-            val result = Transformation(CustomsOfficesList).runTransform(data)
+            val result = Transformation(CustomsOfficesList).runTransform(customsOfficeJson(Seq(customsOfficeDetailsFR, customsOfficeDetailsES)))
 
             result.get mustEqual Json.parse(expected)
           }
@@ -265,25 +124,7 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
                 |}
                 |""".stripMargin
 
-            val data = validData ++ Json
-              .parse(
-                """
-                |{
-                | "customsOfficeDetails": [
-                |    {
-                |      "languageCode": "FR",
-                |      "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
-                |      "city": "ESCALDES - ENGORDANY",
-                |      "prefixSuffixFlag": 0,
-                |      "spaceToAdd": 0
-                |    }
-                |  ]
-                |}
-                |""".stripMargin
-              )
-              .as[JsObject]
-
-            val result = Transformation(CustomsOfficesList).runTransform(data)
+            val result = Transformation(CustomsOfficesList).runTransform(customsOfficeJson(Seq.empty))
 
             result.get mustEqual Json.parse(expected)
           }
@@ -307,7 +148,7 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
         "when top level mandatory fields are missing" in {
           forAll(mandatoryFields) {
             mandatoryField =>
-              val dataWithError = (__ \ mandatoryField).json.prune.reads(validData).get
+              val dataWithError = (__ \ mandatoryField).json.prune.reads(customsOfficeJson()).get
 
               val result =
                 Transformation(CustomsOfficesList).transform
@@ -336,5 +177,228 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
     "returns a JsSuccess of None if the activeFrom date is in the future" ignore {}
 
   }
+
+}
+
+object CustomsOfficesListTransformSpec {
+
+  def customsOfficeJson(
+    customsOfficeDetails: Seq[String] = Seq(customsOfficeDetailsES, customsOfficeDetailsEN, customsOfficeDetailsFR),
+    timeTable: Seq[String] = Seq(currentTimetable1)
+  ): JsObject = {
+
+    def containsValidJsObject(xs: Seq[String]): Boolean = {
+      xs.map(
+        x => Json.parse(x).as[JsObject]
+      )
+      true
+    }
+
+    require(containsValidJsObject(customsOfficeDetails), "Customs Office must be a JSON Object")
+    require(containsValidJsObject(timeTable), "Timetable must be a JSON Object")
+
+    val customsOfficeDetailsJson: String = customsOfficeDetails.mkString("[", ",", "]")
+    val timeTableJson: String            = timeTable.mkString("[", ",", "]")
+
+    Json
+      .parse(s"""
+            |{
+            |  "state": "valid",
+            |  "activeFrom": "2019-01-01",
+            |  "referenceNumber": "AD000003",
+            |  "referenceNumberMainOffice": "AD000003",
+            |  "referenceNumberHigherAuthority": "AD000003",
+            |  "referenceNumberCompetentAuthorityOfEnquiry": "AD000003",
+            |  "referenceNumberCompetentAuthorityOfRecovery": "AD000003",
+            |  "countryCode": "AD",
+            |  "unLocodeId": "ALV",
+            |  "nctsEntryDate": "20070614",
+            |  "nearestOffice": "CH002621",
+            |  "postalCode": "AD700",
+            |  "phoneNumber": "+ (376) 879900",
+            |  "faxNumber": "+ (376) 860360",
+            |  "eMailAddress": "Helpdesk_ncts@andorra.ad",
+            |  "geoInfoCode": "Q",
+            |  "traderDedicated": 1,
+            |  "regionCode": "BW",
+            |  "telexNumber": "+358005671",
+            |  "customsOfficeSpecificNotes": [
+            |    {
+            |      "specificNotesCode": "SN0002"
+            |    },
+            |    {
+            |      "specificNotesCode": "SN0006"
+            |    },
+            |    {
+            |      "specificNotesCode": "SN0022"
+            |    }
+            |  ],
+            |  "dedicatedTrader": [
+            |    {
+            |      "languageCode": "EN",
+            |      "name": "H M Revenue & Customs"
+            |    }
+            |  ],
+            |  "customsOfficeDetails": $customsOfficeDetailsJson,
+            |  "customsOfficeTimetable": $timeTableJson
+            |}
+            |""".stripMargin)
+      .as[JsObject]
+  }
+
+  val customsOfficeDetailsES: String =
+    """
+     |{
+     |  "languageCode": "ES",
+     |  "customsOfficeUsualName": "DESPATCHO CENTRAL DE ADUANAS",
+     |  "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
+     |  "city": "ESCALDES-ENGORDANY",
+     |  "prefixSuffixFlag": 0,
+     |  "spaceToAdd": 0
+     |}""".stripMargin
+
+  val customsOfficeDetailsEN: String =
+    """
+     |{
+     |  "languageCode": "EN",
+     |  "customsOfficeUsualName": "CENTRAL CUSTOMS OFFICE",
+     |  "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
+     |  "city": "ESCALDES - ENGORDANY",
+     |  "prefixSuffixFlag": 0,
+     |  "prefixSuffixLevel": "E",
+     |  "prefixSuffixName": "Tulli",
+     |  "spaceToAdd": 0
+     |}""".stripMargin
+
+  val customsOfficeDetailsFR: String =
+    """
+     |{
+     |  "languageCode": "FR",
+     |  "customsOfficeUsualName": "BUREAU CENTRAL DES DOUANES",
+     |  "streetAndNumber": "AVINGUDA FITER I ROSSELL, 2",
+     |  "city": "ESCALDES - ENGORDANY",
+     |  "prefixSuffixFlag": 0,
+     |  "spaceToAdd": 0
+     |}""".stripMargin
+
+  val currentTimetable1: String =
+    """
+      |    {
+      |      "seasonCode": 1,
+      |      "seasonName": "ALL YEAR",
+      |      "seasonStartDate": "20180101",
+      |      "seasonEndDate": "20991231",
+      |      "customsOfficeTimetableLine": [
+      |        {
+      |          "dayInTheWeekBeginDay": 1,
+      |          "openingHoursTimeFirstPeriodFrom": "0800",
+      |          "openingHoursTimeFirstPeriodTo": "1700",
+      |          "openingHoursTimeSecondPeriodFrom": "1200",
+      |          "openingHoursTimeSecondPeriodTo": "1800",
+      |          "dayInTheWeekEndDay": 5,
+      |          "customsOfficeRoleTrafficCompetence": [
+      |            {
+      |              "role": "AUT",
+      |              "trafficType": "R"
+      |            },
+      |            {
+      |              "role": "CAU",
+      |              "trafficType": "R"
+      |            }
+      |          ]
+      |        }
+      |      ]
+      |    }
+      |""".stripMargin
+
+  val currentTimetable2 =
+    """
+      |{
+      |  "seasonCode": 2,
+      |  "seasonName": "SEASON_2",
+      |  "seasonStartDate": "20180101",
+      |  "seasonEndDate": "20991231",
+      |  "customsOfficeTimetableLine": [
+      |    {
+      |      "dayInTheWeekBeginDay": 1,
+      |      "openingHoursTimeFirstPeriodFrom": "0800",
+      |      "openingHoursTimeFirstPeriodTo": "1700",
+      |      "openingHoursTimeSecondPeriodFrom": "1200",
+      |      "openingHoursTimeSecondPeriodTo": "1800",
+      |      "dayInTheWeekEndDay": 5,
+      |      "customsOfficeRoleTrafficCompetence": [
+      |        {
+      |          "role": "GUA",
+      |          "trafficType": "R"
+      |        },
+      |        {
+      |          "role": "REC",
+      |          "trafficType": "R"
+      |        }
+      |      ]
+      |    }
+      |  ]
+      |}
+      |""".stripMargin
+
+  val futureTimetable =
+    """
+      |{
+      |  "seasonCode": 3,
+      |  "seasonName": "SEASON_3",
+      |  "seasonStartDate": "29990101",
+      |  "seasonEndDate": "29991231",
+      |  "customsOfficeTimetableLine": [
+      |    {
+      |      "dayInTheWeekBeginDay": 1,
+      |      "openingHoursTimeFirstPeriodFrom": "0800",
+      |      "openingHoursTimeFirstPeriodTo": "1700",
+      |      "openingHoursTimeSecondPeriodFrom": "1200",
+      |      "openingHoursTimeSecondPeriodTo": "1800",
+      |      "dayInTheWeekEndDay": 5,
+      |      "customsOfficeRoleTrafficCompetence": [
+      |        {
+      |          "role": "GUA",
+      |          "trafficType": "R"
+      |        },
+      |        {
+      |          "role": "REC",
+      |          "trafficType": "R"
+      |        }
+      |      ]
+      |    }
+      |  ]
+      |}
+      |""".stripMargin
+
+  val pastTimetable =
+    """
+      |{
+      |  "seasonCode": 4,
+      |  "seasonName": "SEASON_4",
+      |  "seasonStartDate": "19180101",
+      |  "seasonEndDate": "19991231",
+      |  "customsOfficeTimetableLine": [
+      |    {
+      |      "dayInTheWeekBeginDay": 1,
+      |      "openingHoursTimeFirstPeriodFrom": "0800",
+      |      "openingHoursTimeFirstPeriodTo": "1700",
+      |      "openingHoursTimeSecondPeriodFrom": "1200",
+      |      "openingHoursTimeSecondPeriodTo": "1800",
+      |      "dayInTheWeekEndDay": 5,
+      |      "customsOfficeRoleTrafficCompetence": [
+      |        {
+      |          "role": "GUA",
+      |          "trafficType": "R"
+      |        },
+      |        {
+      |          "role": "REC",
+      |          "trafficType": "R"
+      |        }
+      |      ]
+      |    }
+      |  ]
+      |}
+      |""".stripMargin
 
 }
