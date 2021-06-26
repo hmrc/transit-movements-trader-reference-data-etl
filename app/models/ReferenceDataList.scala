@@ -89,11 +89,23 @@ object ReferenceDataList {
     }
 
     object CustomsOfficesListFieldNames {
-      val id          = "id"
-      val name        = "name"
-      val countryId   = "countryId"
-      val phoneNumber = "phoneNumber"
-      val roles       = "roles"
+      val id                               = "id"
+      val name                             = "name"
+      val countryId                        = "countryId"
+      val phoneNumber                      = "phoneNumber"
+      val roles                            = "roles"
+      val seasonCode                       = "seasonCode"
+      val seasonName                       = "seasonName"
+      val seasonStartDate                  = "seasonStartDate"
+      val seasonEndDate                    = "seasonEndDate"
+      val dayInTheWeekBeginDay             = "dayInTheWeekBeginDay"
+      val openingHoursTimeFirstPeriodFrom  = "openingHoursTimeFirstPeriodFrom"
+      val openingHoursTimeFirstPeriodTo    = "openingHoursTimeFirstPeriodTo"
+      val openingHoursTimeSecondPeriodFrom = "openingHoursTimeSecondPeriodFrom"
+      val openingHoursTimeSecondPeriodTo   = "openingHoursTimeSecondPeriodTo"
+      val dayInTheWeekEndDay               = "dayInTheWeekEndDay"
+      val role                             = "role"
+      val trafficType                      = "trafficType"
     }
 
     object DocumentTypeCommonListFieldNames {

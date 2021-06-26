@@ -33,8 +33,7 @@ import models.ReferenceDataList.Constants._
 import play.api.libs.functional.syntax._
 import play.api.libs.json.Reads._
 import play.api.libs.json._
-
-import scala.util.parsing.json.JSONArray
+import models.IntermediateCustomsOffice
 
 trait TransformationImplicits {
 
@@ -101,37 +100,24 @@ trait TransformationImplicits {
       }
     )
 
-    val arrayStuff: Reads[JsObject] = (__ \ "customsOfficeTimetable").json.update(
-      of[JsArray].flatMap[JsArray] {
-        case JsArray(value) =>
-          val x = value
-            .flatMap(
-              jsObj =>
-                (jsObj \ "customsOfficeTimetableLine" \\ "customsOfficeRoleTrafficCompetence")
-                  .flatMap(_ \\ "role")
-                  .distinct
-            )
+    val denormaliseTimetable: Reads[JsObject] =
+      Reads(_.validate(implicitly[Reads[IntermediateCustomsOffice]]).map(Json.toJsObject(_)))
 
-          Reads.pure(JsArray(x))
-      }
-    )
+    val selectFields: Reads[JsObject] = (
+      (__ \ CustomsOfficesListFieldNames.id).json.copyFrom((__ \ "referenceNumber").json.pick) and
+        (__ \ Common.state).json.pickBranch and
+        (__ \ Common.activeFrom).json.pickBranch and
+        (__ \ "name").json.copyFrom(
+          customsOfficeDetailsEN.andThen((__ \ "customsOfficeDetails" \ "customsOfficeUsualName").json.pick) orElse Reads.pure(JsNull)
+        ) and
+        (__ \ CustomsOfficesListFieldNames.countryId).json.copyFrom((__ \ "countryCode").json.pick) and
+        (__ \ CustomsOfficesListFieldNames.phoneNumber).json.copyFrom((__ \ "phoneNumber").json.pick orElse Reads.pure(JsNull)) and
+        (__ \ CustomsOfficesListFieldNames.roles).json.pickBranch
+    ).reduce
+      .andThen((__ \ Common.state).json.prune)
+      .andThen((__ \ Common.activeFrom).json.prune)
 
-    Transformation
-      .fromReads(
-        (
-          (__ \ CustomsOfficesListFieldNames.id).json.copyFrom((__ \ "referenceNumber").json.pick) and
-            (__ \ Common.state).json.pickBranch and
-            (__ \ Common.activeFrom).json.pickBranch and
-            (__ \ "name").json.copyFrom(
-              customsOfficeDetailsEN.andThen((__ \ "customsOfficeDetails" \ "customsOfficeUsualName").json.pick) orElse Reads.pure(JsNull)
-            ) and
-            (__ \ CustomsOfficesListFieldNames.countryId).json.copyFrom((__ \ "countryCode").json.pick) and
-            (__ \ CustomsOfficesListFieldNames.phoneNumber).json.copyFrom((__ \ "phoneNumber").json.pick orElse Reads.pure(JsNull)) and
-            (__ \ CustomsOfficesListFieldNames.roles).json.put(JsArray.empty)
-        ).reduce
-          .andThen((__ \ Common.state).json.prune)
-          .andThen((__ \ Common.activeFrom).json.prune)
-      )
+    Transformation.fromReads(denormaliseTimetable.andThen(selectFields))
   }
 
   implicit val transformationDocumentTypeCommonList: Transformation[DocumentTypeCommonList.type] =
