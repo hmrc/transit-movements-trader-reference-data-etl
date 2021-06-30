@@ -23,15 +23,13 @@ import play.api.libs.json.Reads
 
 trait Transformation[A] {
 
-  /**
-    * The transformation that will be applied to the object
+  /** The transformation that will be applied to the object
     *
     * @return The reads to transform the payload
     */
   def transform: Reads[JsObject]
 
-  /**
-    * Run the transformation for an input
+  /** Run the transformation for an input
     *
     * @param JsObject to be transformed
     *
@@ -40,8 +38,7 @@ trait Transformation[A] {
   def runTransform(input: JsObject): JsResult[JsObject] =
     transform.reads(input)
 
-  /**
-    * The filter step that be applied to pre-transformed object,
+  /** The filter step that be applied to pre-transformed object,
     * which allows business rules can be used to filter out items.
     * If an input evaluates to `true`, then the will be dropped.
     *

@@ -39,7 +39,9 @@ private[data] object ReferenceDataLists {
         case (listName, path) =>
           ReferenceDataList.mappings
             .get(listName)
-            .map(refDatList => (refDatList, path.transform(hrefTransform).get.value))
+            .map(
+              refDatList => (refDatList, path.transform(hrefTransform).get.value)
+            )
       })
       .map(ReferenceDataLists(_))
 

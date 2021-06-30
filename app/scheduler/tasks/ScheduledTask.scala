@@ -43,13 +43,19 @@ trait ScheduledTask[A] extends Logging {
           result =>
             lockRepository
               .unlock(lock)
-              .map(_ => result)
-              .recover { case _ => result }
+              .map(
+                _ => result
+              )
+              .recover {
+                case _ => result
+              }
         } recoverWith {
           case e: Exception =>
             lockRepository
               .unlock(lock)
-              .map(_ => Left(UnknownExceptionOccurred(e)))
+              .map(
+                _ => Left(UnknownExceptionOccurred(e))
+              )
               .recover {
                 case _ =>
                   Left(UnknownExceptionOccurred(e))

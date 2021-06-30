@@ -79,7 +79,9 @@ class LockRepository @Inject() (
     collection.flatMap {
       _.insert(ordered = false)
         .one(lock)
-        .map(_ => LockResult.LockAcquired)
+        .map(
+          _ => LockResult.LockAcquired
+        )
     } recover {
       case e: LastError if e.code contains alreadyLocked =>
         LockResult.AlreadyLocked
@@ -93,7 +95,9 @@ class LockRepository @Inject() (
     collection.flatMap {
       _.delete(ordered = false)
         .one(Json.obj("_id" -> key))
-        .map(_ => true)
+        .map(
+          _ => true
+        )
     } recover {
       case e: Throwable =>
         logger.error(s"${UnlockException.toString} Error trying to remove lock $key", e)

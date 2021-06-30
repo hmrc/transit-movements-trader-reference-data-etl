@@ -29,8 +29,7 @@ class TestLoggingModule extends AbstractModule {
 
 object TestStreamLoggingConfig extends StreamLoggingConfig {
 
-  /**
-    * Configuration for the logging level of AkkaStream components. This allows for global
+  /** Configuration for the logging level of AkkaStream components. This allows for global
     * application configuration, or stream component specific configuration.
     *
     * @param streamComponentName if provided, this will be used for this component over the

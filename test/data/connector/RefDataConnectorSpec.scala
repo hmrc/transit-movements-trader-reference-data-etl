@@ -236,8 +236,7 @@ class RefDataConnectorSpec extends ConnectorSpecBase {
     }
   }
 
-  /**
-    * @return The name of the config key for the external service
+  /** @return The name of the config key for the external service
     */
   override protected def portConfigKey: String = "microservice.services.customs-reference-data.port"
 

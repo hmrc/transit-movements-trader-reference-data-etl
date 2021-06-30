@@ -92,7 +92,7 @@ class DataRetrievalSpec extends SpecBaseWithAppPerSuite {
 
   "getList" - {
 
-    "given a ReferenceDataList, returns a stream of the elements for the list" in {
+    "given a ReferenceDataList, returns a List of the elements for the list name" in {
       val sut: DataRetrieval = app.injector.instanceOf[DataRetrieval]
 
       val listName = CountryCodesFullList
@@ -107,6 +107,20 @@ class DataRetrievalSpec extends SpecBaseWithAppPerSuite {
       val result = sut.getList(listName).futureValue
 
       result mustEqual List(expected1, expected2)
+
+    }
+
+    "given a ReferenceDataList, returns an empty List of the elements for the list name" in {
+      val sut: DataRetrieval = app.injector.instanceOf[DataRetrieval]
+
+      val listName = CountryCodesFullList
+
+      when(mockRefDataConnector.getAsSource(eqTo(listName)))
+        .thenReturn(Future.successful(None))
+
+      val result = sut.getList(listName).futureValue
+
+      result must be(empty)
 
     }
 

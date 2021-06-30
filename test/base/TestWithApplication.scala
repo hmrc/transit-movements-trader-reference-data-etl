@@ -27,8 +27,7 @@ private[base] trait TestWithApplication {
   final override def fakeApplication(): Application =
     guiceApplicationBuilder.build()
 
-  /**
-    * An overrideable hook that allows for the extension of the [[GuiceApplicationBuilder]] or
+  /** An overrideable hook that allows for the extension of the [[GuiceApplicationBuilder]] or
     * if overridden, can wipe way some of the assumption in this builder.
     *
     * @return Optional user answers that if defefined, will be passed to the GuiceApplicationBuilder
