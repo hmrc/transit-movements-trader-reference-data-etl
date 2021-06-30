@@ -178,6 +178,18 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
 
           }
 
+          "with empty role sequence" - {
+            "when there is no customs office timetable" in {
+              Transformation(CustomsOfficesList).runTransform(noRolesOffice).get mustEqual Json.obj(
+                "name"        -> "A Name",
+                "phoneNumber" -> "12 34 56 78 9",
+                "id"          -> "AB00012",
+                "countryId"   -> "AB",
+                "roles"       -> Json.arr()
+              )
+            }
+          }
+
         }
       }
 
@@ -229,6 +241,33 @@ class CustomsOfficesListTransformSpec extends SpecBase with ScalaCheckPropertyCh
 }
 
 object CustomsOfficesListTransformSpec {
+
+  val noRolesOffice: JsObject = Json
+    .parse("""
+      |{
+      |		"state" : "valid",
+      |		"activeFrom" : "2019-01-01",
+      |		"referenceNumber" : "AB00012",
+      |		"referenceNumberHigherAuthority" : "AB00001",
+      |		"countryCode" : "AB",
+      |		"postalCode" : "AA1 1AA",
+      |		"phoneNumber" : "12 34 56 78 9",
+      |		"eMailAddress" : "me@you.com",
+      |		"geoInfoCode" : "Q",
+      |		"traderDedicated" : 0,
+      |		"customsOfficeDetails" : [
+      |			{
+      |				"languageCode" : "AA",
+      |				"customsOfficeUsualName" : "A Name",
+      |				"streetAndNumber" : "StNumber",
+      |				"city" : "CityA",
+      |				"prefixSuffixFlag" : 0,
+      |				"spaceToAdd" : 0
+      |			}
+      |		]
+      |	}
+      |""".stripMargin)
+    .as[JsObject]
 
   def inputCustomsOfficeJson(
     customsOfficeDetails: Seq[JsObject] = Seq(customsOfficeDetailsES, customsOfficeDetailsEN, customsOfficeDetailsFR),
