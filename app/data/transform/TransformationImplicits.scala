@@ -34,6 +34,7 @@ import play.api.libs.functional.syntax._
 import play.api.libs.json.Reads._
 import play.api.libs.json._
 import models.IntermediateCustomsOffice
+import play.api.Logger
 
 trait TransformationImplicits {
 
@@ -101,7 +102,15 @@ trait TransformationImplicits {
     )
 
     val denormaliseTimetable: Reads[JsObject] =
-      Reads(_.validate(implicitly[Reads[IntermediateCustomsOffice]]).map(Json.toJsObject(_)))
+      Reads(
+        jsValue =>
+          if ((jsValue \ "customsOfficeTimetable").isEmpty) {
+            Logger(getClass.getCanonicalName).warn("[denormaliseTimetable] found customs office without customsOfficeTimetable")
+            jsValue.validate[JsObject].map(_ ++ Json.obj("roles" -> Json.arr()))
+          } else {
+            jsValue.validate(implicitly[Reads[IntermediateCustomsOffice]]).map(Json.toJsObject(_))
+          }
+      )
 
     val selectFields: Reads[JsObject] = (
       (__ \ CustomsOfficesListFieldNames.id).json.copyFrom((__ \ "referenceNumber").json.pick) and
