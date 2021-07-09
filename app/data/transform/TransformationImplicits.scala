@@ -35,22 +35,26 @@ import play.api.libs.json.Reads._
 import play.api.libs.json._
 import models.IntermediateCustomsOffice
 import play.api.Logger
+import models.CountryCodesCustomsOfficeLists
 
 trait TransformationImplicits {
 
-  implicit val transformationCountryCodesFullList: Transformation[CountryCodesFullList.type] =
-    Transformation
-      .fromReads(
-        (
-          (__ \ CountryCodesFullListFieldNames.code).json.copyFrom((__ \ "countryCode").json.pick) and
-            (__ \ Common.state).json.pickBranch and
-            (__ \ Common.activeFrom).json.pickBranch and
-            (__ \ Common.description).json.copyFrom(englishDescription)
-        ).reduce
-          .andThen(
-            (__ \ Common.activeFrom).json.prune
-          )
+  private val jsonTransformCountryCodeLikeLists: Reads[JsObject] =
+    (
+      (__ \ CountryCodesFullListFieldNames.code).json.copyFrom((__ \ "countryCode").json.pick) and
+        (__ \ Common.state).json.pickBranch and
+        (__ \ Common.activeFrom).json.pickBranch and
+        (__ \ Common.description).json.copyFrom(englishDescription)
+    ).reduce
+      .andThen(
+        (__ \ Common.activeFrom).json.prune
       )
+
+  implicit val transformationCountryCodesFullList: Transformation[CountryCodesFullList.type] =
+    Transformation.fromReads(jsonTransformCountryCodeLikeLists)
+
+  implicit val transformationCountryCodesCustomsOfficeList: Transformation[CountryCodesCustomsOfficeLists.type] =
+    Transformation.fromReads(jsonTransformCountryCodeLikeLists)
 
   implicit val transformationCountryCodesCommonTransitList: Transformation[CountryCodesCommonTransitList.type] =
     Transformation
