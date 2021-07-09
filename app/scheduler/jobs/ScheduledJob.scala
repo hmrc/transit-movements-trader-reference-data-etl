@@ -20,7 +20,7 @@ import akka.actor.ActorRef
 import akka.actor.ActorSystem
 import com.typesafe.akka.`extension`.quartz.QuartzSchedulerExtension
 import logging.Logging
-import play.api.Configuration
+
 import play.api.inject.ApplicationLifecycle
 import scheduler.config.ScheduledJobConfig
 import scheduler.SchedulingActor

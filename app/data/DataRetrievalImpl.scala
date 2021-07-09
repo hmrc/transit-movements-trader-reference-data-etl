@@ -47,7 +47,7 @@ private[data] class DataRetrievalImpl @Inject() (refDataSource: RefDataSource)(i
     refDataSource(list)
       .map(
         _.map(
-          _.via(FilterFlow(list).flow)
+          _.via(FilterFlow.flow(list))
             .via(TransformationFlow(list, transformation).flow)
         )
       )

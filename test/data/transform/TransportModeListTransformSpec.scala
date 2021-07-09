@@ -114,7 +114,7 @@ class TransportModeListTransformSpec extends SpecBase with ScalaCheckPropertyChe
             |""".stripMargin)
           .as[JsObject]
 
-      Transformation(TransportModeList).filter(invalidTransportCode) mustEqual false
+      Transformation(TransportModeList).isValid(invalidTransportCode) mustEqual false
     }
 
     "returns true if the transport mode is 2 characters or less" in {
@@ -133,7 +133,7 @@ class TransportModeListTransformSpec extends SpecBase with ScalaCheckPropertyChe
             |""".stripMargin)
           .as[JsObject]
 
-      Transformation(TransportModeList).filter(invalidTransportCode) mustEqual true
+      Transformation(TransportModeList).isValid(invalidTransportCode) mustEqual true
     }
 
   }

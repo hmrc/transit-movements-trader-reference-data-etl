@@ -38,14 +38,10 @@ trait Transformation[A] {
   def runTransform(input: JsObject): JsResult[JsObject] =
     transform.reads(input)
 
-  /** The filter step that be applied to pre-transformed object,
+  /** The function that can test a pre-transformed object,
     * which allows business rules can be used to filter out items.
-    * If an input evaluates to `false`, then the will be dropped.
-    *
-    * @return Predicate that is used to test objects, if not satisfied,
-    *         the element is dropped
     */
-  def filter: JsObject => Boolean
+  def isValid(jsObj: JsObject): Boolean
 
 }
 
@@ -59,12 +55,11 @@ object Transformation extends TransformationImplicits {
     new Transformation[A] {
       override def transform: Reads[JsObject] = reads
 
-      override def filter: JsObject => Boolean =
-        jsObj =>
-          filters
-            .forall(
-              predicate => predicate(jsObj)
-            )
+      override def isValid(jsObj: JsObject): Boolean =
+        filters
+          .forall(
+            predicate => predicate(jsObj)
+          )
     }
 
 }
