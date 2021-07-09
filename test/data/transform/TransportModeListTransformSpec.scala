@@ -96,11 +96,45 @@ class TransportModeListTransformSpec extends SpecBase with ScalaCheckPropertyChe
     }
   }
 
-  "filter" ignore {
+  "filter" - {
 
-    "returns a JsSuccess of None if the country is invalid" ignore {}
+    "returns false if the transport mode is longer than 2 characters" in {
+      val invalidTransportCode =
+        Json
+          .parse("""
+            |{
+            |  "state": "valid",
+            |  "activeFrom": "2020-05-30",
+            |  "code": "10R",
+            |  "description": {
+            |    "el": "Θαλάσσια μεταφορά",
+            |    "en": "Sea transport"
+            |  }
+            |}
+            |""".stripMargin)
+          .as[JsObject]
 
-    "returns a JsSuccess of None if the activeFrom date is in the future" ignore {}
+      Transformation(TransportModeList).filter(invalidTransportCode) mustEqual false
+    }
+
+    "returns true if the transport mode is 2 characters or less" in {
+      val invalidTransportCode =
+        Json
+          .parse("""
+            |{
+            |  "state": "valid",
+            |  "activeFrom": "2020-05-30",
+            |  "code": "10",
+            |  "description": {
+            |    "el": "Θαλάσσια μεταφορά",
+            |    "en": "Sea transport"
+            |  }
+            |}
+            |""".stripMargin)
+          .as[JsObject]
+
+      Transformation(TransportModeList).filter(invalidTransportCode) mustEqual true
+    }
 
   }
 
