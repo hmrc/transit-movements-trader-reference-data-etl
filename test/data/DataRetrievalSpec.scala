@@ -30,6 +30,8 @@ import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.json.JsObject
 
 import scala.concurrent.Future
+import models.TransportModeList
+import play.api.libs.json.Json
 
 class DataRetrievalSpec extends SpecBaseWithAppPerSuite {
   import data.transform.CountryCodesFullListTransformSpec._
@@ -107,6 +109,60 @@ class DataRetrievalSpec extends SpecBaseWithAppPerSuite {
       val result = sut.getList(listName).futureValue
 
       result mustEqual List(expected1, expected2)
+
+    }
+
+    "given a ReferenceDataList, returns a List of only the elements that are valid" in {
+      val sut: DataRetrieval = app.injector.instanceOf[DataRetrieval]
+
+      val listName = TransportModeList
+
+      val testElements = List(
+        Json
+          .parse("""
+            |{
+            |  "state": "valid",
+            |  "activeFrom": "2020-05-30",
+            |  "code": "10R",
+            |  "description": {
+            |    "el": "Θαλάσσια μεταφορά",
+            |    "en": "Sea transport"
+            |  }
+            |}
+            |""".stripMargin)
+          .as[JsObject],
+        Json
+          .parse("""
+            |{
+            |  "state": "valid",
+            |  "activeFrom": "2020-05-30",
+            |  "code": "10",
+            |  "description": {
+            |    "el": "Θαλάσσια μεταφορά",
+            |    "en": "Sea transport"
+            |  }
+            |}
+            |""".stripMargin)
+          .as[JsObject]
+      )
+
+      val testData: ByteString = ReferenceDataJsonProjectionSpec.formatAsReferenceDataByteString(testElements)
+
+      when(mockRefDataConnector.getAsSource(eqTo(listName)))
+        .thenReturn(Future.successful(Option(Source.single(testData))))
+
+      val result = sut.getList(listName).futureValue
+
+      result mustEqual List(
+        Json
+          .parse("""
+            |{
+            |  "code": "10",
+            |  "description": "Sea transport"
+            |}
+            |""".stripMargin)
+          .as[JsObject]
+      )
 
     }
 

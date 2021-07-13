@@ -51,14 +51,14 @@ trait TransformationImplicits {
       )
 
   implicit val transformationCountryCodesFullList: Transformation[CountryCodesFullList.type] =
-    Transformation.fromReads(jsonTransformCountryCodeLikeLists)
+    Transformation.instance(jsonTransformCountryCodeLikeLists, Seq.empty)
 
   implicit val transformationCountryCodesCustomsOfficeList: Transformation[CountryCodesCustomsOfficeLists.type] =
-    Transformation.fromReads(jsonTransformCountryCodeLikeLists)
+    Transformation.instance(jsonTransformCountryCodeLikeLists, Seq.empty)
 
   implicit val transformationCountryCodesCommonTransitList: Transformation[CountryCodesCommonTransitList.type] =
     Transformation
-      .fromReads(
+      .instance(
         (
           (__ \ CountryCodesCommonTransitListFieldNames.code).json.copyFrom((__ \ "countryCode").json.pick) and
             (__ \ Common.state).json.pickBranch and
@@ -67,12 +67,13 @@ trait TransformationImplicits {
         ).reduce
           .andThen(
             (__ \ Common.activeFrom).json.prune
-          )
+          ),
+        Seq.empty
       )
 
   implicit val countryCodesCommonTransitOutsideCommunityList: Transformation[CountryCodesCommonTransitOutsideCommunityList.type] =
     Transformation
-      .fromReads(
+      .instance(
         (
           (__ \ CountryCodesCommonTransitOutsideCommunityListFieldNames.code).json.copyFrom((__ \ "countryCode").json.pick) and
             (__ \ Common.state).json.pickBranch and
@@ -81,7 +82,8 @@ trait TransformationImplicits {
         ).reduce
           .andThen(
             (__ \ Common.activeFrom).json.prune
-          )
+          ),
+        Seq.empty
       )
 
   implicit val transformationCustomsOfficeList: Transformation[CustomsOfficesList.type] = {
@@ -130,12 +132,12 @@ trait TransformationImplicits {
       .andThen((__ \ Common.state).json.prune)
       .andThen((__ \ Common.activeFrom).json.prune)
 
-    Transformation.fromReads(denormaliseTimetable.andThen(selectFields))
+    Transformation.instance(denormaliseTimetable.andThen(selectFields), Seq.empty)
   }
 
   implicit val transformationDocumentTypeCommonList: Transformation[DocumentTypeCommonList.type] =
     Transformation
-      .fromReads(
+      .instance(
         (
           (__ \ Common.state).json.pickBranch and
             (__ \ Common.activeFrom).json.pickBranch and
@@ -148,7 +150,8 @@ trait TransformationImplicits {
             )
         ).reduce
           .andThen((__ \ Common.state).json.prune)
-          .andThen((__ \ Common.activeFrom).json.prune)
+          .andThen((__ \ Common.activeFrom).json.prune),
+        Seq.empty
       )
 
   private val simpleCodeDescriptionReads: Reads[JsObject] =
@@ -162,27 +165,32 @@ trait TransformationImplicits {
       .andThen((__ \ Common.activeFrom).json.prune)
 
   implicit val transformationPreviousDocumentTypeCommonList: Transformation[PreviousDocumentTypeCommonList.type] =
-    Transformation.fromReads(simpleCodeDescriptionReads)
+    Transformation.instance(simpleCodeDescriptionReads, Seq.empty)
 
   implicit val transformationKindOfPackagesList: Transformation[KindOfPackagesList.type] =
-    Transformation.fromReads(simpleCodeDescriptionReads)
+    Transformation.instance(simpleCodeDescriptionReads, Seq.empty)
 
   implicit val transformationTransportModeList: Transformation[TransportModeList.type] =
-    Transformation.fromReads(simpleCodeDescriptionReads)
+    Transformation.instance(
+      simpleCodeDescriptionReads,
+      Seq(
+        jsObj => (jsObj \ "code").validate[String].map(_.length <= 2).getOrElse(false)
+      )
+    )
 
   implicit val transformationAdditionalInformationIdCommonList: Transformation[AdditionalInformationIdCommonList.type] =
-    Transformation.fromReads(simpleCodeDescriptionReads)
+    Transformation.instance(simpleCodeDescriptionReads, Seq.empty)
 
   implicit val transformationSpecificCircumstanceIndicatorList: Transformation[SpecificCircumstanceIndicatorList.type] =
-    Transformation.fromReads(simpleCodeDescriptionReads)
+    Transformation.instance(simpleCodeDescriptionReads, Seq.empty)
 
   implicit val transformationUnDangerousGoodsCodeList: Transformation[UnDangerousGoodsCodeList.type] =
-    Transformation.fromReads(simpleCodeDescriptionReads)
+    Transformation.instance(simpleCodeDescriptionReads, Seq.empty)
 
   implicit val transformationTransportChargesMethodOfPaymentList: Transformation[TransportChargesMethodOfPaymentList.type] =
-    Transformation.fromReads(simpleCodeDescriptionReads)
+    Transformation.instance(simpleCodeDescriptionReads, Seq.empty)
 
   implicit val transformationControlResultList: Transformation[ControlResultList.type] =
-    Transformation.fromReads(simpleCodeDescriptionReads)
+    Transformation.instance(simpleCodeDescriptionReads, Seq.empty)
 
 }

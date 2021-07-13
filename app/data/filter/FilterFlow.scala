@@ -29,8 +29,9 @@ import models.ReferenceDataList
 import models.ReferenceDataList.Constants.Common
 import play.api.Logger
 import play.api.libs.json.JsObject
+import data.transform.Transformation
 
-case class FilterFlow(list: ReferenceDataList) {
+object FilterFlow {
 
   val logger: Logger = Logger(getClass.getSimpleName)
 
@@ -39,7 +40,7 @@ case class FilterFlow(list: ReferenceDataList) {
     state == Common.valid && activeFrom
       .exists(_.isBefore(LocalDate.now().plusDays(1)))
 
-  private val supervisionStrategy: Attributes = ActorAttributes.supervisionStrategy {
+  private def supervisionStrategy(list: ReferenceDataList): Attributes = ActorAttributes.supervisionStrategy {
     case filteredException @ FilterFlowItemNotActiveException(_, state) =>
       logger.info(
         s"${LIST_ITEM_FILTERED.toString} Filtering out item for '${list.listName}' where activeFrom: ${filteredException.activeFromAsString} and state: $state"
@@ -52,16 +53,16 @@ case class FilterFlow(list: ReferenceDataList) {
       Supervision.resume
   }
 
-  def flow: Flow[JsObject, JsObject, NotUsed] =
+  def flow[A <: ReferenceDataList](list: A)(implicit transformation: Transformation[A]): Flow[JsObject, JsObject, NotUsed] =
     Flow[JsObject]
       .map {
         jsObject =>
           val state      = (jsObject \ Common.state).as[String]
           val activeFrom = (jsObject \ Common.activeFrom).asOpt[LocalDate]
-          if (isActiveRecord(state, activeFrom))
+          if (isActiveRecord(state, activeFrom) && transformation.isValid(jsObject))
             jsObject
           else
             throw FilterFlowItemNotActiveException(activeFrom, state)
       }
-      .addAttributes(supervisionStrategy)
+      .addAttributes(supervisionStrategy(list))
 }
