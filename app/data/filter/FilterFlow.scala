@@ -35,6 +35,7 @@ object FilterFlow {
 
   val logger: Logger = Logger(getClass.getSimpleName)
 
+  // TODO: Remove cross-cutting logic and filter using Transformation[ReferenceDataList]#filter
   private def isActiveRecord(state: String, activeFrom: Option[LocalDate]): Boolean =
     state == Common.valid && activeFrom
       .exists(_.isBefore(LocalDate.now().plusDays(1)))

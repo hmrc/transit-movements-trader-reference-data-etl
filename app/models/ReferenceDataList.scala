@@ -35,6 +35,7 @@ object UnDangerousGoodsCodeList                      extends ReferenceDataList("
 object TransportChargesMethodOfPaymentList           extends ReferenceDataList("TransportChargesMethodOfPayment")
 object ControlResultList                             extends ReferenceDataList("ControlResult")
 object CountryCodesCommonTransitOutsideCommunityList extends ReferenceDataList("CountryCodesCommonTransitOutsideCommunity")
+object CountryCodesCustomsOfficeLists                extends ReferenceDataList("CountryCodesCustomsOfficeLists")
 
 object ReferenceDataList {
 
@@ -53,7 +54,8 @@ object ReferenceDataList {
       UnDangerousGoodsCodeList,
       TransportChargesMethodOfPaymentList,
       ControlResultList,
-      CountryCodesCommonTransitOutsideCommunityList
+      CountryCodesCommonTransitOutsideCommunityList,
+      CountryCodesCustomsOfficeLists
     )
 
   val mappings: Map[String, ReferenceDataList] =

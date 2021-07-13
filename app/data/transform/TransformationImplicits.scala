@@ -36,6 +36,8 @@ import play.api.libs.json.Reads._
 import play.api.libs.json._
 import models.IntermediateCustomsOffice
 import play.api.Logger
+import models.CountryCodesCustomsOfficeLists
+
 import models.ReferenceDataList
 
 trait TransformationImplicits {
@@ -56,6 +58,9 @@ trait TransformationImplicits {
 
   implicit val transformationCountryCodesFullList: Transformation[CountryCodesFullList.type] =
     commonCountryTransformation[CountryCodesFullList.type](CountryCodesFullListFieldNames.code)
+
+  implicit val transformationCountryCodesCustomsOfficeList: Transformation[CountryCodesCustomsOfficeLists.type] =
+    commonCountryTransformation[CountryCodesCustomsOfficeLists.type](CountryCodesFullListFieldNames.code)
 
   implicit val transformationCountryCodesCommonTransitList: Transformation[CountryCodesCommonTransitList.type] =
     commonCountryTransformation[CountryCodesCommonTransitList.type](CountryCodesCommonTransitListFieldNames.code)

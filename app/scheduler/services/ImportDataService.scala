@@ -62,7 +62,8 @@ class ImportDataService @Inject() (
         importList(UnDangerousGoodsCodeList),
         importList(TransportChargesMethodOfPaymentList),
         importList(ControlResultList),
-        importList(CountryCodesCommonTransitOutsideCommunityList)
+        importList(CountryCodesCommonTransitOutsideCommunityList),
+        importList(CountryCodesCustomsOfficeLists)
       )
     )
 
