@@ -21,6 +21,7 @@ import models.AdditionalInformationIdCommonList
 import models.ControlResultList
 import models.CountryCodesCommonTransitList
 import models.CountryCodesCommonTransitOutsideCommunityList
+import models.CountryCodesCommunityList
 import models.CountryCodesFullList
 import models.CountryCodesCustomsOfficeLists
 import models.CustomsOfficesList
@@ -89,6 +90,7 @@ class ImportDataServiceSpec extends AnyFreeSpec with Matchers with MockitoSugar 
         result mustEqual true
         verify(mockConnector, times(1)).post(eqTo(CountryCodesFullList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(CountryCodesCommonTransitList), eqTo(referenceData))
+        verify(mockConnector, times(1)).post(eqTo(CountryCodesCommunityList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(CustomsOfficesList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(DocumentTypeCommonList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(PreviousDocumentTypeCommonList), eqTo(referenceData))
@@ -101,7 +103,7 @@ class ImportDataServiceSpec extends AnyFreeSpec with Matchers with MockitoSugar 
         verify(mockConnector, times(1)).post(eqTo(ControlResultList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(CountryCodesCommonTransitOutsideCommunityList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(CountryCodesCustomsOfficeLists), eqTo(referenceData))
-        verify(mockConnector, times(14)).post(any(), any())
+        verify(mockConnector, times(15)).post(any(), any())
       }
     }
 
@@ -118,7 +120,7 @@ class ImportDataServiceSpec extends AnyFreeSpec with Matchers with MockitoSugar 
         val result = service.importReferenceData().futureValue
 
         result mustEqual false
-        verify(mockDataRetrieval, times(14)).getList(any())(any())
+        verify(mockDataRetrieval, times(15)).getList(any())(any())
         verify(mockConnector, times(0)).post(any(), any())
       }
     }
@@ -140,6 +142,7 @@ class ImportDataServiceSpec extends AnyFreeSpec with Matchers with MockitoSugar 
         result mustEqual false
         verify(mockConnector, times(1)).post(eqTo(CountryCodesFullList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(CountryCodesCommonTransitList), eqTo(referenceData))
+        verify(mockConnector, times(1)).post(eqTo(CountryCodesCommunityList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(CustomsOfficesList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(DocumentTypeCommonList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(PreviousDocumentTypeCommonList), eqTo(referenceData))
@@ -152,7 +155,7 @@ class ImportDataServiceSpec extends AnyFreeSpec with Matchers with MockitoSugar 
         verify(mockConnector, times(1)).post(eqTo(ControlResultList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(CountryCodesCommonTransitOutsideCommunityList), eqTo(referenceData))
         verify(mockConnector, times(1)).post(eqTo(CountryCodesCustomsOfficeLists), eqTo(referenceData))
-        verify(mockConnector, times(14)).post(any(), any())
+        verify(mockConnector, times(15)).post(any(), any())
       }
     }
 

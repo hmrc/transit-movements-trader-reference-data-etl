@@ -35,3 +35,4 @@ tmp
 bin
 .DS_Store
 **/*.DS_Store
+metals.sbt

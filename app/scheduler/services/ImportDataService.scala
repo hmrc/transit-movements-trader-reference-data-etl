@@ -51,6 +51,7 @@ class ImportDataService @Inject() (
       List(
         importList(CountryCodesFullList),
         importList(CountryCodesCommonTransitList),
+        importList(CountryCodesCommunityList),
         importList(CustomsOfficesList),
         importList(DocumentTypeCommonList),
         importList(PreviousDocumentTypeCommonList),

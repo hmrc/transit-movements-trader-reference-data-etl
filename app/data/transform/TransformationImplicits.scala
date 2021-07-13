@@ -21,6 +21,7 @@ import models.ControlResultList
 import models.CountryCodesCommonTransitList
 import models.CountryCodesCommonTransitOutsideCommunityList
 import models.CountryCodesFullList
+import models.CountryCodesCommunityList
 import models.CustomsOfficesList
 import models.DocumentTypeCommonList
 import models.KindOfPackagesList
@@ -37,57 +38,40 @@ import models.IntermediateCustomsOffice
 import play.api.Logger
 import models.CountryCodesCustomsOfficeLists
 
+import models.ReferenceDataList
+
 trait TransformationImplicits {
 
-  private val jsonTransformCountryCodeLikeLists: Reads[JsObject] =
-    (
-      (__ \ CountryCodesFullListFieldNames.code).json.copyFrom((__ \ "countryCode").json.pick) and
-        (__ \ Common.state).json.pickBranch and
-        (__ \ Common.activeFrom).json.pickBranch and
-        (__ \ Common.description).json.copyFrom(englishDescription)
-    ).reduce
-      .andThen(
-        (__ \ Common.activeFrom).json.prune
-      )
+  private def commonCountryTransformation[T <: ReferenceDataList](code: String): Transformation[T] = Transformation
+    .instance(
+      (
+        (__ \ code).json.copyFrom((__ \ "countryCode").json.pick) and
+          (__ \ Common.state).json.pickBranch and
+          (__ \ Common.activeFrom).json.pickBranch and
+          (__ \ Common.description).json.copyFrom(englishDescription)
+      ).reduce
+        .andThen(
+          (__ \ Common.activeFrom).json.prune
+        ),
+      Seq.empty
+    )
 
   implicit val transformationCountryCodesFullList: Transformation[CountryCodesFullList.type] =
-    Transformation.instance(jsonTransformCountryCodeLikeLists, Seq.empty)
+    commonCountryTransformation[CountryCodesFullList.type](CountryCodesFullListFieldNames.code)
 
   implicit val transformationCountryCodesCustomsOfficeList: Transformation[CountryCodesCustomsOfficeLists.type] =
-    Transformation.instance(jsonTransformCountryCodeLikeLists, Seq.empty)
+    commonCountryTransformation[CountryCodesCustomsOfficeLists.type](CountryCodesFullListFieldNames.code)
 
   implicit val transformationCountryCodesCommonTransitList: Transformation[CountryCodesCommonTransitList.type] =
-    Transformation
-      .instance(
-        (
-          (__ \ CountryCodesCommonTransitListFieldNames.code).json.copyFrom((__ \ "countryCode").json.pick) and
-            (__ \ Common.state).json.pickBranch and
-            (__ \ Common.activeFrom).json.pickBranch and
-            (__ \ Common.description).json.copyFrom(englishDescription)
-        ).reduce
-          .andThen(
-            (__ \ Common.activeFrom).json.prune
-          ),
-        Seq.empty
-      )
+    commonCountryTransformation[CountryCodesCommonTransitList.type](CountryCodesCommonTransitListFieldNames.code)
 
   implicit val countryCodesCommonTransitOutsideCommunityList: Transformation[CountryCodesCommonTransitOutsideCommunityList.type] =
-    Transformation
-      .instance(
-        (
-          (__ \ CountryCodesCommonTransitOutsideCommunityListFieldNames.code).json.copyFrom((__ \ "countryCode").json.pick) and
-            (__ \ Common.state).json.pickBranch and
-            (__ \ Common.activeFrom).json.pickBranch and
-            (__ \ Common.description).json.copyFrom(englishDescription)
-        ).reduce
-          .andThen(
-            (__ \ Common.activeFrom).json.prune
-          ),
-        Seq.empty
-      )
+    commonCountryTransformation[CountryCodesCommonTransitOutsideCommunityList.type](CountryCodesCommonTransitOutsideCommunityListFieldNames.code)
+
+  implicit val countryCodesCommunityList: Transformation[CountryCodesCommunityList.type] =
+    commonCountryTransformation[CountryCodesCommunityList.type](CountryCodesCommunityListFieldNames.code)
 
   implicit val transformationCustomsOfficeList: Transformation[CustomsOfficesList.type] = {
-
     val customsOfficeDetailsEN: Reads[JsObject] = (__ \ "customsOfficeDetails").json.update(
       of[JsArray].flatMap[JsObject] {
         case JsArray(array) =>
