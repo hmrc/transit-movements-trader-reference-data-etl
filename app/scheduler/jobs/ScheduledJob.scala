@@ -23,12 +23,11 @@ import logging.Logging
 
 import play.api.inject.ApplicationLifecycle
 import scheduler.config.ScheduledJobConfig
-import scheduler.SchedulingActor
-import scheduler.SchedulingActor.ScheduledMessage
+import scheduler.jobs.SchedulingActor.ScheduledMessage
 
 import scala.concurrent.Future
 
-trait ScheduledJob extends Logging {
+private[scheduler] trait ScheduledJob extends Logging {
 
   val scheduledMessage: ScheduledMessage[_]
   val actorSystem: ActorSystem

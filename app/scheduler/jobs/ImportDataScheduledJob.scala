@@ -20,11 +20,11 @@ import akka.actor.ActorSystem
 import javax.inject.Inject
 import play.api.Configuration
 import play.api.inject.ApplicationLifecycle
-import scheduler.SchedulingActor.ImportDataMessage
+import scheduler.jobs.SchedulingActor.ImportDataMessage
 import scheduler.config.ScheduledJobConfig
 import scheduler.tasks.ImportDataTask
 
-class ImportDataScheduledJob @Inject() (
+private[scheduler] class ImportDataScheduledJob @Inject() (
   config: Configuration,
   val applicationLifecycle: ApplicationLifecycle,
   task: ImportDataTask

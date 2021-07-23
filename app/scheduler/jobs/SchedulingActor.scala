@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package scheduler
+package scheduler.jobs
 
 import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.Props
 import logging.Logging
 import logging.LoggingIdentifiers.ReceivedMessage
-import scheduler.SchedulingActor.ScheduledMessage
-import scheduler.jobs.JobFailed
+import scheduler.jobs.SchedulingActor.ScheduledMessage
 import scheduler.tasks.ImportDataTask
 import scheduler.tasks.ScheduledTask
 
