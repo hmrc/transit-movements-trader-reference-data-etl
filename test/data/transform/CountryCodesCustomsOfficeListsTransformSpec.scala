@@ -37,8 +37,8 @@ class CountryCodesCustomsOfficeListsTransformSpecs extends SpecBase {
           """
           |{
           |  "code": "AD",
-          |  "state": "valid",
-          |  "description": "Andorra"
+          |  "description": "Andorra",
+          |  "countryRegimeCode": "TOC"
           |}
           |""".stripMargin
 
@@ -53,51 +53,6 @@ class CountryCodesCustomsOfficeListsTransformSpecs extends SpecBase {
     "when the json doesn't match the expected schema" - {
 
       "returns a JsError parse error if the json doesn't match the expected schema" - {
-
-        "when missing state" in {
-
-          val result =
-            Transformation(CountryCodesCustomsOfficeLists).transform
-              .reads(dataWithErrorMissingState)
-              .asEither
-              .left
-              .value
-
-          result.length mustEqual 1
-          val (errorPath, _) = result.head
-          errorPath mustEqual (__ \ "state")
-
-        }
-
-        "when missing activeFrom" in {
-          val data =
-            """ 
-            |{
-            |  "state": "valid",
-            |  "countryCode": "AD",
-            |  "tccEntryDate": "19000101",
-            |  "nctsEntryDate": "19000101",
-            |  "geoNomenclatureCode": "043",
-            |  "countryRegimeCode": "TOC",
-            |  "description": {
-            |    "en": "Andorra",
-            |    "tt": "Andorra"
-            |  }
-            |}
-            |""".stripMargin
-
-          val result =
-            Transformation(CountryCodesCustomsOfficeLists).transform
-              .reads(Json.parse(data))
-              .asEither
-              .left
-              .value
-
-          result.length mustEqual 1
-          val (errorPath, _) = result.head
-          errorPath mustEqual (__ \ "activeFrom")
-
-        }
 
         "when missing countryCode" in {
 
@@ -159,16 +114,23 @@ class CountryCodesCustomsOfficeListsTransformSpecs extends SpecBase {
           errorPath mustEqual (__ \ "description" \ "en")
         }
 
+        "when missing countryRegimeCode" in {
+
+          val result =
+            Transformation(CountryCodesCustomsOfficeLists).transform
+              .reads(dataWithErrorMissingRegime)
+              .asEither
+              .left
+              .value
+
+          result.length mustEqual 1
+          val (errorPath, _) = result.head
+          errorPath mustEqual (__ \ "countryRegimeCode")
+
+        }
+
       }
     }
-  }
-
-  "filter" ignore {
-
-    "returns a JsSuccess of None if the country is invalid" ignore {}
-
-    "returns a JsSuccess of None if the activeFrom date is in the future" ignore {}
-
   }
 
 }
@@ -339,7 +301,7 @@ object CountryCodesCustomsOfficeListsTransformSpecs {
                |""".stripMargin)
       .as[JsObject]
 
-  val dataWithErrorMissingState: JsObject =
+  val dataWithErrorMissingRegime: JsObject =
     Json
       .parse(""" 
       |{
@@ -348,7 +310,6 @@ object CountryCodesCustomsOfficeListsTransformSpecs {
       |  "tccEntryDate": "19000101",
       |  "nctsEntryDate": "19000101",
       |  "geoNomenclatureCode": "043",
-      |  "countryRegimeCode": "TOC",
       |  "description": {
       |    "en": "Andorra",
       |    "tt": "Andorra"
