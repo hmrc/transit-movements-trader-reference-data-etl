@@ -16,15 +16,13 @@
 
 package scheduler
 
-import com.google.inject.AbstractModule
-import scheduler.jobs.ImportDataScheduledJob
-import scheduler.tasks.ImportDataTask
+import javax.inject.Inject
+import scheduler.services.ImportDataService
+import scala.concurrent.ExecutionContext
+import scala.concurrent.Future
 
-class Module extends AbstractModule {
+private[scheduler] class SchedulerActionsSync @Inject() (importDataService: ImportDataService)(implicit ec: ExecutionContext) extends SchedulerActions {
 
-  override def configure(): Unit = {
-    bind(classOf[ImportDataScheduledJob]).asEagerSingleton()
-    bind(classOf[ImportDataTask]).asEagerSingleton()
-    bind(classOf[SchedulerActions]).to(classOf[SchedulerActionsSync])
-  }
+  def triggerReferenceDataImport(): Future[Boolean] = importDataService.importReferenceData()
+
 }
