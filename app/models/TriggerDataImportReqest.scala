@@ -17,7 +17,6 @@
 package models
 
 import play.api.libs.json._
-import play.api.libs.functional.syntax._
 
 sealed trait TriggerDataImportReqest
 
@@ -28,12 +27,22 @@ object TriggerDataImportReqest {
   }
   case object TriggerAllDataImports extends TriggerDataImportReqest
 
-  implicit val reads: Reads[TriggerDataImportReqest] =
-    (__ \ "job")
-      .read[String]
-      .filter(_ == Constants.jobName)
-      .andKeep(
-        _ => JsSuccess(TriggerAllDataImports)
+  implicit val reads: Reads[TriggerDataImportReqest] = {
+    implicit val readsReferenceDataList: Reads[ReferenceDataList] = implicitly[Reads[String]]
+      .flatMap {
+        str =>
+          ReferenceDataList.mappings
+            .get(str)
+            .fold[Reads[ReferenceDataList]](Reads.failed(s"Invalid list name: $str"))(
+              x => Reads.pure(x)
+            )
+      }
+
+    (__ \ "listNames")
+      .readNullable[Seq[ReferenceDataList]]
+      .map(
+        _ => TriggerAllDataImports
       )
+  }
 
 }

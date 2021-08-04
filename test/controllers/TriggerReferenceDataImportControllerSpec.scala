@@ -20,12 +20,12 @@ import base.SpecBaseWithAppPerSuite
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import play.api.libs.json.Json
-import play.api.libs.json.JsObject
 import play.api.inject._
 import scheduler.SchedulerActions
 import play.api.inject.guice.GuiceApplicationBuilder
 import org.mockito.Mockito.when
 import scala.concurrent.Future
+import play.api.mvc.Headers
 
 class TriggerReferenceDataImportControllerSpec extends SpecBaseWithAppPerSuite {
   val mockSchedulerActions = mock[SchedulerActions]
@@ -37,16 +37,13 @@ class TriggerReferenceDataImportControllerSpec extends SpecBaseWithAppPerSuite {
       .overrides(bind[SchedulerActions].toInstance(mockSchedulerActions))
 
   "scheduleImport" - {
-    "must return 200 when action is successfully scheduled" in {
+    "must return 200 when there is a request body and action is successfully scheduled" in {
       when(mockSchedulerActions.triggerReferenceDataImport()).thenReturn(Future.successful(true))
 
       val request =
         FakeRequest(POST, controllers.routes.TriggerReferenceDataImportController.scheduleImport.url)
           .withJsonBody(
-            Json.obj(
-              "job"  -> "DataImport",
-              "only" -> Seq.empty[JsObject]
-            )
+            Json.obj()
           )
 
       val result = route(app, request).value
@@ -61,10 +58,7 @@ class TriggerReferenceDataImportControllerSpec extends SpecBaseWithAppPerSuite {
     val request =
       FakeRequest(POST, controllers.routes.TriggerReferenceDataImportController.scheduleImport.url)
         .withJsonBody(
-          Json.obj(
-            "job"  -> "DataImport",
-            "only" -> Seq.empty[JsObject]
-          )
+          Json.obj()
         )
 
     val result = route(app, request).value

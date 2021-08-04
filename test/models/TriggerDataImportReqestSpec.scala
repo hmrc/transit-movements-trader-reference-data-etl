@@ -21,41 +21,19 @@ import play.api.libs.json._
 
 class TriggerDataImportReqestSpec extends SpecBase {
   "deserialization from json" - {
-    "when the job has the correct name and the import is for all lists" in {
-      val json =
-        Json.obj(
-          "job"  -> "DataImport",
-          "only" -> Seq.empty[JsObject]
-        )
+    "to TriggerAllDataImports when there are no listName specifed" in {
+      val json = Json.obj()
 
       json.as[TriggerDataImportReqest] mustEqual TriggerDataImportReqest.TriggerAllDataImports
     }
 
-    "when the job has the correct name and the import is for specific lists, then the specified lists are ignored and we import all lists" in {
+    "to TriggerAllDataImports when the import is for specific lists" in {
       val json =
         Json.obj(
-          "job"  -> "DataImport",
-          "only" -> Seq("CountryCodesFullList")
+          "listNames" -> Seq("CountryCodesFullList")
         )
 
       json.as[TriggerDataImportReqest] mustEqual TriggerDataImportReqest.TriggerAllDataImports
-    }
-
-    "when the job name is incorrect" in {
-      val json =
-        Json.obj(
-          "job"  -> "Invalid",
-          "only" -> Seq.empty[JsObject]
-        )
-
-      val result = json
-        .validate[TriggerDataImportReqest]
-        .asEither
-        .left
-        .value
-        .map(_._1)
-
-      result must contain theSameElementsAs Seq((__ \ "job"))
     }
   }
 }
