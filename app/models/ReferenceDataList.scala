@@ -92,6 +92,10 @@ object ReferenceDataList {
       val code = "code"
     }
 
+    object CountryCodesCustomsOfficeListsFieldNames {
+      val countryRegimeCode = "countryRegimeCode"
+    }
+
     object CustomsOfficesListFieldNames {
       val id                               = "id"
       val name                             = "name"

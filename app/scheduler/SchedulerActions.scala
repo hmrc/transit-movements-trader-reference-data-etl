@@ -16,15 +16,11 @@
 
 package scheduler
 
-import com.google.inject.AbstractModule
-import scheduler.jobs.ImportDataScheduledJob
-import scheduler.tasks.ImportDataTask
+import akka.compat.Future
+import scala.concurrent.Future
 
-class Module extends AbstractModule {
+trait SchedulerActions {
 
-  override def configure(): Unit = {
-    bind(classOf[ImportDataScheduledJob]).asEagerSingleton()
-    bind(classOf[ImportDataTask]).asEagerSingleton()
-    bind(classOf[SchedulerActions]).to(classOf[SchedulerActionsSync])
-  }
+  def triggerReferenceDataImport(): Future[Boolean]
+
 }

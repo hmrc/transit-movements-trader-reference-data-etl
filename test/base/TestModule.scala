@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-package scheduler
+package base
 
 import com.google.inject.AbstractModule
-import scheduler.jobs.ImportDataScheduledJob
-import scheduler.tasks.ImportDataTask
+import scheduler.SchedulerActions
+import scala.concurrent.Future
 
-class Module extends AbstractModule {
+class TestModule extends AbstractModule {
 
-  override def configure(): Unit = {
-    bind(classOf[ImportDataScheduledJob]).asEagerSingleton()
-    bind(classOf[ImportDataTask]).asEagerSingleton()
-    bind(classOf[SchedulerActions]).to(classOf[SchedulerActionsSync])
+  private val unimplmentedSchedulerActions = new SchedulerActions {
+    override def triggerReferenceDataImport(): Future[Boolean] = ???
   }
+
+  override def configure(): Unit =
+    bind(classOf[SchedulerActions]).toInstance(unimplmentedSchedulerActions)
+
 }

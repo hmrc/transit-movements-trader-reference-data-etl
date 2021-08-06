@@ -28,7 +28,7 @@ import scala.concurrent.Future
 import logging.LoggingIdentifiers.AcquiredLock
 import logging.LoggingIdentifiers.AlreadyLocked
 
-trait ScheduledTask[A] extends Logging {
+private[scheduler] trait ScheduledTask[A] extends Logging {
   val lockRepository: LockRepository
   implicit val ec: ExecutionContext
 

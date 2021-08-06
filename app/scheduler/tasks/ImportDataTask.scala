@@ -26,7 +26,7 @@ import scheduler.services.ImportDataService
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 
-class ImportDataTask @Inject() (
+private[scheduler] class ImportDataTask @Inject() (
   val lockRepository: LockRepository,
   dataImportService: ImportDataService
 )(implicit val ec: ExecutionContext)

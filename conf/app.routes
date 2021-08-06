@@ -1,1 +1,3 @@
 # microservice specific routes
+
+POST  /schedule-action/reference-data     controllers.TriggerReferenceDataImportController.scheduleImport

@@ -60,7 +60,15 @@ trait TransformationImplicits {
     commonCountryTransformation[CountryCodesFullList.type](CountryCodesFullListFieldNames.code)
 
   implicit val transformationCountryCodesCustomsOfficeList: Transformation[CountryCodesCustomsOfficeLists.type] =
-    commonCountryTransformation[CountryCodesCustomsOfficeLists.type](CountryCodesFullListFieldNames.code)
+    Transformation
+      .instance(
+        (
+          (__ \ CountryCodesFullListFieldNames.code).json.copyFrom((__ \ "countryCode").json.pick) and
+            (__ \ Common.description).json.copyFrom(englishDescription) and
+            (__ \ CountryCodesCustomsOfficeListsFieldNames.countryRegimeCode).json.pickBranch
+        ).reduce,
+        Seq.empty
+      )
 
   implicit val transformationCountryCodesCommonTransitList: Transformation[CountryCodesCommonTransitList.type] =
     commonCountryTransformation[CountryCodesCommonTransitList.type](CountryCodesCommonTransitListFieldNames.code)

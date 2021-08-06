@@ -30,7 +30,7 @@ import scheduler.connector.TransitReferenceDataConnector
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 
-class ImportDataService @Inject() (
+private[scheduler] class ImportDataService @Inject() (
   dataRetrieval: DataRetrieval,
   transitReferenceDataConnector: TransitReferenceDataConnector
 ) extends Logging {
