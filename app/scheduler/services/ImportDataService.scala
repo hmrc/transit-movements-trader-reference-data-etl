@@ -47,25 +47,53 @@ private[scheduler] class ImportDataService @Inject() (
     }
 
   private def importLists()(implicit ec: ExecutionContext): Future[List[Boolean]] =
-    Future.sequence(
-      List(
-        importList(CountryCodesFullList),
-        importList(CountryCodesCommonTransitList),
-        importList(CountryCodesCommunityList),
-        importList(CustomsOfficesList),
-        importList(DocumentTypeCommonList),
-        importList(PreviousDocumentTypeCommonList),
-        importList(KindOfPackagesList),
-        importList(TransportModeList),
-        importList(AdditionalInformationIdCommonList),
-        importList(SpecificCircumstanceIndicatorList),
-        importList(UnDangerousGoodsCodeList),
-        importList(TransportChargesMethodOfPaymentList),
-        importList(ControlResultList),
-        importList(CountryCodesCommonTransitOutsideCommunityList),
-        importList(CountryCodesCustomsOfficeLists)
+    Future
+      .sequence(
+        List(
+          importList(CountryCodesFullList),
+          importList(CountryCodesCommonTransitList),
+          importList(CountryCodesCommunityList),
+          importList(DocumentTypeCommonList),
+          importList(PreviousDocumentTypeCommonList)
+        )
       )
-    )
+      .flatMap(
+        previous =>
+          Future
+            .sequence(
+              List(
+                importList(KindOfPackagesList),
+                importList(TransportModeList),
+                importList(AdditionalInformationIdCommonList),
+                importList(SpecificCircumstanceIndicatorList),
+                importList(UnDangerousGoodsCodeList)
+              )
+            )
+            .map(
+              current => previous ++ current
+            )
+      )
+      .flatMap(
+        previous =>
+          Future
+            .sequence(
+              List(
+                importList(TransportChargesMethodOfPaymentList),
+                importList(ControlResultList),
+                importList(CountryCodesCommonTransitOutsideCommunityList),
+                importList(CountryCodesCustomsOfficeLists)
+              )
+            )
+            .map(
+              current => previous ++ current
+            )
+      )
+      .flatMap(
+        previous =>
+          importList(CustomsOfficesList).map(
+            current => previous :+ current
+          )
+      )
 
   private def importList[A <: ReferenceDataList](list: A)(implicit ec: ExecutionContext, ev: Transformation[A]): Future[Boolean] = {
     for {
