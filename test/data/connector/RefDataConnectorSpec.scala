@@ -64,6 +64,7 @@ class RefDataConnectorSpec extends ConnectorSpecBase {
 
       server.stubFor(
         get(urlEqualTo(pathToLists))
+          .withHeader(HeaderNames.USER_AGENT, equalTo(appName))
           .willReturn(
             ok()
               .withHeader(HeaderNames.CONTENT_ENCODING, MimeTypes.JSON)
@@ -73,6 +74,7 @@ class RefDataConnectorSpec extends ConnectorSpecBase {
 
       server.stubFor(
         get(urlEqualTo(pathToSingleList))
+          .withHeader(HeaderNames.USER_AGENT, equalTo(appName))
           .willReturn(
             ok()
               .withHeader(HeaderNames.CONTENT_ENCODING, MimeTypes.JSON)
@@ -110,6 +112,7 @@ class RefDataConnectorSpec extends ConnectorSpecBase {
 
       server.stubFor(
         get(urlEqualTo(pathToLists))
+          .withHeader(HeaderNames.USER_AGENT, equalTo(appName))
           .willReturn(
             ok()
               .withHeader(HeaderNames.CONTENT_ENCODING, MimeTypes.JSON)
@@ -119,6 +122,7 @@ class RefDataConnectorSpec extends ConnectorSpecBase {
 
       server.stubFor(
         get(urlEqualTo(pathToSingleList))
+          .withHeader(HeaderNames.USER_AGENT, equalTo(appName))
           .willReturn(
             ok()
               .withHeader(HeaderNames.CONTENT_ENCODING, MimeTypes.JSON)
@@ -159,6 +163,7 @@ class RefDataConnectorSpec extends ConnectorSpecBase {
 
       server.stubFor(
         get(urlEqualTo(pathToLists))
+          .withHeader(HeaderNames.USER_AGENT, equalTo(appName))
           .willReturn(
             ok()
               .withHeader(HeaderNames.CONTENT_ENCODING, MimeTypes.JSON)
@@ -168,6 +173,7 @@ class RefDataConnectorSpec extends ConnectorSpecBase {
 
       server.stubFor(
         get(urlEqualTo(pathToSingleList))
+          .withHeader(HeaderNames.USER_AGENT, equalTo(appName))
           .willReturn(
             ok()
               .withHeader(HeaderNames.CONTENT_ENCODING, MimeTypes.JSON)
@@ -212,6 +218,7 @@ class RefDataConnectorSpec extends ConnectorSpecBase {
 
       server.stubFor(
         get(urlEqualTo(pathToLists))
+          .withHeader(HeaderNames.USER_AGENT, equalTo(appName))
           .willReturn(
             ok()
               .withHeader(HeaderNames.CONTENT_ENCODING, MimeTypes.JSON)
@@ -221,6 +228,7 @@ class RefDataConnectorSpec extends ConnectorSpecBase {
 
       server.stubFor(
         get(urlEqualTo(pathToSingleList))
+          .withHeader(HeaderNames.USER_AGENT, equalTo(appName))
           .willReturn(
             ok()
               .withHeader(HeaderNames.CONTENT_ENCODING, MimeTypes.JSON)

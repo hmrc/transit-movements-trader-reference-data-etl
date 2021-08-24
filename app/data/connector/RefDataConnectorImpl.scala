@@ -26,19 +26,27 @@ import play.api.libs.ws.WSClient
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
+import play.api.libs.ws.WSResponse
+import play.mvc.Http.HeaderNames
 
 private[connector] class RefDataConnectorImpl @Inject() (ws: WSClient, connectorConfig: ConnectorConfig)(implicit ec: ExecutionContext)
     extends RefDataConnector {
+
+  private def wsGet(url: String): Future[WSResponse] =
+    ws.url(url).withHttpHeaders(HeaderNames.USER_AGENT -> connectorConfig.appName).get()
+
+  private def wsStream(url: String): Future[WSResponse] =
+    ws.url(url).withHttpHeaders(HeaderNames.USER_AGENT -> connectorConfig.appName).stream()
 
   override def get(listName: ReferenceDataList): Future[Option[ByteString]] = {
     val url = connectorConfig.customsReferenceData.urlWithBaseUrl("/lists")
 
     (for {
-      response <- OptionT.liftF(ws.url(url).get)
+      response <- OptionT.liftF(wsGet(url))
       lists = response.json.as[ReferenceDataLists]
       listRelativePath <- OptionT.fromOption[Future](lists.getPath(listName))
       listUrl = connectorConfig.customsReferenceData.fromRelativePath(listRelativePath)
-      listData <- OptionT.liftF(ws.url(listUrl).get)
+      listData <- OptionT.liftF(wsGet(listUrl))
     } yield listData.bodyAsBytes).value
   }
 
@@ -46,11 +54,11 @@ private[connector] class RefDataConnectorImpl @Inject() (ws: WSClient, connector
     val url = connectorConfig.customsReferenceData.urlWithBaseUrl("/lists")
 
     (for {
-      response <- OptionT.liftF(ws.url(url).get)
+      response <- OptionT.liftF(wsGet(url))
       lists = response.json.as[ReferenceDataLists]
       listRelativePath <- OptionT.fromOption[Future](lists.getPath(listName))
       listUrl = connectorConfig.customsReferenceData.fromRelativePath(listRelativePath)
-      listData <- OptionT.liftF(ws.url(listUrl).stream())
+      listData <- OptionT.liftF(wsStream(listUrl))
     } yield listData.bodyAsSource).value
   }
 
