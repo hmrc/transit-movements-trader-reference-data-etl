@@ -40,6 +40,8 @@ trait ConnectorSpecBase extends SpecBaseWithAppPerSuite with BeforeAndAfterAll {
 
   protected val server: WireMockServer = new WireMockServer(wireMockConfig().dynamicPort())
 
+  protected val appName: String = "transit-movements-trader-reference-data-etl"
+
   override def guiceApplicationBuilder: GuiceApplicationBuilder =
     super.guiceApplicationBuilder
       .configure(

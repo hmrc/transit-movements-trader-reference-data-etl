@@ -25,4 +25,6 @@ private[connector] class ConnectorConfig @Inject() (config: Configuration) {
   val customsReferenceData: Service =
     config.get[Service]("microservice.services.customs-reference-data")
 
+  lazy val appName: String = config.get[String]("appName")
+
 }
