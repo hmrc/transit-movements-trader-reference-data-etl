@@ -29,7 +29,7 @@ class ReferenceDataListSpec extends SpecBase with ScalaCheckPropertyChecks {
         testList =>
           val result: Either[String, ReferenceDataList] = implicitly[PathBindable[ReferenceDataList]].bind("", testList.listName)
 
-          result.right.value mustEqual testList
+          result.value mustEqual testList
 
       }
 

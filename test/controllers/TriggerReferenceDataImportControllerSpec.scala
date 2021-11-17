@@ -17,15 +17,15 @@
 package controllers
 
 import base.SpecBaseWithAppPerSuite
+import org.mockito.Mockito.when
+import play.api.inject._
+import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.libs.json.Json
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
-import play.api.libs.json.Json
-import play.api.inject._
 import scheduler.SchedulerActions
-import play.api.inject.guice.GuiceApplicationBuilder
-import org.mockito.Mockito.when
+
 import scala.concurrent.Future
-import play.api.mvc.Headers
 
 class TriggerReferenceDataImportControllerSpec extends SpecBaseWithAppPerSuite {
   val mockSchedulerActions = mock[SchedulerActions]

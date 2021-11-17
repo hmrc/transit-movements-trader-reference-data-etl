@@ -17,9 +17,7 @@
 package models
 
 import base.SpecBase
-import data.transform.CustomsOfficesListTransformSpec._
 import play.api.libs.json.Json
-import play.api.libs.json.JsObject
 
 class IntermediateCustomsOfficeSpec extends SpecBase {
 

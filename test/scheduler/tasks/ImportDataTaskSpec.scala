@@ -36,7 +36,6 @@ import repositories.LockRepository
 import repositories.LockResult
 import scheduler.jobs.JobName
 import scheduler.jobs.ScheduleStatus.MongoLockException
-import scheduler.jobs.ScheduleStatus.MongoUnlockException
 import scheduler.jobs.ScheduleStatus.UnknownExceptionOccurred
 import scheduler.services.ImportDataService
 
@@ -82,7 +81,7 @@ class ImportDataTaskSpec extends AnyFreeSpec with Matchers with MockitoSugar wit
 
             val result = task.run().futureValue
 
-            result.right.value.value mustEqual true
+            result.value.value mustEqual true
             verify(mockLockRepo, times(1)).unlock(eqTo(lock))
           }
         }
@@ -106,7 +105,7 @@ class ImportDataTaskSpec extends AnyFreeSpec with Matchers with MockitoSugar wit
 
               val result = task.run().futureValue
 
-              result.right.value.value mustEqual true
+              result.value.value mustEqual true
             }
           }
         }
@@ -183,7 +182,7 @@ class ImportDataTaskSpec extends AnyFreeSpec with Matchers with MockitoSugar wit
 
           val result = task.run().futureValue
 
-          result.right.value must not be defined
+          result.value must not be defined
           verify(mockImportDataService, times(0)).importReferenceData()(any())
           verify(mockLockRepo, times(0)).unlock(eqTo(lock))
         }

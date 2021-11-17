@@ -72,7 +72,7 @@ class TransitMovementReferenceDataConnectorSpec
         )
 
         val result = connector.post(list, data).futureValue
-        result.right.value mustEqual true
+        result.value mustEqual true
       }
     }
 
