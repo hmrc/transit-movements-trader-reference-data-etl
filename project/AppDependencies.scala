@@ -15,7 +15,7 @@ object AppDependencies {
     "com.typesafe.play"  %% "play-iteratees-reactive-streams"    % "2.6.1",
     "org.typelevel"      %% "cats-core"                          % catsVersion,
     "com.lightbend.akka" %% "akka-stream-alpakka-json-streaming" % "2.0.2",
-    "com.enragedginger"  %% "akka-quartz-scheduler"              % "1.8.5-akka-2.6.x"
+    "com.enragedginger"  %% "akka-quartz-scheduler"              % "1.9.0-akka-2.6.x"
   )
 
   val test: Seq[ModuleID] = Seq(
