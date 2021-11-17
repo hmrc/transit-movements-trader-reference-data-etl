@@ -24,7 +24,7 @@ import data.ReferenceDataJsonProjectionSpec.formatAsReferenceDataByteString
 import data.connector.RefDataConnector
 import logging.TestStreamLoggingConfig
 import models.ReferenceDataList
-import org.mockito.ArgumentMatchers.{eq => eqTo}
+import org.mockito.Matchers.{eq => eqTo}
 import org.mockito.Mockito._
 import play.api.libs.json.JsObject
 import play.api.libs.json.Json

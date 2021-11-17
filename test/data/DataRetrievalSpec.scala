@@ -23,7 +23,7 @@ import akka.util.ByteString
 import base.SpecBaseWithAppPerSuite
 import data.connector.RefDataConnector
 import models.CountryCodesFullList
-import org.mockito.ArgumentMatchers.{eq => eqTo}
+import org.mockito.Matchers.{eq => eqTo}
 import org.mockito.Mockito._
 import play.api.inject._
 import play.api.inject.guice.GuiceApplicationBuilder
