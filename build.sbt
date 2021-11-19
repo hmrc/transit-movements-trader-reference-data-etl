@@ -1,5 +1,4 @@
 import scoverage.ScoverageKeys
-import uk.gov.hmrc.SbtArtifactory
 import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 
 val appName = "transit-movements-trader-reference-data-etl"
@@ -10,9 +9,7 @@ lazy val microservice = Project(appName, file("."))
   .enablePlugins(
     play.sbt.PlayScala,
     SbtAutoBuildPlugin,
-    SbtGitVersioning,
-    SbtDistributablesPlugin,
-    SbtArtifactory
+    SbtDistributablesPlugin
   )
   .disablePlugins(JUnitXmlReportPlugin)
   .settings(
@@ -48,7 +45,7 @@ lazy val scoverageSettings = {
       "data.config.*",
       ".*(BuildInfo|Routes).*"
     ).mkString(";"),
-    ScoverageKeys.coverageMinimum := 75.00,
+    ScoverageKeys.coverageMinimumStmtTotal := 75.00,
     ScoverageKeys.coverageExcludedFiles := "<empty>;.*javascript.*;.*Routes.*;",
     ScoverageKeys.coverageFailOnMinimum := true,
     ScoverageKeys.coverageHighlighting := true,

@@ -16,7 +16,7 @@
 
 package scheduler
 
-import org.mockito.ArgumentMatchers.any
+import org.mockito.Matchers.any
 import org.mockito.Mockito._
 import base.SpecBase
 import scala.concurrent.ExecutionContext.Implicits.global

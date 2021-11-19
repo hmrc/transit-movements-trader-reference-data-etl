@@ -32,8 +32,8 @@ import models.SpecificCircumstanceIndicatorList
 import models.TransportChargesMethodOfPaymentList
 import models.TransportModeList
 import models.UnDangerousGoodsCodeList
-import org.mockito.ArgumentMatchers.any
-import org.mockito.ArgumentMatchers.{eq => eqTo}
+import org.mockito.Matchers.any
+import org.mockito.Matchers.{eq => eqTo}
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.when
