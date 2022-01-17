@@ -4,15 +4,15 @@ import sbt._
 
 object AppDependencies {
 
-  private val catsVersion = "2.1.1"
+  private val catsVersion = "2.7.0"
 
   val compile: Seq[ModuleID] = Seq(
-    "uk.gov.hmrc"        %% "bootstrap-backend-play-28"          % "5.16.0",
+    "uk.gov.hmrc"        %% "bootstrap-backend-play-28"          % "5.19.0",
     "org.reactivemongo"  %% "play2-reactivemongo"                % "0.20.13-play28",
     "com.typesafe.play"  %% "play-iteratees"                     % "2.6.1",
     "com.typesafe.play"  %% "play-iteratees-reactive-streams"    % "2.6.1",
     "org.typelevel"      %% "cats-core"                          % catsVersion,
-    "com.lightbend.akka" %% "akka-stream-alpakka-json-streaming" % "2.0.2",
+    "com.lightbend.akka" %% "akka-stream-alpakka-json-streaming" % "3.0.4",
     "com.enragedginger"  %% "akka-quartz-scheduler"              % "1.9.0-akka-2.6.x"
   )
 
