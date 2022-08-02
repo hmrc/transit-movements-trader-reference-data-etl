@@ -64,7 +64,7 @@ class LockRepository @Inject() (
         _ => LockResult.LockAcquired
       }
       .recover {
-        case _: MongoWriteException =>
+        case e: MongoWriteException if e.getCode == 11000 =>
           LockResult.AlreadyLocked
         case e: Throwable =>
           logger.error(s"${LockException.toString} Error trying to get lock $key", e)
