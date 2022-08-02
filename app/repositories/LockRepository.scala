@@ -78,9 +78,9 @@ class LockRepository @Inject() (
     collection
       .deleteOne(Filters.eq("_id", key))
       .toFuture()
-      .map(
+      .map {
         _ => true
-      )
+      }
       .recover {
         case e: Throwable =>
           logger.error(s"${UnlockException.toString} Error trying to remove lock $key", e)
