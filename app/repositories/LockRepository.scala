@@ -87,7 +87,10 @@ object LockRepository {
   def indexes(appConfig: AppConfig): Seq[IndexModel] = {
     val createdIndex: IndexModel = IndexModel(
       keys = Indexes.ascending("created"),
-      indexOptions = IndexOptions().name("created-index").expireAfter(appConfig.mongoLockTtlInSeconds, TimeUnit.SECONDS)
+      indexOptions = IndexOptions()
+        .name("created-index")
+        .unique(true)
+        .expireAfter(appConfig.mongoLockTtlInSeconds, TimeUnit.SECONDS)
     )
 
     Seq(createdIndex)
