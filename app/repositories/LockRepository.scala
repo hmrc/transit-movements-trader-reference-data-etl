@@ -27,6 +27,7 @@ import org.mongodb.scala.model.Indexes
 import play.api.libs.json.JsObject
 import play.api.libs.json.Json
 import uk.gov.hmrc.mongo.MongoComponent
+import uk.gov.hmrc.mongo.MongoUtils.DuplicateKey
 import uk.gov.hmrc.mongo.play.json.PlayMongoRepository
 import uk.gov.hmrc.mongo.play.json.formats.MongoJavatimeFormats
 
@@ -64,7 +65,7 @@ class LockRepository @Inject() (
         _ => LockResult.LockAcquired
       }
       .recover {
-        case e: MongoWriteException if e.getCode == 11000 =>
+        case e: MongoWriteException if e.getCode == DuplicateKey.Code =>
           LockResult.AlreadyLocked
         case e: Throwable =>
           logger.error(s"${LockException.toString} Error trying to get lock $key", e)
