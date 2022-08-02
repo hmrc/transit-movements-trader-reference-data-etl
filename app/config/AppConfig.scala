@@ -22,4 +22,6 @@ import play.api.Configuration
 class AppConfig @Inject() (config: Configuration) {
 
   val mongoLockTtlInSeconds: Int = config.get[Int]("mongodb.locks.ttlSeconds")
+
+  val replaceIndexes: Boolean = config.get[Boolean]("mongodb.replaceIndexes")
 }

@@ -16,7 +16,6 @@
 
 package scheduler
 
-import akka.compat.Future
 import scala.concurrent.Future
 
 trait SchedulerActions {

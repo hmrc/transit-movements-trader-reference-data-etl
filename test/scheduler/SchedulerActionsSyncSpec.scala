@@ -16,15 +16,17 @@
 
 package scheduler
 
-import org.mockito.Matchers.any
-import org.mockito.Mockito._
 import base.SpecBase
+import org.mockito.ArgumentMatchers.any
+import org.mockito.Mockito._
+import scheduler.services.ImportDataService
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 class SchedulerActionsSyncSpec extends SpecBase {
 
-  val mockImportDataService = mock[services.ImportDataService]
+  val mockImportDataService: ImportDataService = mock[services.ImportDataService]
 
   "when the import succeeds, then the service returns true" in {
     when(mockImportDataService.importReferenceData()(any())).thenReturn(Future.successful(true))
