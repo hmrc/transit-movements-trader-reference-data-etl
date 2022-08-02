@@ -20,6 +20,7 @@ import com.mongodb.MongoWriteException
 import config.AppConfig
 import logging.Logging
 import logging.LoggingIdentifiers.LockException
+import logging.LoggingIdentifiers.UnlockException
 import org.mongodb.scala.model.Filters
 import org.mongodb.scala.model.IndexModel
 import org.mongodb.scala.model.IndexOptions
@@ -77,7 +78,14 @@ class LockRepository @Inject() (
     collection
       .deleteOne(Filters.eq("_id", key))
       .toFuture()
-      .map(_.wasAcknowledged())
+      .map(
+        _ => true
+      )
+      .recover {
+        case e: Throwable =>
+          logger.error(s"${UnlockException.toString} Error trying to remove lock $key", e)
+          false
+      }
 
 }
 
