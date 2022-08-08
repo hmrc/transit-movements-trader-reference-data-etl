@@ -23,18 +23,28 @@ import akka.util.ByteString
 import base.SpecBaseWithAppPerSuite
 import data.connector.RefDataConnector
 import models.CountryCodesFullList
-import org.mockito.Matchers.{eq => eqTo}
+import models.TransportModeList
+import org.mockito.ArgumentMatchers.{eq => eqTo}
 import org.mockito.Mockito._
 import play.api.inject._
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.json.JsObject
+import play.api.libs.json.Json
 
 import scala.concurrent.Future
-import models.TransportModeList
-import play.api.libs.json.Json
 
 class DataRetrievalSpec extends SpecBaseWithAppPerSuite {
   import data.transform.CountryCodesFullListTransformSpec._
+
+  implicit lazy val actorSystem: ActorSystem = ActorSystem()
+
+  val mockRefDataConnector: RefDataConnector = mock[RefDataConnector]
+
+  override val mocks: Seq[_] = super.mocks :+ mockRefDataConnector
+
+  override def guiceApplicationBuilder: GuiceApplicationBuilder =
+    super.guiceApplicationBuilder
+      .overrides(bind[RefDataConnector].toInstance(mockRefDataConnector))
 
   "streamList" - {
 
@@ -181,15 +191,5 @@ class DataRetrievalSpec extends SpecBaseWithAppPerSuite {
     }
 
   }
-
-  implicit lazy val actorSystem: ActorSystem = ActorSystem()
-
-  val mockRefDataConnector: RefDataConnector = mock[RefDataConnector]
-
-  override val mocks: Seq[_] = super.mocks :+ mockRefDataConnector
-
-  override def guiceApplicationBuilder: GuiceApplicationBuilder =
-    super.guiceApplicationBuilder
-      .overrides(bind[RefDataConnector].toInstance(mockRefDataConnector))
 
 }

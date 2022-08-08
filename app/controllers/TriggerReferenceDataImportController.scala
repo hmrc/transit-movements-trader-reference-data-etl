@@ -39,7 +39,6 @@ class TriggerReferenceDataImportController @Inject() (cc: ControllerComponents, 
             case true  => Ok("")
             case false => InternalServerError
           }
-
       }
   }
 

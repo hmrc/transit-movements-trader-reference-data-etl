@@ -16,24 +16,11 @@
 
 package scheduler.services
 
+import base.SpecBaseWithAppPerSuite
 import data.DataRetrieval
-import models.AdditionalInformationIdCommonList
-import models.ControlResultList
-import models.CountryCodesCommonTransitList
-import models.CountryCodesCommonTransitOutsideCommunityList
-import models.CountryCodesCommunityList
-import models.CountryCodesFullList
-import models.CountryCodesCustomsOfficeLists
-import models.CustomsOfficesList
-import models.DocumentTypeCommonList
-import models.KindOfPackagesList
-import models.PreviousDocumentTypeCommonList
-import models.SpecificCircumstanceIndicatorList
-import models.TransportChargesMethodOfPaymentList
-import models.TransportModeList
-import models.UnDangerousGoodsCodeList
-import org.mockito.Matchers.any
-import org.mockito.Matchers.{eq => eqTo}
+import models._
+import org.mockito.ArgumentMatchers.any
+import org.mockito.ArgumentMatchers.{eq => eqTo}
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.when
@@ -43,9 +30,8 @@ import play.api.libs.json.Json
 import scheduler.connector.ErrorResponse.UnexpectedResponseStatus
 import scheduler.connector.TransitReferenceDataConnector
 
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
-import base.SpecBaseWithAppPerSuite
+import scala.concurrent.Future
 
 class ImportDataServiceSpec extends SpecBaseWithAppPerSuite {
 
