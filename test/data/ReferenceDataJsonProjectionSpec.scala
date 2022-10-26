@@ -25,7 +25,6 @@ import base.SpecBase
 import logging.TestStreamLoggingConfig
 import play.api.libs.json.JsObject
 import play.api.libs.json.Json
-import play.api.libs.json.OWrites
 import play.api.libs.json.Writes
 
 class ReferenceDataJsonProjectionSpec extends SpecBase {
@@ -36,7 +35,6 @@ class ReferenceDataJsonProjectionSpec extends SpecBase {
   val referenceDataJsonProjection = new ReferenceDataJsonProjection(TestStreamLoggingConfig)
 
   "projects and returns all values in the nested sequence of values in the `data` array" in {
-    implicit val owrites: OWrites[JsObject] = identity[JsObject]
 
     val expectedData = List(Json.obj("int" -> 1), Json.obj("int" -> 2))
     val testData     = formatAsReferenceDataByteString(expectedData)

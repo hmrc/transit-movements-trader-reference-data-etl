@@ -36,7 +36,7 @@ class SchedulingActor extends Actor with ActorLogging with Logging {
 
 object SchedulingActor {
 
-  def props: Props = Props[SchedulingActor]
+  def props: Props = Props[SchedulingActor]()
 
   sealed trait ScheduledMessage[A] {
     val task: ScheduledTask[A]

@@ -61,7 +61,7 @@ class TransitMovementReferenceDataConnectorSpec
       val data = Seq(Json.obj())
       val list = arbitrary[ReferenceDataList].sample.value
 
-      val app = appBuilder.build
+      val app = appBuilder.build()
       running(app) {
 
         val connector = app.injector.instanceOf[TransitReferenceDataConnector]
@@ -82,7 +82,7 @@ class TransitMovementReferenceDataConnectorSpec
       val data      = Seq(Json.obj())
       val list      = arbitrary[ReferenceDataList].sample.value
 
-      val app = appBuilder.build
+      val app = appBuilder.build()
 
       running(app) {
         val connector = app.injector.instanceOf[TransitReferenceDataConnector]
