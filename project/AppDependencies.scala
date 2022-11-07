@@ -5,7 +5,8 @@ object AppDependencies {
 
   private val catsVersion = "2.8.0"
   private val mongoVersion = "0.73.0"
-  private val bootstrapVersion = "7.8.0"
+  private val bootstrapVersion = "7.11.0"
+  private val akkaVersion = "2.6.20"
 
   val compile: Seq[ModuleID] = Seq(
     "uk.gov.hmrc"        %% "bootstrap-backend-play-28"          % bootstrapVersion,
@@ -25,7 +26,6 @@ object AppDependencies {
     "org.scalacheck"         %% "scalacheck"               % "1.17.0",
     "org.scalatestplus"      %% "scalacheck-1-17"          % "3.2.14.0",
     "com.typesafe.akka"      %% "akka-stream-testkit"      % akkaVersion,
-    "com.typesafe.akka"      %% "akka-slf4j"               % akkaVersion,
     "com.vladsch.flexmark"    % "flexmark-all"             % "0.62.2",
     "com.github.tomakehurst"  % "wiremock-standalone"      % "2.27.2"
   ).map(_ % "test, it")
