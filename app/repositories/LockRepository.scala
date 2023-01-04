@@ -36,9 +36,11 @@ import java.time.Clock
 import java.time.Instant
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import javax.inject.Singleton
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 
+@Singleton
 class LockRepository @Inject() (
   mongoComponent: MongoComponent,
   appConfig: AppConfig,

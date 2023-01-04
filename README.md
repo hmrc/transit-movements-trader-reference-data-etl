@@ -1,7 +1,10 @@
 
 # transit-movements-trader-reference-data-etl
 
-This is a placeholder README.md for a new repository
+This is a service with a scheduler action to:
+* Extract data from customs-reference-data
+* Transform the data into a shape that meets our needs
+* Load it into transit-movements-trader-reference-data
 
 ### License
 
