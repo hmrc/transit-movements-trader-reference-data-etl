@@ -4,8 +4,8 @@ import sbt._
 object AppDependencies {
 
   private val catsVersion = "2.8.0"
-  private val mongoVersion = "0.73.0"
-  private val bootstrapVersion = "7.11.0"
+  private val mongoVersion = "1.2.0"
+  private val bootstrapVersion = "7.15.0"
   private val akkaVersion = "2.6.20"
 
   val compile: Seq[ModuleID] = Seq(
