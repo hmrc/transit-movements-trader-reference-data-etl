@@ -41,7 +41,7 @@ class LockRepositorySpec
   private val instant = Instant.now
   private val stubClock: Clock = Clock.fixed(instant, ZoneId.systemDefault)
 
-  override protected def repository: LockRepository = new LockRepository(mongoComponent, appConfig, stubClock)
+  override protected val repository: LockRepository = new LockRepository(mongoComponent, appConfig, stubClock)
 
   "Lock Repository" - {
 
