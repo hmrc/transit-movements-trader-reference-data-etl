@@ -6,8 +6,7 @@ val appName = "transit-movements-trader-reference-data-etl"
 lazy val microservice = Project(appName, file("."))
   .enablePlugins(
     play.sbt.PlayScala,
-    SbtAutoBuildPlugin,
-    SbtDistributablesPlugin
+    SbtAutoBuildPlugin
   )
   .disablePlugins(JUnitXmlReportPlugin)
   .settings(
@@ -17,7 +16,6 @@ lazy val microservice = Project(appName, file("."))
     libraryDependencies              ++= AppDependencies.compile ++ AppDependencies.test,
     scalacOptions += "-Wconf:src=routes/.*:s"
   )
-  .settings(publishingSettings: _*)
   .settings(inConfig(Test)(testSettings): _*)
   .configs(IntegrationTest)
   .settings(inConfig(IntegrationTest)(itSettings): _*)
