@@ -6,7 +6,8 @@ val appName = "transit-movements-trader-reference-data-etl"
 lazy val microservice = Project(appName, file("."))
   .enablePlugins(
     play.sbt.PlayScala,
-    SbtAutoBuildPlugin
+    SbtAutoBuildPlugin,
+    SbtDistributablesPlugin
   )
   .disablePlugins(JUnitXmlReportPlugin)
   .settings(
