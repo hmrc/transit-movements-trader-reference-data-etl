@@ -11,7 +11,7 @@ lazy val microservice = Project(appName, file("."))
   .disablePlugins(JUnitXmlReportPlugin)
   .settings(
     majorVersion                     := 0,
-    scalaVersion                     := "2.13.8",
+    scalaVersion                     := "2.13.12",
     ThisBuild / scalafmtOnCompile    := true,
     libraryDependencies              ++= AppDependencies.compile ++ AppDependencies.test,
     scalacOptions += "-Wconf:src=routes/.*:s"
