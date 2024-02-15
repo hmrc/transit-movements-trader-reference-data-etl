@@ -16,10 +16,10 @@
 
 package data.transform
 
-import akka.actor.ActorSystem
-import akka.stream.scaladsl.Keep
-import akka.stream.testkit.scaladsl.TestSink
-import akka.stream.testkit.scaladsl.TestSource
+import org.apache.pekko.actor.ActorSystem
+import org.apache.pekko.stream.scaladsl.Keep
+import org.apache.pekko.stream.testkit.scaladsl.TestSink
+import org.apache.pekko.stream.testkit.scaladsl.TestSource
 import base.SpecBaseWithAppPerSuite
 import models.CountryCodesFullList
 import play.api.libs.json.JsObject

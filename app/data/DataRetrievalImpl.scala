@@ -16,9 +16,9 @@
 
 package data
 
-import akka.stream.Materializer
-import akka.stream.scaladsl.Sink
-import akka.stream.scaladsl.Source
+import org.apache.pekko.stream.Materializer
+import org.apache.pekko.stream.scaladsl.Sink
+import org.apache.pekko.stream.scaladsl.Source
 import data.filter.FilterFlow
 import data.transform.Transformation
 import data.transform.TransformationFlow

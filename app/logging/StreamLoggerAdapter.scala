@@ -16,9 +16,9 @@
 
 package logging
 
-import akka.actor.ActorSystem
-import akka.event.{Logging => AkkaEventLogging}
-import akka.event.LoggingAdapter
+import org.apache.pekko.actor.ActorSystem
+import org.apache.pekko.event.{Logging => AkkaEventLogging}
+import org.apache.pekko.event.LoggingAdapter
 
 trait StreamLoggerAdapter {
 

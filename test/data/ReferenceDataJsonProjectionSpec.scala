@@ -16,11 +16,11 @@
 
 package data
 
-import akka.actor.ActorSystem
-import akka.stream.scaladsl.Keep
-import akka.stream.testkit.scaladsl.TestSink
-import akka.stream.testkit.scaladsl.TestSource
-import akka.util.ByteString
+import org.apache.pekko.actor.ActorSystem
+import org.apache.pekko.stream.scaladsl.Keep
+import org.apache.pekko.stream.testkit.scaladsl.TestSink
+import org.apache.pekko.stream.testkit.scaladsl.TestSource
+import org.apache.pekko.util.ByteString
 import base.SpecBase
 import logging.TestStreamLoggingConfig
 import play.api.libs.json.JsObject

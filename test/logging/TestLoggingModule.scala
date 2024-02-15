@@ -16,8 +16,8 @@
 
 package logging
 
-import akka.event.Logging.LogLevel
-import akka.event.{Logging => AkkaLogging}
+import org.apache.pekko.event.Logging.LogLevel
+import org.apache.pekko.event.{Logging => AkkaLogging}
 import com.google.inject.AbstractModule
 import data.config.StreamLoggingConfig
 

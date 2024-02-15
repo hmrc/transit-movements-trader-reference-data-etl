@@ -16,9 +16,9 @@
 
 package data.connector
 
-import akka.actor.ActorSystem
-import akka.stream.testkit.scaladsl.TestSink
-import akka.util.ByteString
+import org.apache.pekko.actor.ActorSystem
+import org.apache.pekko.stream.testkit.scaladsl.TestSink
+import org.apache.pekko.util.ByteString
 import com.github.tomakehurst.wiremock.client.WireMock._
 import data.ReferenceDataJsonProjectionSpec
 import models.ReferenceDataList

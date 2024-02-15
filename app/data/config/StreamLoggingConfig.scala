@@ -16,8 +16,8 @@
 
 package data.config
 
-import akka.event.Logging
-import akka.event.Logging.LogLevel
+import org.apache.pekko.event.Logging
+import org.apache.pekko.event.Logging.LogLevel
 import config.InvalidConfigurationError
 import javax.inject.Inject
 import play.api.Configuration
