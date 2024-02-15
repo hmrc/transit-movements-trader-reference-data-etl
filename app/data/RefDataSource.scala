@@ -16,7 +16,7 @@
 
 package data
 
-import akka.stream.scaladsl.Source
+import org.apache.pekko.stream.scaladsl.Source
 import data.connector.RefDataConnector
 import javax.inject.Inject
 import models.ReferenceDataList

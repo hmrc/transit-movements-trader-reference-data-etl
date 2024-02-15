@@ -16,10 +16,10 @@
 
 package data
 
-import akka.actor.ActorSystem
-import akka.stream.scaladsl.Source
-import akka.stream.testkit.scaladsl.TestSink
-import akka.util.ByteString
+import org.apache.pekko.actor.ActorSystem
+import org.apache.pekko.stream.scaladsl.Source
+import org.apache.pekko.stream.testkit.scaladsl.TestSink
+import org.apache.pekko.util.ByteString
 import base.SpecBaseWithAppPerSuite
 import data.connector.RefDataConnector
 import models.CountryCodesFullList

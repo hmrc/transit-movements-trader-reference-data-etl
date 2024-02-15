@@ -16,9 +16,9 @@
 
 package scheduler.jobs
 
-import akka.actor.ActorRef
-import akka.actor.ActorSystem
-import com.typesafe.akka.`extension`.quartz.QuartzSchedulerExtension
+import org.apache.pekko.actor.ActorRef
+import org.apache.pekko.actor.ActorSystem
+import org.apache.pekko.extension.quartz.QuartzSchedulerExtension
 import logging.Logging
 
 import play.api.inject.ApplicationLifecycle

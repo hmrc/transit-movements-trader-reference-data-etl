@@ -16,8 +16,8 @@
 
 package data.connector
 
-import akka.stream.scaladsl.Source
-import akka.util.ByteString
+import org.apache.pekko.stream.scaladsl.Source
+import org.apache.pekko.util.ByteString
 import cats.data._
 import cats.implicits._
 import javax.inject.Inject
